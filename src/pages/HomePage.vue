@@ -13,7 +13,9 @@ onMounted(async () => {
   <h1>Camino</h1>
   <ul v-if="tours.length">
     <li v-for="tour in tours">
-      {{ tour.title }}
+      <router-link :to="`/tour/${tour.id}`">
+        {{ tour.title }}
+      </router-link>
     </li>
   </ul>
 </template>
