@@ -1,0 +1,88 @@
+/* Border Box default */
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/* Variables */
+:root {
+  /* Color styles */
+  --yellow: rgba(243, 255, 125, 1);
+  --white: rgba(255, 255, 255, 1);
+  --black: rgba(20, 20, 20, 1);
+  --gray-lighter: rgba(243, 243, 243, 1);
+  --gray-light: rgba(223, 223, 223, 1);
+  --gray-medium: rgba(186, 186, 186, 1);
+  --gray-dark: rgba(94, 94, 96, 1);
+  --blue-light: rgba(223, 248, 253, 1);
+  --blue-medium: rgba(171, 239, 250, 1);
+  --orange-light: rgba(255, 243, 237, 1);
+  --orange-medium: rgba(255, 199, 152, 1);
+  --system-blue: rgba(10, 132, 255, 1);
+  --system-red: rgba(255, 69, 58, 1);
+
+  /* Text-size styles */
+  /* base size: default (16px) */
+  --small: 0.75rem;
+  --h3: 1rem;
+  --h2: 1.5rem;
+  --h1: 2rem;
+  --subtitle: 2.5rem;
+  --title: 3rem;
+  --heading--secondary: 0.88rem;
+  --default: 1rem;
+  --button--text: 1rem;
+}
+
+html {
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #fff;
+  line-height: 1.5;
+  color: var(--gray-dark);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: var(--black);
+}
+
+a {
+  color: var(--black);
+}
+
+a:hover {
+  background: var(--yellow);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.not-sr-only {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}

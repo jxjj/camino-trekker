@@ -10,6 +10,4 @@ const props = defineProps({
   },
 });
 </script>
-<template>
-  <h1>Tour {{ tourId }}</h1>
-</template>
+<template></template>

@@ -7,6 +7,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource/material-icons": "^4.5.0",
+    "@fontsource/poppins": "^4.5.0",
+    "normalize.css": "^8.0.1",
     "vue": "^3.2.25",
     "vue-router": "^4.0.12"
   },
