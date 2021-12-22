@@ -2,13 +2,16 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomePage from "./pages/HomePage.vue";
 import TourPage from "./pages/TourPage.vue";
 
+const toInt = (str) => Number.parseInt(str, 10);
+
 const routes = [
   { path: "/", component: HomePage },
   {
-    path: "/tour/:tourId",
+    path: "/tour/:tourId/:stopId",
     component: TourPage,
     props: (route) => ({
-      tourId: Number.parseInt(route.params.tourId, 10),
+      tourId: toInt(route.params.tourId),
+      stopId: toInt(route.params.stopId),
     }),
   },
 ];
