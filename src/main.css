@@ -33,9 +33,9 @@ html {
   --h1: 2rem;
   --subtitle: 2.5rem;
   --title: 3rem;
-  --heading--secondary: 0.88rem;
+  --heading-secondary: 0.88rem;
   --default: 1rem;
-  --button--text: 1rem;
+  --button-text: 1rem;
 }
 
 html {
@@ -85,4 +85,42 @@ a:hover {
   overflow: visible;
   clip: auto;
   white-space: normal;
+}
+
+.page-title {
+  font-size: var(--title);
+}
+
+.page-subtitle {
+  font-size: var(--subtitle);
+}
+
+h1,
+.h1 {
+  font-size: var(--h1);
+  line-height: 1.2;
+}
+
+h2,
+.h2 {
+  font-size: var(--h2);
+  line-height: 1.2;
+}
+h3,
+.h3 {
+  font-size: var(--h3);
+}
+
+button,
+.button {
+  font-size: var(--button-text);
+}
+
+small,
+.small {
+  font-size: var(--small);
+}
+
+.container {
+  padding: 1rem;
 }

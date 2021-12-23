@@ -10,4 +10,6 @@ const props = defineProps({
   },
 });
 </script>
-<template></template>
+<template>
+  <h1>Tour Page</h1>
+</template>

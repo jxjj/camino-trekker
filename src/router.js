@@ -7,7 +7,7 @@ const toInt = (str) => Number.parseInt(str, 10);
 const routes = [
   { path: "/", component: HomePage },
   {
-    path: "/tour/:tourId/:stopId",
+    path: "/tour/:tourId/:stopId?",
     component: TourPage,
     props: (route) => ({
       tourId: toInt(route.params.tourId),
