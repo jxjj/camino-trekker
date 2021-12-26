@@ -20,8 +20,10 @@ html {
   --gray-dark: rgba(94, 94, 96, 1);
   --blue-light: rgba(223, 248, 253, 1);
   --blue-medium: rgba(171, 239, 250, 1);
+  --blue: var(--blue-medium);
   --orange-light: rgba(255, 243, 237, 1);
   --orange-medium: rgba(255, 199, 152, 1);
+  --orange: var(--orange-medium);
   --system-blue: rgba(10, 132, 255, 1);
   --system-red: rgba(255, 69, 58, 1);
 
