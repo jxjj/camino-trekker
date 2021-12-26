@@ -1,6 +1,12 @@
 <template>
-  <button class="button" :class="classMap">
-    <span v-if="!!icon" class="material-icons">{{ icon }}</span>
+  <button
+    class="button"
+    :class="classMap"
+  >
+    <span
+      v-if="!!icon"
+      class="material-icons"
+    >{{ icon }}</span>
     <slot>Button Text</slot>
   </button>
 </template>
@@ -10,12 +16,14 @@ import { computed } from "vue";
 const props = defineProps({
   icon: {
     type: String,
+    default: null,
   },
   variant: {
     type: String,
     validator(str) {
       return ["primary", "secondary"].includes(str);
     },
+    default: "secondary",
   },
   iconPosition: {
     type: String,
