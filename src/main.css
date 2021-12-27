@@ -11,21 +11,21 @@ html {
 /* Variables */
 :root {
   /* Color styles */
-  --yellow: rgba(243, 255, 125, 1);
-  --white: rgba(255, 255, 255, 1);
-  --black: rgba(20, 20, 20, 1);
-  --gray-lighter: rgba(243, 243, 243, 1);
-  --gray-light: rgba(223, 223, 223, 1);
-  --gray-medium: rgba(186, 186, 186, 1);
-  --gray-dark: rgba(94, 94, 96, 1);
-  --blue-light: rgba(223, 248, 253, 1);
-  --blue-medium: rgba(171, 239, 250, 1);
+  --yellow: #f3ff7d;
+  --white: #fff;
+  --black: #141414;
+  --gray-lighter: #f3f3f3;
+  --gray-light: #dfdfdf;
+  --gray-medium: #bababa;
+  --gray-dark: #5e5e60;
+  --blue-light: #dff8fd;
+  --blue-medium: #abeffa;
   --blue: var(--blue-medium);
-  --orange-light: rgba(255, 243, 237, 1);
-  --orange-medium: rgba(255, 199, 152, 1);
+  --orange-light: #fff3ed;
+  --orange-medium: #ffc798;
   --orange: var(--orange-medium);
-  --system-blue: rgba(10, 132, 255, 1);
-  --system-red: rgba(255, 69, 58, 1);
+  --system-blue: #0a84ff;
+  --system-red: #ff453a;
 
   /* Text-size styles */
   /* base size: default (16px) */
