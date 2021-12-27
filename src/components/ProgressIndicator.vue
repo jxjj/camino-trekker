@@ -46,9 +46,9 @@ const isMiddle = (index) => !isStart(index) && !isEnd(index);
 }
 .item {
   font-size: 0.75rem;
-  color: hsla(0, 0%, 0%, 0.25);
+  color: hsla(0, 0%, 100%, 0.25);
 }
 .item--is-active {
-  color: hsla(0, 0%, 0%, 1);
+  color: hsla(0, 0%, 100%, 1);
 }
 </style>
