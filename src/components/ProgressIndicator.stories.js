@@ -1,7 +1,7 @@
 import ProgressIndicator from "./ProgressIndicator.vue";
 
 export default {
-  title: "Camino/ProgressIndicator",
+  title: "Camino/Components/ProgressIndicator",
   component: ProgressIndicator,
 };
 
@@ -14,3 +14,7 @@ const Template = (args) => ({
 });
 
 export const Default = Template.bind({});
+Default.args = {
+  active: 3,
+  total: 10,
+};

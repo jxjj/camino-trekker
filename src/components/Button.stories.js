@@ -1,7 +1,7 @@
 import Button from "./Button.vue";
 
 export default {
-  title: "Camino/Button",
+  title: "Camino/Components/Button",
   component: Button,
   argTypes: {
     slot: {
