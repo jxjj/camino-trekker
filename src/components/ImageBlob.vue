@@ -5,7 +5,7 @@
     :alt="alt"
     :style="{
       maskImage: `url(${maskImage})`,
-      filter: `grayscale(1) sepia(1) hue-rotate(130deg) brightness(1.5)`,
+      filter: `grayscale(1) sepia(1) hue-rotate(125deg) brightness(1.5)`,
     }"
   />
 </template>
