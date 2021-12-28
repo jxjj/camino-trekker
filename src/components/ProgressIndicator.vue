@@ -43,6 +43,8 @@ const isMiddle = (index) => !isStart(index) && !isEnd(index);
   display: flex;
   align-items: center;
   gap: 0.25rem;
+  margin: 0;
+  padding: 0;
 }
 .item {
   font-size: 0.75rem;
