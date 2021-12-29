@@ -46,15 +46,15 @@ defineProps({
   background: rgba(0, 0, 0, 0.5);
 }
 .sheet__inner {
-  margin-top: 1rem;
-  border-radius: 1.5rem 1.5rem 0;
+  border-radius: 1.5rem 1.5rem 0 0;
   background: var(--black);
   height: 100%;
+  margin-top: 5vh;
   overflow-y: auto;
   color: var(--gray-dark);
-  padding: 1rem;
   transform: translate3d(0, 100vh, 0);
   transition: all ease-out 0.2s;
+  padding: 2rem;
 }
 
 .sheet.sheet--is-open .sheet__inner {
@@ -65,8 +65,11 @@ defineProps({
   display: grid;
   grid-template-columns: 2rem 1fr 2rem;
   grid-template-rows: 2rem auto;
-  gap: 1rem;
   align-items: center;
+  justify-content: center;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--gray-dark);
 }
 .sheet__title {
   grid-column: 1 / -1;
