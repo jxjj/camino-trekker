@@ -1,7 +1,7 @@
 import ProgressIndicator from "./ProgressIndicator.vue";
 
 export default {
-  title: "Camino/Components/ProgressIndicator",
+  title: "Camino/ProgressIndicator",
   component: ProgressIndicator,
 };
 

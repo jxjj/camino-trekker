@@ -1,7 +1,7 @@
 import FAB from "./FAB.vue";
 
 export default {
-  title: "Camino/Components/FAB",
+  title: "Camino/FAB",
   component: FAB,
   argTypes: {
     icon: {

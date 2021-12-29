@@ -1,11 +1,8 @@
 <template>
   <Sheet class="menu-sheet" title="Menu" :is-open="isOpen">
     <ol class="menu-sheet__list">
-      <a v-for="(item, i) in items" :key="i" :href="item.href">
-        <li
-          class="menu-sheet__list-item"
-          :class="{ 'menu-sheet__list-item--is-active': isActiveIndex(i) }"
-        >
+      <a v-for="(item, i) in menuItems" :key="i" :href="item.href">
+        <li class="menu-sheet__list-item">
           <span v-if="!!item.icon" class="material-icons">{{ item.icon }}</span>
           <span>{{ item.text }}</span>
         </li>
@@ -14,24 +11,36 @@
   </Sheet>
 </template>
 <script setup>
-import { computed } from "vue";
 import Sheet from "./Sheet.vue";
-const props = defineProps({
+defineProps({
   isOpen: {
     type: Boolean,
     default: false,
   },
-  items: {
-    type: Array,
-    default: () => [],
-  },
-  activeIndex: {
-    type: Number,
-    default: 0,
-  },
 });
 
-const isActiveIndex = (index) => computed(() => index === props.activeIndex);
+const menuItems = [
+  {
+    icon: "home",
+    text: "Home",
+    href: "#!",
+  },
+  {
+    icon: "map",
+    text: "Map",
+    href: "#!",
+  },
+  {
+    icon: "settings",
+    text: "Settings",
+    href: "#!",
+  },
+  {
+    icon: "help_outline",
+    text: "Help",
+    href: "#!",
+  },
+];
 </script>
 <style scoped>
 .menu-sheet a {

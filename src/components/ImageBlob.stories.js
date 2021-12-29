@@ -1,7 +1,7 @@
 import ImageBlob from "./ImageBlob.vue";
 
 export default {
-  title: "Camino/Components/ImageBlob",
+  title: "Camino/ImageBlob",
   component: ImageBlob,
   argTypes: {
     src: {

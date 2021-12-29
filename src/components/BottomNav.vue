@@ -9,10 +9,7 @@
         class="bottom-nav__progress-button"
         @click="setActiveSheet(SHEETS.STOPLIST)"
       >
-        <ProgressIndicator
-          :total="tour.stops.length"
-          :active="tour.activeStop"
-        />
+        <ProgressIndicator :total="stops.length" :active="activeStopIndex" />
         <span class="sr-only">Open Tour Stops</span>
       </button>
       <button class="bottom-nav__button" @click="setActiveSheet(SHEETS.MAP)">
@@ -21,31 +18,39 @@
       </button>
     </nav>
     <div>
-      <MapSheet
-        :is-open="isActiveSheet(SHEETS.MAP)"
-        @close="handleSheetClose()"
-      />
       <MenuSheet
         :is-open="isActiveSheet(SHEETS.MENU)"
         @close="handleSheetClose()"
       />
       <StopListSheet
         :is-open="isActiveSheet(SHEETS.STOPLIST)"
+        :stops="stops"
+        :active-stop-index="activeStopIndex"
+        @close="handleSheetClose()"
+      />
+      <MapSheet
+        :is-open="isActiveSheet(SHEETS.MAP)"
         @close="handleSheetClose()"
       />
     </div>
   </div>
 </template>
 <script setup>
-import { ref, reactive } from "vue";
+import { ref } from "vue";
 import ProgressIndicator from "./ProgressIndicator.vue";
 import MapSheet from "./MapSheet.vue";
 import MenuSheet from "./MenuSheet.vue";
 import StopListSheet from "./StopListSheet.vue";
 
-const tour = reactive({
-  stops: Array(10),
-  activeStop: 3,
+defineProps({
+  stops: {
+    type: Array,
+    required: true,
+  },
+  activeStopIndex: {
+    type: Number,
+    required: true,
+  },
 });
 
 const SHEETS = {
@@ -69,7 +74,8 @@ const isActiveSheet = (sheetKey) => {
 <style scoped>
 .bottom-nav__navbar {
   background: var(--black);
-  display: flex;
+  display: grid;
+  grid-template-columns: min-content minmax(0, 1fr) min-content;
   gap: 1rem;
   justify-content: space-between;
   align-items: center;

@@ -3,7 +3,7 @@ import Sheet from "./Sheet.vue";
 import Button from "./Button.vue";
 
 export default {
-  title: "Camino/Components/Sheet",
+  title: "Camino/Sheet",
   component: Sheet,
   argTypes: {
     icon: {
@@ -29,13 +29,7 @@ const Template = (args) => ({
     <div>
       <Button @click="toggleSheet">Toggle Sheet</Button>
       <Sheet v-bind="args" :isOpen="isOpen" @close="toggleSheet">
-        <ul>
-          <li>Home</li>
-          <li>Map</li>
-          <li>Share Tour</li>
-          <li>Help</li>
-          <li>Report a Problem</li>
-        </ul>
+        <p>Donec sed odio dui. Maecenas sed diam eget risus varius blandit sit amet non magna. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Maecenas faucibus mollis interdum. Nulla vitae elit libero, a pharetra augue. Nulla vitae elit libero, a pharetra augue.</p>
       </Sheet>
     </div>
   `,
@@ -43,5 +37,5 @@ const Template = (args) => ({
 
 export const Default = Template.bind({});
 Default.args = {
-  title: "Menu",
+  title: "Modal Sheet",
 };

@@ -1,8 +1,9 @@
 import BottomNav from "./BottomNav.vue";
 import ProgressIndicator from "./ProgressIndicator.vue";
+import mockTour from "../api/mockTour.json";
 
 export default {
-  title: "Camino/Components/BottomNav",
+  title: "Camino/BottomNav",
   component: BottomNav,
 };
 
@@ -15,3 +16,7 @@ const Template = (args) => ({
 });
 
 export const Default = Template.bind({});
+Default.args = {
+  activeStopIndex: 0,
+  stops: mockTour.stops,
+};

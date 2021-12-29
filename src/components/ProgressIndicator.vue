@@ -6,12 +6,10 @@
       class="item"
       :class="{
         'item--is-active': isActive(index),
-        'material-icons': isMiddle(index),
       }"
     >
-      {{ isStart(index) ? "Start" : "" }}
-      {{ isMiddle(index) ? "circle" : "" }}
-      {{ !isStart(index) && isEnd(index) ? "End" : "" }}
+      <span class="item__dot material-icons">circle</span>
+      <span class="item__index">{{ index + 1 }}</span>
     </li>
   </ol>
 </template>
@@ -32,9 +30,6 @@ const props = defineProps({
 
 const items = computed(() => range(props.total));
 const isActive = (index) => index === props.active;
-const isStart = (index) => index === 0;
-const isEnd = (index) => index === props.total - 1;
-const isMiddle = (index) => !isStart(index) && !isEnd(index);
 </script>
 
 <style scoped>
@@ -46,11 +41,27 @@ const isMiddle = (index) => !isStart(index) && !isEnd(index);
   margin: 0;
   padding: 0;
 }
+
 .item {
-  font-size: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item__dot {
+  font-size: 0.5rem;
   color: hsla(0, 0%, 100%, 0.25);
 }
-.item--is-active {
+.item__index {
+  display: none;
+}
+
+.item--is-active .item__index {
   color: hsla(0, 0%, 100%, 1);
+  font-size: 0.75rem;
+  display: inline-flex;
+}
+.item--is-active .item__dot {
+  display: none;
 }
 </style>

@@ -41,20 +41,43 @@ defineProps({
   transition: all ease-out 0.2s;
 }
 
+.sheet a {
+  color: var(--gray-dark);
+  text-decoration: none;
+}
+
 .sheet.sheet--is-open {
   z-index: 10;
   background: rgba(0, 0, 0, 0.5);
 }
 .sheet__inner {
+  --scroll-track-color: transparent;
+  --scroll-thumb-color: var(--gray-dark);
+  --scrollbar-width: 0.5rem;
   border-radius: 1.5rem 1.5rem 0 0;
   background: var(--black);
   height: 100%;
   margin-top: 5vh;
   overflow-y: auto;
+  scrollbar-width: var(--scrollbar-width);
+  scrollbar-color: var(--scroll-track-color) var(--scroll-thumb-color);
   color: var(--gray-dark);
   transform: translate3d(0, 100vh, 0);
   transition: all ease-out 0.2s;
   padding: 2rem;
+}
+
+.sheet__inner::-webkit-scrollbar {
+  width: var(--scrollbar-width);
+}
+.sheet__inner::-webkit-scrollbar-track {
+  background: var(--scroll-track-color);
+}
+
+.sheet__inner::-webkit-scrollbar-thumb {
+  background: var(--scroll-thumb-color);
+  border-radius: 0.25rem;
+  border: 2px solid var(--scroll-track-color);
 }
 
 .sheet.sheet--is-open .sheet__inner {

@@ -127,6 +127,7 @@ small,
   padding: 1rem;
 }
 
-button {
+button,
+router-link {
   cursor: pointer;
 }
