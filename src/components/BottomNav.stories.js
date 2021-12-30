@@ -1,6 +1,6 @@
 import BottomNav from "./BottomNav.vue";
 import ProgressIndicator from "./ProgressIndicator.vue";
-import mockTour from "../api/mockTour.json";
+import mockTour from "../common/__mocks__/mockTour.json";
 
 export default {
   title: "Camino/BottomNav",

@@ -1,12 +1,12 @@
 <template>
   <Sheet class="menu-sheet" title="Menu" :is-open="isOpen">
     <ol class="menu-sheet__list">
-      <a v-for="(item, i) in menuItems" :key="i" :href="item.href">
+      <router-link v-for="(item, i) in menuItems" :key="i" :href="item.href">
         <li class="menu-sheet__list-item">
           <span v-if="!!item.icon" class="material-icons">{{ item.icon }}</span>
           <span>{{ item.text }}</span>
         </li>
-      </a>
+      </router-link>
     </ol>
   </Sheet>
 </template>

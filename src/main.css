@@ -26,6 +26,8 @@ html {
   --orange: var(--orange-medium);
   --system-blue: #0a84ff;
   --system-red: #ff453a;
+  --translucent-color: hsla(0, 0%, 100%, 0.2);
+  --translucent-filter: blur(1rem);
 
   /* Text-size styles */
   /* base size: default (16px) */

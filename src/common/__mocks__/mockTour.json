@@ -3,6 +3,12 @@
   "active": 1,
   "public": 1,
   "title": "Stone Arch Bridge",
+  "author": {
+    "name": "Colin McFadden",
+    "title": "Adjunct, Political Science",
+    "institution": "University of Minnesota",
+    "email": "mcfa0086@umn.edu"
+  },
   "tour_content": {
     "hotWords": [],
     "languages": ["English"],

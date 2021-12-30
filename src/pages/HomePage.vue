@@ -1,11 +1,11 @@
 <script setup>
 import { onMounted, ref } from "vue";
-import api from "../api/index.js";
+import { ToursService } from "../common/api.service.js";
 
 const tours = ref([]);
 
 onMounted(async () => {
-  tours.value = await api.tours.list();
+  tours.value = await ToursService.list();
 });
 </script>
 

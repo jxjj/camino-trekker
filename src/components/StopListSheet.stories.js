@@ -1,5 +1,5 @@
 import StopListSheet from "./StopListSheet.vue";
-import MockTour from "../api/mockTour.json";
+import MockTour from "../common/__mocks__/mockTour.json";
 
 export default {
   title: "Camino/StopListSheet",
