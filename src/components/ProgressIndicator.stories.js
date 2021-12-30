@@ -3,6 +3,12 @@ import ProgressIndicator from "./ProgressIndicator.vue";
 export default {
   title: "Camino/ProgressIndicator",
   component: ProgressIndicator,
+  parameters: {
+    backgrounds: {
+      default: "dark",
+      values: [{ name: "dark", value: "#111" }],
+    },
+  },
 };
 
 const Template = (args) => ({

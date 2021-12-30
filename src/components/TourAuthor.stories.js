@@ -17,8 +17,10 @@ const Template = (args) => ({
 
 export const Default = Template.bind({});
 Default.args = {
-  name: "James Johnson",
-  title: "Tour Guide",
-  email: "johnsojr@gmail.com",
-  institution: "University of Minnesota",
+  author: {
+    name: "James Johnson",
+    title: "Tour Guide",
+    email: "johnsojr@gmail.com",
+    institution: "University of Minnesota",
+  },
 };

@@ -1,5 +1,5 @@
 import { createStore } from "vuex";
-import { ToursService } from "../common/api.service.js";
+import { toursService } from "../common/api.service.js";
 
 const initialState = {
   tour: null,
@@ -24,7 +24,8 @@ const mutations = {
 const actions = {
   fetchTour({ commit }, tourId) {
     commit("fetchTourStarted");
-    ToursService.get(tourId)
+    toursService
+      .get(tourId)
       .then((tour) => {
         commit("fetchTourSucceeded", tour);
       })

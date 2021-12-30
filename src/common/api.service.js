@@ -4,7 +4,7 @@ import mockListOfAllTours from "./__mocks__/mockListOfAllTours.json";
 const mockResponse = (payload, ms = 300) =>
   new Promise((resolve) => setTimeout(() => resolve(payload), ms));
 
-export const ToursService = {
+export const toursService = {
   get(tourId) {
     return mockResponse({
       ...mockTour,
