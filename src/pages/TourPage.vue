@@ -1,22 +1,14 @@
 <template>
-  <div class="page">
-    <AppHeader class="tour-page__app-header">
-      <img :src="umnLogo" alt="University of Minnesota" />
-      <h1>Camino</h1>
-    </AppHeader>
-    <main>
+  <div class="tour-page">
+    <AppHeader class="tour-page__app-header" />
+    <main class="tour-page__main container">
       <div v-if="isLoading" class="loading">Loading...</div>
 
       <div v-if="errors.length">
         <pre>{{ errors.join("\n") }}</pre>
       </div>
 
-      <header v-if="tour" class="tour-header">
-        <h2 class="tour-header__title">Stone Arch Bridge</h2>
-        <p class="tour-header__subtitle">Minneapolis, MN</p>
-        <TourAuthor :author="tour.author" />
-      </header>
-      <pre>{{ tour }}</pre>
+      <TourHeader :tour="tour" />
     </main>
   </div>
 </template>
@@ -24,9 +16,7 @@
 import { onMounted, computed } from "vue";
 import { useStore } from "vuex";
 import AppHeader from "../components/AppHeader.vue";
-import TourAuthor from "../components/TourAuthor.vue";
-
-import umnLogo from "../assets/umn-logo.svg";
+import TourHeader from "../components/TourHeader.vue";
 
 const props = defineProps({
   tourId: {
@@ -49,10 +39,19 @@ onMounted(() => {
 });
 </script>
 <style scoped>
+.tour-page {
+  background: var(--blue-light);
+  height: 100%;
+}
+
 .tour-page__app-header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
+}
+
+.tour-page__main {
+  padding-top: 4rem;
 }
 </style>

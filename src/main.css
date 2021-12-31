@@ -26,8 +26,20 @@ html {
   --orange: var(--orange-medium);
   --system-blue: #0a84ff;
   --system-red: #ff453a;
-  --translucent-color: hsla(0, 0%, 100%, 0.2);
-  --translucent-filter: blur(1rem);
+  --translucent-color: hsla(0, 0%, 100%, 0.5);
+  --translucent-filter: blur(0.25rem);
+
+  /* umn golds */
+  --gold: #fc3;
+  --gold-light: #ffde7a;
+  --gold-header: #ffd75f;
+  --gold-dark: #ffb71e;
+
+  /* umn maroons */
+  --maroon: #7a0019;
+  --maroon-light: #900021;
+  --maroon-dark: #4d0010;
+  --maroon-darker: #5b0013;
 
   /* Text-size styles */
   /* base size: default (16px) */
@@ -42,12 +54,16 @@ html {
   --button-text: 1rem;
 }
 
-html {
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   font-family: "Poppins", sans-serif;
-  background-color: #fff;
+  background-color: var(--gray-light);
   line-height: 1.5;
   color: var(--gray-dark);
 }
@@ -132,4 +148,8 @@ small,
 button,
 router-link {
   cursor: pointer;
+}
+
+#app {
+  min-height: 100%;
 }

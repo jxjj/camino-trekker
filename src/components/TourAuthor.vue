@@ -4,6 +4,7 @@
       class="tour-author__img"
       :email="author.email"
       :name="author.name"
+      :variant="medium"
     />
     <div class="tour-author__body">
       <p class="tour-author__name">{{ author.name }}</p>
@@ -38,15 +39,16 @@ defineProps({
 .tour-author__title,
 .tour-author p {
   margin: 0;
+  line-height: 1.2;
 }
 
 .tour-author__name {
-  font-weight: 700;
+  font-weight: 600;
   color: var(--black);
 }
 
 .tour-author__title,
 .tour-author__institution {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
 }
 </style>

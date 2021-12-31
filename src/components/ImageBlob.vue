@@ -5,7 +5,7 @@
     :alt="alt"
     :style="{
       maskImage: `url(${maskImage})`,
-      filter: `grayscale(1) sepia(1) hue-rotate(125deg) brightness(1.5)`,
+      filter: `grayscale(1) sepia(1) hue-rotate(${hueRotate}deg) brightness(1.5)`,
     }"
   />
 </template>
@@ -21,13 +21,14 @@ defineProps({
     type: String,
     required: true,
   },
+  hueRotate: {
+    type: Number,
+    default: 140,
+  },
 });
 </script>
 <style scoped>
 .image-blob {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
   mask-size: contain;
   mask-repeat: no-repeat;
 }

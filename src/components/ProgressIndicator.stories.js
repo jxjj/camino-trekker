@@ -6,7 +6,7 @@ export default {
   parameters: {
     backgrounds: {
       default: "dark",
-      values: [{ name: "dark", value: "#111" }],
+      values: [{ name: "dark", value: "var(--black)" }],
     },
   },
 };

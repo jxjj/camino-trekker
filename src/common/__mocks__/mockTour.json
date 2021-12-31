@@ -9,6 +9,10 @@
     "institution": "University of Minnesota",
     "email": "mcfa0086@umn.edu"
   },
+  "thumbnail": {
+    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Minneapolis-MN-stone-arch-bridge.jpg/2560px-Minneapolis-MN-stone-arch-bridge.jpg",
+    "alt": "Stone Arch Bridge"
+  },
   "tour_content": {
     "hotWords": [],
     "languages": ["English"],

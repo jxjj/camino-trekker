@@ -3,6 +3,13 @@ import Gravatar from "./Gravatar.vue";
 export default {
   title: "Camino/Gravatar",
   component: Gravatar,
+  argTypes: {
+    variant: {
+      options: ["small", "medium", "large"],
+      control: "radio",
+      defaultValue: "medium",
+    },
+  },
 };
 
 const Template = (args) => ({

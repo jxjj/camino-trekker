@@ -1,5 +1,11 @@
 <template>
-  <div class="gravatar">
+  <div
+    class="gravatar"
+    :class="{
+      'gravatar--small': variant === 'small',
+      'gravatar--large': variant === 'large',
+    }"
+  >
     <img
       :src="`https://www.gravatar.com/avatar/${emailHash}?s=${size}`"
       :alt="name"
@@ -23,6 +29,9 @@ const props = defineProps({
     type: Number,
     default: 200,
   },
+  variant: {
+    type: String,
+  },
 });
 
 // see: https://en.gravatar.com/site/implement/hash/
@@ -31,11 +40,19 @@ const emailHash = computed(() => toHash(props.email));
 </script>
 <style scoped>
 .gravatar {
-  height: 4rem;
-  width: 4rem;
+  --size: 3rem;
+  height: var(--size);
+  width: var(--size);
   border-radius: 50%;
   border: 0.125rem solid hsla(0, 0%, 0%, 0.25);
   overflow: hidden;
+}
+
+.gravatar--small {
+  --size: 2rem;
+}
+.gravatar--large {
+  --size: 4rem;
 }
 
 .gravatar img {
