@@ -11,6 +11,8 @@
   "dependencies": {
     "@fontsource/material-icons": "^4.5.0",
     "@fontsource/poppins": "^4.5.0",
+    "dompurify": "^2.3.4",
+    "marked": "^4.0.8",
     "md5": "^2.3.0",
     "normalize.css": "^8.0.1",
     "vue": "^3.2.25",

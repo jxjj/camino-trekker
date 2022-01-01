@@ -7,8 +7,14 @@
       <div v-if="errors.length">
         <pre>{{ errors.join("\n") }}</pre>
       </div>
-
       <TourHeader :tour="tour" />
+      <div class="card">
+        <ol class="tourstop-list">
+          <li v-for="stop in tour.stops" :key="stop.id" class="tourstop">
+            <pre>{{ stop.stop_content.stages }}</pre>
+          </li>
+        </ol>
+      </div>
     </main>
   </div>
 </template>
@@ -31,7 +37,6 @@ const props = defineProps({
 
 const store = useStore();
 const tour = computed(() => store.state.tour);
-const isLoading = computed(() => store.state.isLoading);
 const errors = computed(() => store.state.errors);
 
 onMounted(() => {

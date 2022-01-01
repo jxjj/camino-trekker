@@ -24,5 +24,6 @@ import umnLogo from "../assets/umn-logo.svg";
   font-size: 1.25rem;
   line-height: 1;
   margin: 0;
+  font-weight: 600;
 }
 </style>
