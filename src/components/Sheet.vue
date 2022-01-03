@@ -38,7 +38,7 @@ defineProps({
   z-index: -10;
   height: 100vh;
   width: 100vw;
-  transition: all ease-out 0.2s;
+  transition: all ease 0.2s;
 }
 
 .sheet a {
@@ -63,7 +63,7 @@ defineProps({
   scrollbar-color: var(--scroll-track-color) var(--scroll-thumb-color);
   color: var(--gray-dark);
   transform: translate3d(0, 100vh, 0);
-  transition: all ease-out 0.2s;
+  transition: all ease 0.2s;
   padding: 2rem;
 }
 
@@ -119,7 +119,7 @@ defineProps({
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: all ease-out 0.2s;
+  transition: all ease 0.2s;
 }
 
 .sheet__close-button:hover {

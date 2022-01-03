@@ -1,12 +1,6 @@
 <template>
-  <button
-    class="button"
-    :class="classMap"
-  >
-    <span
-      v-if="!!icon"
-      class="material-icons"
-    >{{ icon }}</span>
+  <button class="button" :class="classMap">
+    <span v-if="!!icon" class="material-icons">{{ icon }}</span>
     <slot>Button Text</slot>
   </button>
 </template>
@@ -47,10 +41,10 @@ const classMap = computed(() => ({
   border: 0.125rem solid var(--black);
   border-radius: 0.25rem;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--black);
   background-color: transparent;
-  transition: all ease-out 0.1s;
+  transition: all ease 0.1s;
 }
 
 .button--icon-position-end {

@@ -60,7 +60,7 @@ const menuItems = [
   padding: 1rem;
   font-size: 1.25rem;
   border-radius: 0.5rem;
-  transition: all ease-out 0.2s;
+  transition: all ease 0.2s;
 }
 
 .menu-sheet__list-item:hover,

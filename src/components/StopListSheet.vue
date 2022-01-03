@@ -61,7 +61,7 @@ const getStopTitle = (stop) => stop.stop_content.title[props.language];
   margin: 0.5rem 0;
   font-size: 1.25rem;
   border-radius: 0.5rem;
-  transition: all ease-out 0.2s;
+  transition: all ease 0.2s;
 }
 
 .stoplist__item:hover:not(.stoplist__item--is-active),
