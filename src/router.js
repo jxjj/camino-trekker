@@ -7,11 +7,11 @@ const toInt = (str) => Number.parseInt(str, 10);
 const routes = [
   { path: "/", component: HomePage },
   {
-    path: "/tour/:tourId/:stopId?",
+    path: "/tours/:tourId/stops/:stopIndex",
     component: TourPage,
     props: (route) => ({
       tourId: toInt(route.params.tourId),
-      stopId: toInt(route.params.stopId),
+      stopIndex: toInt(route.params.stopIndex),
     }),
   },
 ];
