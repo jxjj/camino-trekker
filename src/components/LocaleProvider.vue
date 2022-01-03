@@ -5,10 +5,23 @@
 </template>
 <script setup>
 import { provide, ref } from "vue";
-const locale = ref("English");
+import { arrayOf, string } from "vue-types";
 
-const setLocale = (newLocale) => (locale.value = newLocale);
+const props = defineProps({
+  locales: arrayOf(string()),
+});
 
-provide("locale", locale.value);
-provide("setLocale", setLocale);
+const currentLocale = ref("en");
+const setCurrentLocale = (newLocale) => {
+  if (!props.locales.includes(newLocale)) {
+    throw Error(
+      `Cannot set new locale. '${newLocale}' is not in locales list: '${props.locales}'`
+    );
+  }
+  currentLocale.value = newLocale;
+};
+
+provide("locales", props.locales);
+provide("locale", currentLocale.value);
+provide("setCurrentLocale", setCurrentLocale);
 </script>
