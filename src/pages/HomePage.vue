@@ -14,7 +14,7 @@ onMounted(async () => {
     <h1>Camino</h1>
     <ul v-if="tours.length">
       <li v-for="tour in tours" :key="tour.id">
-        <router-link :to="`/tour/${tour.id}`">
+        <router-link :to="`/tours/${tour.id}/stops/0`">
           {{ tour.title }}
         </router-link>
       </li>
