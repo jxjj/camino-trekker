@@ -2,7 +2,7 @@ import pipe from "../utils/pipe";
 import mockTour from "./__mocks__/mockTour.json";
 import mockListOfAllTours from "./__mocks__/mockListOfAllTours.json";
 
-const mockResponse = (payload, middlewares) =>
+const mockResponse = (payload, middlewares = []) =>
   new Promise((resolve) =>
     setTimeout(() => {
       pipe(...middlewares, resolve)(payload);
