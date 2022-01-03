@@ -10,7 +10,7 @@ import { computed } from "vue";
 import { string } from "vue-types";
 
 const props = defineProps({
-  content: string().isRequired,
+  content: string().def(""),
 });
 
 // parse markdown, THEN sanitize the resulting HTML
