@@ -1,7 +1,11 @@
 <template>
-  <div class="language-select-stage">
-    <h2>Language Selector</h2>
-    <form @submit.prevent="handleSubmit">
+  <div class="language-stage">
+    <form
+      v-if="locales.length > 1"
+      class="lanugage-stage__form"
+      @submit.prevent="handleSubmit"
+    >
+      <h3>Language</h3>
       <label
         v-for="(locale, index) in locales"
         :key="index"

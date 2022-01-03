@@ -1,6 +1,5 @@
 <template>
   <div class="guide-stage">
-    <h2 class="stage-type">Guide</h2>
     <Markdown :content="markdown" />
   </div>
 </template>
