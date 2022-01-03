@@ -1,5 +1,6 @@
 <template>
   <div class="guide-stage">
+    <h2 class="stage-type">Guide</h2>
     <Markdown :content="markdown" />
   </div>
 </template>
@@ -15,8 +16,15 @@ const props = defineProps({
   }).loose,
 });
 
-const userLocale = inject("locale", "English");
+const userLocale = inject("currentLocale", "en");
 const markdown = computed(() => props.stage.text[userLocale]);
 </script>
 
-<style scoped></style>
+<style scoped>
+.stage-type {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+</style>

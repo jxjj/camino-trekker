@@ -13,7 +13,7 @@ const Template = (args) => ({
     return { args };
   },
   template: `
-    <LocaleProvider>
+    <LocaleProvider locales="args.locales">
       <Guide v-bind="args" />
     </LocaleProvider>
   `,
@@ -24,9 +24,9 @@ const getStagesWhere = (stageKey, stageValue) => (stop) =>
 const getGuideStages = getStagesWhere("type", "guide");
 
 const guideStage = getGuideStages(mockTour.stops[0])[0];
-console.log(guideStage);
 
 export const Default = Template.bind({});
 Default.args = {
+  locales: ["en"],
   stage: guideStage,
 };
