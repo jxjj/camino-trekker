@@ -6,12 +6,13 @@
 
 <script setup>
 import { inject, computed } from "vue";
-import { shape, string } from "vue-types";
+import { shape } from "vue-types";
 import Markdown from "../Markdown.vue";
 
 const props = defineProps({
   stage: shape({
-    text: string(),
+    // I18n object like: { en: 'hello', es: 'hola'}
+    text: Object,
   }).loose,
 });
 
