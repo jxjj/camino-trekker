@@ -1,4 +1,4 @@
-import { createStore } from "vuex";
+import { createStore, createLogger } from "vuex";
 import { toursService } from "../common/api.service.js";
 
 const initialState = {
@@ -40,6 +40,7 @@ const store = createStore({
   state: () => initialState,
   mutations,
   actions,
+  plugins: [createLogger()],
 });
 
 export default store;
