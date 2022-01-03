@@ -15,7 +15,7 @@ import { object, shape, string } from "vue-types";
 
 const props = defineProps({
   tour: shape({
-    title: string(),
+    title: string().def("Tour Title"),
     author: object().isRequired,
     thumbnail: object().isRequired,
     geocoded: object().isRequired,
