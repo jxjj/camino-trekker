@@ -5,7 +5,7 @@ import mockListOfAllTours from "./__mocks__/mockListOfAllTours.json";
 const mockResponse = (payload, middlewares) =>
   new Promise((resolve) =>
     setTimeout(() => {
-      pipe([...middlewares, resolve])(payload);
+      pipe(...middlewares, resolve)(payload);
     }, 300)
   );
 
