@@ -4,7 +4,6 @@
       class="tour-author__img"
       :email="author.email"
       :name="author.name"
-      :variant="medium"
     />
     <div class="tour-author__body">
       <p class="tour-author__name">{{ author.name }}</p>
