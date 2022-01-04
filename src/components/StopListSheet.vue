@@ -35,6 +35,8 @@ const props = defineProps({
   },
 });
 
+defineEmits(["close"]);
+
 const currentLocale = inject("currentLocal", "en");
 
 const isActive = (index) => index === props.activeStopIndex;
