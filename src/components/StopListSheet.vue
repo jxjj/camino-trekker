@@ -5,6 +5,7 @@
         v-for="(stop, index) in stops"
         :key="stop.id"
         :to="`/tours/${stop.tour_id}/stops/${index}`"
+        @click="$emit('close')"
       >
         <li
           class="stoplist__item"

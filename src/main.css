@@ -63,7 +63,7 @@ body {
 
 body {
   font-family: "Poppins", sans-serif;
-  background-color: var(--gray-light);
+  background-color: var(--white);
   line-height: 1.5;
   color: var(--gray-dark);
 }

@@ -45,7 +45,6 @@ const emailHash = computed(() => toHash(props.email));
   height: var(--size);
   width: var(--size);
   border-radius: 50%;
-  border: 0.125rem solid hsla(0, 0%, 0%, 0.25);
   overflow: hidden;
 }
 

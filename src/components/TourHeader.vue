@@ -40,8 +40,8 @@ const location = computed(() => {
 <style scoped>
 .tour-header {
   position: relative;
-  padding: 4rem;
   display: grid;
+  padding: 4rem 1rem;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr;
   overflow: hidden;
@@ -102,6 +102,8 @@ const location = computed(() => {
   font-weight: 700;
   color: var(--black);
   margin: 0.5rem 0;
+  /* improve legibility when text overlays image */
+  text-shadow: 0 1px 4px hsla(0, 0%, 100%, 0.5);
 }
 .highlight {
   background: linear-gradient(
@@ -111,9 +113,7 @@ const location = computed(() => {
     var(--yellow) 66%,
     transparent 66%
   );
-  padding: 0 0.5rem;
   border-radius: 0.25rem;
-  /* background: var(--yellow); */
 }
 .tour-header__img {
   width: 100%;

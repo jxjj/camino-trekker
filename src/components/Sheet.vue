@@ -127,8 +127,3 @@ defineProps({
   color: var(--system-red);
 }
 </style>
-<style>
-body {
-  overflow: hidden;
-}
-</style>

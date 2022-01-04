@@ -26,7 +26,9 @@
                 Continue
               </Button>
             </footer>
-            <FAB class="tour-page__fab" :icon="arrow_forward" />
+            <router-link :to="`/tours/${tour.id}/stops/${stopIndex + 1}`">
+              <FAB class="tour-page__fab-next" icon="arrow_forward" />
+            </router-link>
           </div>
         </main>
         <BottomNav v-if="tour" :stopIndex="props.stopIndex" :tour="tour" />
@@ -87,14 +89,16 @@ onMounted(() => {
 }
 
 .tour-page__main {
-  padding: 4rem 0;
+  padding-top: 4rem;
 }
 
 .tour-page__stages {
   background: var(--white);
+  border-radius: 2rem 2rem 0 0;
+  padding-bottom: 10rem;
 }
 
-.tour-page__fab {
+.tour-page__fab-next {
   position: fixed;
   bottom: 5rem;
   right: 1rem;

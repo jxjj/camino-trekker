@@ -2,7 +2,7 @@
   <!-- Floating Action Button -->
   <button class="fab">
     <span class="sr-only">{{ alt }}</span>
-    <span class="material-icons">arrow_forward</span>
+    <span class="material-icons">{{ icon }}</span>
   </button>
 </template>
 <script setup>
