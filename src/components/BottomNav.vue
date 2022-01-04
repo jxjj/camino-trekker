@@ -83,7 +83,8 @@ const isActiveSheet = (sheetKey) => {
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.25rem;
+  z-index: 100;
 }
 .bottom-nav__button {
   background: transparent;

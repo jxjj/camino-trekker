@@ -28,6 +28,6 @@ defineProps({
   border-radius: 50%;
   background: var(--yellow);
   box-shadow: 0px 0.25rem 0.5rem hsl(0deg 0% 0% / 15%);
-  border: 1px solid hsla(0, 0%, 0%, 0.1);
+  z-index: 100;
 }
 </style>

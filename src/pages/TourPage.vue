@@ -53,6 +53,7 @@ import BottomNav from "../components/BottomNav.vue";
 import LocaleProvider from "../components/LocaleProvider.vue";
 import Button from "../components/Button.vue";
 import FAB from "../components/FAB.vue";
+import Separator from "../components/stages/Separator.vue";
 
 const props = defineProps({
   tourId: {
@@ -68,6 +69,7 @@ const props = defineProps({
 const stageComponents = new Map([
   ["language", LanguageSelect],
   ["guide", Guide],
+  ["separator", Separator],
 ]);
 const getComponentForStageType = (type) => stageComponents.get(type);
 
@@ -114,7 +116,7 @@ onMounted(() => {
 
 .tour-page__fab-next {
   position: fixed;
-  bottom: 5rem;
-  right: 1rem;
+  bottom: 6rem;
+  right: 2rem;
 }
 </style>

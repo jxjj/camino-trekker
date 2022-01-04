@@ -41,7 +41,7 @@ const location = computed(() => {
 .tour-header {
   position: relative;
   display: grid;
-  padding: 4rem 1rem;
+  padding: 4rem 2rem;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr;
   overflow: hidden;
