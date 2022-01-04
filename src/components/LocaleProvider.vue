@@ -1,8 +1,4 @@
-<template>
-  <div class="locale-provider">
-    <slot></slot>
-  </div>
-</template>
+<template><slot></slot></template>
 <script setup>
 import { provide, ref } from "vue";
 import { arrayOf, string } from "vue-types";

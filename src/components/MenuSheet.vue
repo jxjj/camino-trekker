@@ -1,7 +1,7 @@
 <template>
   <Sheet class="menu-sheet" title="Menu" :is-open="isOpen">
     <ol class="menu-sheet__list">
-      <router-link v-for="(item, i) in menuItems" :key="i" :href="item.href">
+      <router-link v-for="(item, i) in menuItems" :key="i" :to="item.href">
         <li class="menu-sheet__list-item">
           <span v-if="!!item.icon" class="material-icons">{{ item.icon }}</span>
           <span>{{ item.text }}</span>
@@ -23,22 +23,17 @@ const menuItems = [
   {
     icon: "home",
     text: "Home",
-    href: "#!",
-  },
-  {
-    icon: "map",
-    text: "Map",
-    href: "#!",
+    href: "/",
   },
   {
     icon: "settings",
     text: "Settings",
-    href: "#!",
+    href: "/settings",
   },
   {
     icon: "help_outline",
     text: "Help",
-    href: "#!",
+    href: "/help",
   },
 ];
 </script>

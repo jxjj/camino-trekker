@@ -9,7 +9,7 @@
         class="bottom-nav__progress-button"
         @click="setActiveSheet(SHEETS.STOPLIST)"
       >
-        <ProgressIndicator :total="stops.length" :active="activeStopIndex" />
+        <ProgressIndicator :total="tour.stops.length" :active="stopIndex" />
         <span class="sr-only">Open Tour Stops</span>
       </button>
       <button class="bottom-nav__button" @click="setActiveSheet(SHEETS.MAP)">
@@ -24,8 +24,8 @@
       />
       <StopListSheet
         :is-open="isActiveSheet(SHEETS.STOPLIST)"
-        :stops="stops"
-        :active-stop-index="activeStopIndex"
+        :stops="tour.stops"
+        :active-stop-index="stopIndex"
         @close="handleSheetClose()"
       />
       <MapSheet
@@ -41,13 +41,13 @@ import ProgressIndicator from "./ProgressIndicator.vue";
 import MapSheet from "./MapSheet.vue";
 import MenuSheet from "./MenuSheet.vue";
 import StopListSheet from "./StopListSheet.vue";
+import { object, shape, arrayOf } from "vue-types";
 
 defineProps({
-  stops: {
-    type: Array,
-    required: true,
-  },
-  activeStopIndex: {
+  tour: shape({
+    stops: arrayOf(object()).isRequired,
+  }).loose,
+  stopIndex: {
     type: Number,
     required: true,
   },

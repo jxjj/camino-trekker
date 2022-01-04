@@ -26,7 +26,8 @@ defineProps({
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
-  background: var(--white);
-  box-shadow: 0px 4px 4px hsla(0, 0%, 0%, 0.25);
+  background: var(--yellow);
+  box-shadow: 0px 0.25rem 0.5rem hsl(0deg 0% 0% / 15%);
+  border: 1px solid hsla(0, 0%, 0%, 0.1);
 }
 </style>

@@ -47,7 +47,7 @@ defineProps({
 }
 
 .sheet.sheet--is-open {
-  z-index: 10;
+  z-index: 100;
   background: rgba(0, 0, 0, 0.5);
 }
 .sheet__inner {
@@ -57,7 +57,7 @@ defineProps({
   border-radius: 1.5rem 1.5rem 0 0;
   background: var(--black);
   height: 100%;
-  margin-top: 5vh;
+  margin-top: 2.5vh;
   overflow-y: auto;
   scrollbar-width: var(--scrollbar-width);
   scrollbar-color: var(--scroll-track-color) var(--scroll-thumb-color);
@@ -125,5 +125,10 @@ defineProps({
 .sheet__close-button:hover {
   background: var(--white);
   color: var(--system-red);
+}
+</style>
+<style>
+body {
+  overflow: hidden;
 }
 </style>

@@ -17,6 +17,6 @@ const Template = (args) => ({
 
 export const Default = Template.bind({});
 Default.args = {
-  activeStopIndex: 0,
-  stops: mockTour.stops,
+  stopIndex: 0,
+  tour: mockTour,
 };

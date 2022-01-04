@@ -4,7 +4,7 @@
       <router-link
         v-for="(stop, index) in stops"
         :key="stop.id"
-        :href="`/tour/${stop.tour_id}/${stop.id}`"
+        :to="`/tours/${stop.tour_id}/stops/${index}`"
       >
         <li
           class="stoplist__item"
@@ -20,6 +20,7 @@
   </Sheet>
 </template>
 <script setup>
+import { inject } from "vue";
 import Sheet from "./Sheet.vue";
 
 const props = defineProps({
@@ -31,15 +32,12 @@ const props = defineProps({
     type: Number,
     required: true,
   },
-  language: {
-    type: String,
-    default: "English",
-  },
 });
 
-const isActive = (index) => index === props.activeStopIndex;
+const currentLocale = inject("currentLocal", "en");
 
-const getStopTitle = (stop) => stop.stop_content.title[props.language];
+const isActive = (index) => index === props.activeStopIndex;
+const getStopTitle = (stop) => stop.stop_content.title[currentLocale];
 </script>
 <style scoped>
 .stoplist {
