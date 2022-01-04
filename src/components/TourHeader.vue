@@ -101,25 +101,25 @@ const location = computed(() => {
   font-size: 1.75rem;
   font-weight: 700;
   color: var(--black);
-  margin: 1rem 0;
+  margin: 0.5rem 0;
 }
 .highlight {
-  /* background: linear-gradient(
+  background: linear-gradient(
     to top,
     transparent 20%,
     var(--yellow) 20%,
     var(--yellow) 66%,
     transparent 66%
-  ); */
+  );
   padding: 0 0.5rem;
   border-radius: 0.25rem;
-  background: var(--yellow);
+  /* background: var(--yellow); */
 }
 .tour-header__img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: grayscale(1) sepia(1) hue-rotate(311deg) brightness(1.5);
+  filter: grayscale(1) sepia(1) hue-rotate(310deg) brightness(1.5);
   border-radius: 23% 77% 29% 71% / 19% 30% 70% 81%;
   overflow: hidden;
   animation: morph 37s ease infinite alternate;
