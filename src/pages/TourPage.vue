@@ -22,11 +22,17 @@
               ></component>
             </section>
             <footer class="tour-page__stop-footer">
-              <Button icon="arrow_forward" iconPosition="end" variant="primary">
+              <Button
+                v-if="hasNextStop"
+                icon="arrow_forward"
+                iconPosition="end"
+                variant="primary"
+                @click="$router.push(nextStopRoute)"
+              >
                 Continue
               </Button>
             </footer>
-            <router-link :to="`/tours/${tour.id}/stops/${stopIndex + 1}`">
+            <router-link v-if="hasNextStop" :to="nextStopRoute">
               <FAB class="tour-page__fab-next" icon="arrow_forward" />
             </router-link>
           </div>
@@ -70,6 +76,14 @@ const tour = computed(() => store.state.tour);
 const currentStop = computed(() => store.state.tour.stops[props.stopIndex]);
 const isLoading = computed(() => store.state.isLoading);
 const locales = computed(() => tour.value.tour_content.languages);
+const hasNextStop = computed(
+  () => props.stopIndex < tour.value.stops.length - 1
+);
+const nextStopRoute = computed(() =>
+  hasNextStop.value
+    ? `/tours/${tour.value.id}/stops/${props.stopIndex + 1}`
+    : null
+);
 
 onMounted(() => {
   store.dispatch("fetchTour", props.tourId);
