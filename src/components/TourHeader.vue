@@ -73,7 +73,7 @@ const location = computed(() => {
 }
 
 .tour-header__content {
-  grid-column: 1 / span 2;
+  grid-column: 1 / -1;
   grid-row: 1;
   display: flex;
   flex-direction: column;
