@@ -1,9 +1,11 @@
 <template>
-  <header class="stop-header container">
+  <header class="stop-header">
     <div class="stop-header__content">
-      <p class="stop-header__number">{{ stopIndex }}</p>
-      <h2 class="stop-header__title">{{ title }}</h2>
-      <p v-if="subtitle" class="stop-header__subtitle h2">{{ subtitle }}</p>
+      <p>
+        <span class="stop-header__number">{{ stopIndex }}</span>
+      </p>
+      <h2 class="stop-header__title h2">{{ title }}</h2>
+      <p v-if="subtitle" class="stop-header__subtitle">{{ subtitle }}</p>
     </div>
     <div class="stop-header__img-container">
       <img
@@ -34,91 +36,75 @@ const subtitle = computed(() => props.stop.stop_content.subtitle[locale]);
 const stopImage = computed(() => props.stop.stop_content.image);
 </script>
 <style scoped>
-.tour-header {
+.stop-header {
   position: relative;
-  display: grid;
   padding: 4rem 2rem;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 1fr;
-  overflow: hidden;
-  /* background: var(--blue-light) url("../assets/topography.svg"); */
+  overflow: visible;
+  background: var(--blue-light) url("../assets/wiggle.svg");
 }
 
-.tour-header:before,
-.tour-header:after {
+.stop-header:after {
   content: "";
   width: 66%;
-  height: 66%;
+  height: 100%;
   position: absolute;
-  top: 5%;
-  left: 5%;
-  z-index: 2;
-  background: hsl(188deg 89% 83% / 49%);
-  animation: morph 40s ease infinite alternate, spin 40s linear infinite,
-    move 40s linear infinite alternate;
-  transform: translate3d(10vw, 20vw, 30vw);
-}
-
-.tour-header:after {
+  top: 0;
+  left: 0;
   z-index: 1;
-  background: hsla(0, 0%, 100%, 0.5);
-  animation: morph 30s ease infinite alternate-reverse,
-    spin 40s linear infinite reverse,
-    move-2 30s linear infinite alternate-reverse;
-  /* transform: translate3d(10vw, 20vw, 30vw); */
+  /* transform: translate(-50%, -50%); */
+  background: hsla(0, 0%, 100%, 0.75);
+  animation: morph 30s ease infinite alternate-reverse;
 }
 
-.tour-header__content {
+.stop-header__content {
   grid-column: 1 / -1;
   grid-row: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   z-index: 10;
+  position: relative;
 }
 
-.tour-header__img-container {
-  grid-column: 2 / span 2;
-  grid-row: 1;
-  z-index: 4;
+.stop-header__number {
+  display: inline-flex;
+  border: 2px solid var(--black);
+  border-radius: 0.25rem;
+  justify-content: center;
+  align-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.25rem;
+  line-height: 1;
+  position: relative;
 }
 
-.tour-header__title {
-  --outline: 2px;
-  --neg-outline: calc(-1 * var(--outline));
-  -webkit-text-stroke: var(--outline) var(--black);
-  font-size: 2.5rem;
-  font-weight: 900;
-  color: white;
+.stop-header__img-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.stop-header__title {
+  font-size: 2rem;
   margin: 0;
 }
 
-.tour-header__subtitle {
-  font-size: 1.75rem;
-  font-weight: 700;
+.stop-header__subtitle {
   color: var(--black);
   margin: 0.5rem 0;
   /* improve legibility when text overlays image */
   text-shadow: 0 1px 4px hsla(0, 0%, 100%, 0.5);
 }
-.highlight {
-  background: linear-gradient(
-    to top,
-    transparent 20%,
-    var(--yellow) 20%,
-    var(--yellow) 66%,
-    transparent 66%
-  );
-  border-radius: 0.25rem;
-}
-.tour-header__img {
+.stop-header__img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: grayscale(1) sepia(1) hue-rotate(310deg) brightness(1.5);
   border-radius: 23% 77% 29% 71% / 19% 30% 70% 81%;
   overflow: hidden;
-  animation: morph 37s ease infinite alternate;
+  animation: morph 37s ease infinite alternate, color-rotate 30s linear infinite;
 }
 
 @keyframes morph {
@@ -178,6 +164,15 @@ const stopImage = computed(() => props.stop.stop_content.image);
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes color-rotate {
+  from {
+    filter: grayscale(1) sepia(1) hue-rotate(0deg) brightness(1);
+  }
+  to {
+    filter: grayscale(1) sepia(1) hue-rotate(360deg) brightness(1);
   }
 }
 </style>

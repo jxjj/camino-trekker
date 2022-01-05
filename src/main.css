@@ -12,6 +12,8 @@ html {
 :root {
   /* Color styles */
   --yellow: #f3ff7d;
+  --yellow-light: #f6ffa2;
+  --yellow-lighter: #fbffd9;
   --white: #fff;
   --black: #141414;
   --gray-lighter: #f3f3f3;
