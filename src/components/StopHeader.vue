@@ -9,6 +9,7 @@
     </div>
     <div class="stop-header__img-container">
       <img
+        v-if="!!stopImage"
         class="stop-header__img"
         :src="stopImage.src"
         :alt="stopImage.alt[locale]"
@@ -31,15 +32,19 @@ const props = defineProps({
 });
 
 const locale = inject("currentLocale", "en");
-const title = computed(() => props.stop.stop_content.title[locale]);
-const subtitle = computed(() => props.stop.stop_content.subtitle[locale]);
-const stopImage = computed(() => props.stop.stop_content.image);
+const title = computed(
+  () => props.stop.stop_content?.title?.[locale] ?? "This Stop"
+);
+const subtitle = computed(
+  () => props.stop.stop_content?.subtitle?.[locale] ?? ""
+);
+const stopImage = computed(() => props.stop.stop_content?.image ?? null);
 </script>
 <style scoped>
 .stop-header {
   position: relative;
   padding: 4rem 2rem;
-  overflow: visible;
+  overflow: hidden;
   background: var(--blue-light) url("../assets/wiggle.svg");
 }
 
