@@ -28,7 +28,7 @@ html {
   --orange: var(--orange-medium);
   --system-blue: #0a84ff;
   --system-red: #ff453a;
-  --translucent-color: hsla(0, 0%, 100%, 0.5);
+  --translucent-color: hsla(0, 0%, 100%, 0.75);
   --translucent-filter: blur(0.25rem);
 
   /* umn golds */

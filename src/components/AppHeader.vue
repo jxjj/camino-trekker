@@ -16,6 +16,7 @@ import umnLogo from "../assets/umn-logo.svg";
   align-items: center;
   background: var(--translucent-color);
   backdrop-filter: var(--translucent-filter);
+  border-bottom: 1px solid var(--gray-light);
   border-top: 0.25rem solid var(--gold);
   z-index: 100;
 }
