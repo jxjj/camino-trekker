@@ -39,7 +39,11 @@
               </Button>
             </footer>
             <router-link v-if="hasNextStop" :to="nextStopRoute">
-              <FAB class="tour-page__fab-next" icon="arrow_forward" />
+              <FAB
+                class="tour-page__fab-next"
+                icon="arrow_forward"
+                alt="Next Stop"
+              />
             </router-link>
           </div>
         </main>
