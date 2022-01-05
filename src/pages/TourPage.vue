@@ -6,8 +6,14 @@
       <LocaleProvider :locales="locales">
         <main class="tour-page__main">
           <TourHeader
+            v-if="props.stopIndex === 0"
             class="container"
             :tour="tour"
+            :stopIndex="props.stopIndex"
+          />
+          <StopHeader
+            v-else
+            :stop="tour.stops[props.stopIndex]"
             :stopIndex="props.stopIndex"
           />
           <div class="tour-page__stages container">
@@ -54,6 +60,7 @@ import LocaleProvider from "../components/LocaleProvider.vue";
 import Button from "../components/Button.vue";
 import FAB from "../components/FAB.vue";
 import Separator from "../components/stages/Separator.vue";
+import StopHeader from "../components/StopHeader.vue";
 
 const props = defineProps({
   tourId: {
