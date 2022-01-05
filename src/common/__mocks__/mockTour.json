@@ -9,10 +9,6 @@
     "institution": "University of Minnesota",
     "email": "mcfa0086@umn.edu"
   },
-  "thumbnail": {
-    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Minneapolis-MN-stone-arch-bridge.jpg/2560px-Minneapolis-MN-stone-arch-bridge.jpg",
-    "alt": "Stone Arch Bridge"
-  },
   "tour_content": {
     "hotWords": [],
     "languages": ["en"],
@@ -48,6 +44,12 @@
       "tour_id": 6,
       "stop_content": {
         "title": { "en": "Start", "placeholder": null },
+        "image": {
+          "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Minneapolis-MN-stone-arch-bridge.jpg/2560px-Minneapolis-MN-stone-arch-bridge.jpg",
+          "alt": {
+            "en": "Stone Arch Bridge"
+          }
+        },
         "stages": [
           { "type": "language" },
           {
@@ -69,6 +71,13 @@
       "tour_id": 6,
       "stop_content": {
         "title": { "en": "Stone Arch Bridge", "placeholder": null },
+        "subtitle": { "en": "5 min walk" },
+        "image": {
+          "src": "https://chorus.stimg.co/21618912/1CURIOUS110419.jpg?w=1400&h=600&format=auto%2Ccompress&cs=tinysrgb&auto=compress&crop=faces&dpr=2",
+          "alt": {
+            "en": "Great Northern Railway's first Empire Builder is pictured on the Stone Arch Bridge crossing the Mississippi River, likely in the 1920s or 1930s."
+          }
+        },
         "stages": [
           { "text": { "en": "Navigation" }, "type": "separator" },
           {

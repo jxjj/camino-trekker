@@ -1,43 +1,37 @@
 <template>
-  <header v-if="tour" class="tour-header container topography-bg">
-    <div class="tour-header__content">
-      <h2 class="tour-header__title">
-        <span class="highlight">{{ tour.title }}</span>
-      </h2>
-      <p class="tour-header__subtitle h2">{{ location }}</p>
-      <TourAuthor :author="tour.author" />
+  <header class="stop-header container">
+    <div class="stop-header__content">
+      <p class="stop-header__number">{{ stopIndex }}</p>
+      <h2 class="stop-header__title">{{ title }}</h2>
+      <p v-if="subtitle" class="stop-header__subtitle h2">{{ subtitle }}</p>
     </div>
-
-    <!-- TODO: Use clipping path to make organic image container -->
-    <div class="tour-header__img-container">
+    <div class="stop-header__img-container">
       <img
-        class="tour-header__img"
-        :src="tourImage.src"
-        :alt="tourImage.alt[locale]"
+        class="stop-header__img"
+        :src="stopImage.src"
+        :alt="stopImage.alt[locale]"
       />
     </div>
   </header>
 </template>
 <script setup>
-import TourAuthor from "./TourAuthor.vue";
 import { computed, inject } from "vue";
-import { object, shape, string } from "vue-types";
 
 const props = defineProps({
-  tour: shape({
-    title: string().def("Tour Title"),
-    author: object().isRequired,
-    geocoded: object().isRequired,
-  }).loose,
-});
-
-const location = computed(() => {
-  const { city, state } = props.tour.geocoded;
-  return `${city}, ${state}`;
+  stop: {
+    type: Object,
+    required: true,
+  },
+  stopIndex: {
+    type: Number,
+    required: true,
+  },
 });
 
 const locale = inject("currentLocale", "en");
-const tourImage = computed(() => props.tour.stops[0].stop_content.image);
+const title = computed(() => props.stop.stop_content.title[locale]);
+const subtitle = computed(() => props.stop.stop_content.subtitle[locale]);
+const stopImage = computed(() => props.stop.stop_content.image);
 </script>
 <style scoped>
 .tour-header {
@@ -47,7 +41,7 @@ const tourImage = computed(() => props.tour.stops[0].stop_content.image);
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr;
   overflow: hidden;
-  background: var(--blue-light) url("../assets/topography.svg");
+  /* background: var(--blue-light) url("../assets/topography.svg"); */
 }
 
 .tour-header:before,
