@@ -51,12 +51,11 @@ const stopImage = computed(() => props.stop.stop_content?.image ?? null);
 .stop-header:after {
   content: "";
   width: 66%;
-  height: 100%;
+  height: calc(100% - 2rem);
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 1rem;
+  left: 1rem;
   z-index: 1;
-  /* transform: translate(-50%, -50%); */
   background: hsla(0, 0%, 100%, 0.75);
   animation: morph 30s ease infinite alternate-reverse;
 }
@@ -107,9 +106,8 @@ const stopImage = computed(() => props.stop.stop_content?.image ?? null);
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 23% 77% 29% 71% / 19% 30% 70% 81%;
   overflow: hidden;
-  animation: morph 37s ease infinite alternate, color-rotate 30s linear infinite;
+  animation: color-rotate 30s linear infinite;
 }
 
 @keyframes morph {
