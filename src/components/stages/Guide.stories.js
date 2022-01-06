@@ -1,6 +1,7 @@
 import Guide from "./Guide.vue";
 import LocaleProvider from "../LocaleProvider.vue";
 import mockTour from "../../common/__mocks__/mockTour.json";
+import getStagesFromTourWhere from "../../utils/getStagesFromTourWhere.js";
 
 export default {
   title: "Camino/Stages/Guide",
@@ -18,15 +19,10 @@ const Template = (args) => ({
     </LocaleProvider>
   `,
 });
-
-const getStagesWhere = (stageKey, stageValue) => (stop) =>
-  stop.stop_content.stages.filter((stage) => stage[stageKey] === stageValue);
-const getGuideStages = getStagesWhere("type", "guide");
-
-const guideStage = getGuideStages(mockTour.stops[0])[0];
+const guideStages = getStagesFromTourWhere("type", "guide", mockTour);
 
 export const Default = Template.bind({});
 Default.args = {
   locales: ["en"],
-  stage: guideStage,
+  stage: guideStages[0],
 };
