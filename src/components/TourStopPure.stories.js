@@ -1,18 +1,18 @@
-import { PureTourStop } from "./PureTourStop.vue";
+import TourStopPure from "./TourStopPure.vue";
 import mockTour from "../common/__mocks__/mockTour.json";
 
 export default {
   title: "Camino/TourStop",
-  component: PureTourStop,
+  component: TourStopPure,
 };
 
 const Template = ({ args }) => ({
-  components: { PureTourStop },
+  components: { TourStopPure },
   setup() {
     return { args };
   },
   template: `
-    <PureTourStop v-bind="args />
+    <TourStopPure v-bind="args />
   `,
 });
 

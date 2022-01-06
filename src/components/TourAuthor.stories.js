@@ -11,7 +11,7 @@ const Template = (args) => ({
     return { args };
   },
   template: `
-    <TourAuthor v-bind="args">
+    <TourAuthor v-bind="args" />
   `,
 });
 
