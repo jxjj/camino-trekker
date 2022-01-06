@@ -1,5 +1,6 @@
 <template>
-  <div class="markdown" v-html="cleanHtml" />
+  <!-- eslint-disable vue/no-v-html -->
+  <div class="markdown" v-html="cleanHtml"></div>
 </template>
 
 <script setup>
