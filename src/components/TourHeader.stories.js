@@ -4,12 +4,6 @@ import mockTour from "../common/__mocks__/mockTour.json";
 export default {
   title: "Camino/TourHeader",
   component: TourHeader,
-  parameters: {
-    backgrounds: {
-      default: "light-blue",
-      values: [{ name: "light-blue", value: "var(--blue-light)" }],
-    },
-  },
 };
 
 const Template = (args) => ({
