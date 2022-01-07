@@ -1,5 +1,7 @@
 import StopListSheet from "./StopListSheet.vue";
+import Button from "./Button.vue";
 import MockTour from "../common/__mocks__/mockTour.json";
+import { ref } from "vue";
 
 export default {
   title: "Camino/StopListSheet",
@@ -7,12 +9,16 @@ export default {
 };
 
 const Template = (args) => ({
-  components: { StopListSheet },
+  components: { StopListSheet, Button },
   setup() {
-    return { args };
+    const isOpen = ref("true");
+    const toggleSheet = () => (isOpen.value = !isOpen.value);
+    return { args, isOpen, toggleSheet };
   },
   template: `
-    <StopListSheet v-bind="args" />
+  <div>
+    <Button @click="toggleSheet">Toggle Sheet</Button>
+    <StopListSheet v-bind="args" @close="toggleSheet" :isOpen="isOpen" />
   `,
 });
 

@@ -1,4 +1,6 @@
+import { ref } from "vue";
 import MenuSheet from "./MenuSheet.vue";
+import Button from "./Button.vue";
 
 export default {
   title: "Camino/MenuSheet",
@@ -6,16 +8,25 @@ export default {
 };
 
 const Template = (args) => ({
-  components: { MenuSheet },
+  components: { MenuSheet, Button },
   setup() {
-    return { args };
+    const isOpen = ref("true");
+    const toggleSheet = () => {
+      isOpen.value = !isOpen.value;
+    };
+    return {
+      args,
+      isOpen,
+      toggleSheet,
+    };
   },
   template: `
-    <MenuSheet v-bind="args" />
+    <div>
+      <Button @click="toggleSheet">Toggle Sheet</Button>
+      <MenuSheet :isOpen="isOpen" @close="toggleSheet" v-bind="args"  />
+    </div>
   `,
 });
 
 export const Default = Template.bind({});
-Default.args = {
-  isOpen: true,
-};
+Default.args = {};

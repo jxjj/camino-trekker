@@ -1,5 +1,5 @@
 <template>
-  <Sheet class="stoplist-sheet" title="Tour Stops">
+  <Sheet class="stoplist-sheet" title="Tour Stops" @close="$emit('close')">
     <ol class="stoplist">
       <router-link
         v-for="(stop, index) in stops"
@@ -78,7 +78,7 @@ const getStopTitle = (stop) => stop.stop_content.title[currentLocale];
 .stoplist__item:active,
 .stoplist__item--is-active {
   color: var(--black);
-  background: var(--gray-light);
+  background: var(--white);
 }
 
 .stoplist__item:active .stoplist__number,

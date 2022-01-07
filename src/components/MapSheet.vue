@@ -1,5 +1,10 @@
 <template>
-  <Sheet class="map-sheet" title="Map" :is-open="isOpen">
+  <Sheet
+    class="map-sheet"
+    title="Map"
+    :is-open="isOpen"
+    @close="$emit('close')"
+  >
     <p>Map Sheet Contents</p>
   </Sheet>
 </template>
@@ -11,4 +16,6 @@ defineProps({
     default: false,
   },
 });
+
+defineEmits(["close"]);
 </script>

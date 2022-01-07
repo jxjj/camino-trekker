@@ -1,5 +1,10 @@
 <template>
-  <Sheet class="menu-sheet" title="Menu" :is-open="isOpen">
+  <Sheet
+    class="menu-sheet"
+    title="Menu"
+    :is-open="isOpen"
+    @close="$emit('close')"
+  >
     <ol class="menu-sheet__list">
       <router-link v-for="(item, i) in menuItems" :key="i" :to="item.href">
         <li class="menu-sheet__list-item">
@@ -18,6 +23,8 @@ defineProps({
     default: false,
   },
 });
+
+defineEmits(["close"]);
 
 const menuItems = [
   {
