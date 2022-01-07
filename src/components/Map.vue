@@ -1,285 +1,45 @@
 <template>
-  <div id="map" style="height: 70vh; width: 100%"></div>
+  <div ref="mapContainer" class="map-container"></div>
 </template>
 
 <script setup>
+import { onMounted, reactive, ref } from "vue";
+import config from "../config.js";
+import "leaflet/dist/leaflet.css";
+import L from "leaflet";
 
-const props = defineProps({
-  stage: {
-    type: Object,
-    required: true,
-  },
-  tour: {
-    type: Object,
-    required: true,
-  },
+// reference to ref="mapContainer";
+const mapContainer = ref(null);
+
+const data = reactive({
+  center: [37.7749, -122.4194],
 });
 
-var map;
-var lc;
-var targetLocationCssIcon = null;
-var otherLocationsCssIcon = null;
-var marker;
-var polyline;
-var otherMarkerGroup;
+console.log({ config });
 
-function destroyMap() {
-  if (map) {
-    lc.stop();
-    map.off("locationfound");
-    map.remove();
-  }
-  map = null;
-  myLocation = null;
+function setupLeafletMap(rootEl) {
+  const mapDiv = L.map(rootEl).setView(data.center, 13);
+  L.tileLayer(
+    "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
+    {
+      attribution:
+        'Map data (c) <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery (c) <a href="https://www.mapbox.com/">Mapbox</a>',
+      maxZoom: 18,
+      id: "mapbox/streets-v11",
+      accessToken: config.mapBox.accessToken,
+    }
+  ).addTo(mapDiv);
 }
 
-// gets all tour navigation stages from all stops
-function allLocations() {
-  var targetPoints = props.tour.stops
-    .map((stop) => stop.stop_content.stages)
-    .map((stages) => {
-      return stages.filter((stage) => stage.type == "navigation");
-    })
-    .flat();
-  return targetPoints;
-}
-
-
-function drawWalkingPath() {
-      var targetNavs = allLocations();
-      var localPolyline;
-      var decorator;
-      var decorator2;
-      var layerGroupItems = [];
-      var previousPoint = null;
-      targetNavs.forEach((targetPoint, index) => {
-
-        // don't draw walking path if the tour
-        // style isn't "entire_tour" or if we're
-        // past the maxStop
-        if (
-          props.tour.style !== "entire_tour" &&
-          index >= this.$store.state.maxStop
-        ) {
-          return;
-        }
-
-        // ? what's targetPOint.route
-        // maybe skipping this point?
-        if (!targetPoint.route) {
-          previousPoint = targetPoint;
-          return;
-        }
-
-        // make sure the path is contiguous
-        if (previousPoint) {
-          targetPoint.route[0] = previousPoint.targetPoint;
-        }
-
-        // what's L? Maybe global leaflet?
-        localPolyline = L.polyline(targetPoint.route, {
-          color: "gray",
-          opacity: 0.4,
-        });
-
-        decorator = L.polylineDecorator(localPolyline, {
-          patterns: [
-            // defines a pattern of 10px-wide dashes, repeated every 20px on the line
-            { offset: 0, repeat: 20, symbol: L.Symbol.dash({ pixelSize: 10 }) },
-          ],
-        });
-        decorator2 = L.polylineDecorator(localPolyline, {
-          patterns: [
-            // defines a pattern of 10px-wide dashes, repeated every 20px on the line
-            {
-              offset: "100",
-              repeat: 200,
-              symbol: L.Symbol.arrowHead({
-                pixelSize: 15,
-                polygon: false,
-                pathOptions: { stroke: true },
-              }),
-            },
-          ],
-        });
-
-        layerGroupItems.push(localPolyline, decorator, decorator2);
-        previousPoint = targetPoint;
-      });
-
-      if (polyline) {
-        polyline.clearLayers();
-      }
-
-      polyline = L.layerGroup(layerGroupItems);
-      polyline.addTo(map);
-    },
-    drawMarker: function () {
-      targetLocationCssIcon = L.divIcon({
-        // Specify a class name we can refer to in CSS.
-        className: "target-css-icon css-icon",
-        html: '<div class="target_ring"></div>',
-        iconSize: [22, 22],
-      });
-      if (marker) {
-        marker.remove();
-      }
-
-      marker = L.marker(
-        [this.stage.targetPoint.lat, this.stage.targetPoint.lng],
-        {
-          icon: targetLocationCssIcon,
-        }
-      );
-      marker.addTo(map);
-    },
-    drawOtherPoints: function () {
-      var targetNavs = this.allLocations();
-      otherLocationsCssIcon = L.divIcon({
-        // Specify a class name we can refer to in CSS.
-        className: "other-css-icon css-icon",
-        html: '<div class="other_ring"></div>',
-        iconSize: [15, 15],
-      });
-      var otherLocation = null;
-      var otherLocations = [];
-      targetNavs.forEach((targetPoint, index) => {
-        if (
-          this.tour.style !== "entire_tour" &&
-          index >= this.$store.state.maxStop
-        ) {
-          return;
-        }
-        if (targetPoint.targetPoint != this.stage.targetPoint) {
-          otherLocation = L.marker(
-            [targetPoint.targetPoint.lat, targetPoint.targetPoint.lng],
-            {
-              icon: otherLocationsCssIcon,
-            }
-          );
-          otherLocations.push(otherLocation);
-        }
-      });
-      if (otherMarkerGroup) {
-        otherMarkerGroup.clearLayers();
-      }
-      otherMarkerGroup = L.layerGroup(otherLocations);
-      otherMarkerGroup.addTo(map);
-    },
-    renderMap: function (e) {
-      map = L.map("map", {
-        tap: false,
-      });
-      if (this.tour.tour_content.custom_base_map.use_basemap) {
-        var imageUrl =
-            "/storage/" + this.tour.tour_content.custom_base_map.image,
-          imageBounds = [
-            [
-              this.tour.tour_content.custom_base_map.coords.upperleft.lat,
-              this.tour.tour_content.custom_base_map.coords.upperleft.lng,
-            ],
-            [
-              this.tour.tour_content.custom_base_map.coords.lowerright.lat,
-              this.tour.tour_content.custom_base_map.coords.lowerright.lng,
-            ],
-          ];
-        L.imageOverlay(imageUrl, imageBounds).addTo(map);
-      } else {
-        var streets = L.tileLayer(
-          "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
-          {
-            // attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-            maxZoom: 18,
-            id: "mapbox/streets-v11",
-            accessToken: window.mapbox,
-          }
-        ).addTo(map);
-        var satellite = L.tileLayer(
-          "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
-          {
-            // attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-            maxZoom: 18,
-            id: "mapbox/satellite-v9",
-            accessToken: window.mapbox,
-          }
-        );
-        var baseMaps = {
-          Streets: streets,
-          Satellite: satellite,
-        };
-        L.control.layers(baseMaps).addTo(map);
-      }
-
-      targetLocationCssIcon = L.divIcon({
-        // Specify a class name we can refer to in CSS.
-        className: "target-css-icon css-icon",
-        html: '<div class="target_ring"></div>',
-        iconSize: [22, 22],
-      });
-      otherLocationsCssIcon = L.divIcon({
-        // Specify a class name we can refer to in CSS.
-        className: "other-css-icon css-icon",
-        html: '<div class="other_ring"></div>',
-        iconSize: [15, 15],
-      });
-
-      if (this.stage.targetPoint) {
-        var targetLocation = L.marker(
-          [this.stage.targetPoint.lat, this.stage.targetPoint.lng],
-          {
-            icon: targetLocationCssIcon,
-          }
-        );
-        map.setView(
-          new L.LatLng(this.stage.targetPoint.lat, this.stage.targetPoint.lng),
-          17
-        );
-        targetLocation.addTo(map);
-      }
-
-      this.drawWalkingPath();
-      this.drawMarker();
-      this.drawOtherPoints();
-
-      // map.on('locationfound', onLocationFound);
-      lc = L.control
-        .locate({
-          showCompass: true,
-          locateOptions: {
-            enableHighAccuracy: true,
-            maxZoom: 18,
-          },
-        })
-        .addTo(map);
-
-      if (
-        !this.$can("edit own tours") ||
-        !this.$store.state.config.simulateLocation
-      ) {
-        lc.start();
-      }
-    },
-  },
-};
+onMounted(() => {
+  setupLeafletMap(mapContainer.value);
+});
 </script>
 
-<style>
-.css-icon {
-  -webkit-border-radius: 30px;
-  height: 10px;
-  width: 10px;
-  z-index: 10;
-}
-
-.target-css-icon {
-  border: 3px solid red;
-  background-color: red;
-}
-
-.other-css-icon {
-  border: 3px solid gray;
-  background-color: rgba(194, 143, 143, 0.514);
-  width: 10px;
-  height: 10px;
+<style scoped>
+.map-container {
+  width: 100vw;
+  height: 100%;
+  border: 1px solid red;
 }
 </style>

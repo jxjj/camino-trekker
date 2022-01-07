@@ -1,0 +1,7 @@
+/* styles specific to storybook rendering
+ * careful not to add too much
+ */
+
+#root {
+  height: 100%;
+}
