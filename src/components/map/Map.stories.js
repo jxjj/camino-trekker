@@ -64,7 +64,5 @@ export const WithStops = (args) => ({
 });
 WithStops.args = {
   map: { ...Default.args },
-  markers: navStages
-    .filter((stage) => stage.targetPoint)
-    .map((pt, i) => ({ ...pt, label: `Stop ${i}` })),
+  markers: navStages.map((stage) => stage.targetPoint),
 };
