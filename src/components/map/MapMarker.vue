@@ -1,7 +1,7 @@
 <template><slot></slot></template>
 <script setup>
 import { number, string } from "vue-types";
-import { inject, watch } from "vue";
+import { inject, provide, watch, ref } from "vue";
 // import { toGeoJsonPoint } from "./toGeoJson.js";
 import { Marker } from "mapbox-gl";
 
@@ -10,8 +10,10 @@ const props = defineProps({
   lat: number().isRequired,
   color: string(),
 });
-
 const mapRef = inject("mapRef", null);
+
+const markerRef = ref(null);
+provide("markerRef", markerRef);
 
 watch(
   () => mapRef.value,
@@ -19,7 +21,7 @@ watch(
     const map = mapRef.value;
     if (!map) return;
     map.on("load", () => {
-      new Marker({
+      markerRef.value = new Marker({
         color: props.color,
       })
         .setLngLat([props.lng, props.lat])
