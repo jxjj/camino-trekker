@@ -3,6 +3,7 @@ module.exports = {
     browser: true,
     node: true,
     "vue/setup-compiler-macros": true,
+    jest: true,
   },
   extends: [
     // add more generic rulesets here, such as:

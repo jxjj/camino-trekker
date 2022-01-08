@@ -13,9 +13,8 @@ const props = defineProps({
   ),
   // unique ID for this data source
   id: string().isRequired,
+  color: string(),
 });
-
-console.log({ props });
 
 const mapRef = inject("mapRef", null);
 
@@ -42,7 +41,7 @@ watch(
           "line-cap": "round",
         },
         paint: {
-          "line-color": "#0472f8",
+          "line-color": props.color || "#0472f8",
           "line-width": 6,
         },
       });
