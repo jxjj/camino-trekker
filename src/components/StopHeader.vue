@@ -2,7 +2,7 @@
   <header class="stop-header">
     <div class="stop-header__content">
       <p>
-        <span class="stop-header__number">{{ stopIndex }}</span>
+        <span class="stop-header__number">{{ stopIndex + 1 }}</span>
       </p>
       <h2 class="stop-header__title h2">{{ title }}</h2>
       <p v-if="subtitle" class="stop-header__subtitle">{{ subtitle }}</p>
@@ -81,6 +81,7 @@ const stopImage = computed(() => props.stop.stop_content?.image ?? null);
   font-size: 1.25rem;
   line-height: 1;
   position: relative;
+  color: var(--black);
 }
 
 .stop-header__img-container {
