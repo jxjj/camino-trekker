@@ -36,5 +36,25 @@ watch([markerRef, popupRef], () => {
 }
 .mapboxgl-popup-content {
   padding: 1.25rem 1rem 1rem;
+  background: hsla(0, 0%, 100%, 0.5);
+}
+.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+  border-top-color: hsla(0, 0%, 100%, 0.5);
+}
+
+.mapboxgl-popup-anchor-top .mapboxgl-popup-tip {
+  border-bottom-color: hsla(0, 0%, 100%, 0.5);
+}
+
+.mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
+  border-right-color: hsla(0, 0%, 100%, 0.5);
+}
+
+.mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
+  border-left-color: hsla(0, 0%, 100%, 0.5);
+}
+
+.mapboxgl-popup {
+  backdrop-filter: blur(0.25rem);
 }
 </style>
