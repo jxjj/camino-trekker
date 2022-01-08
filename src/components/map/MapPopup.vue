@@ -1,5 +1,5 @@
 <template>
-  <div ref="popupRef" class="map-popup-container">
+  <div ref="popupRef" class="map-popup">
     <slot></slot>
   </div>
 </template>
@@ -14,15 +14,27 @@ const popupRef = ref(null);
 // and then put it in the popup using setDOMContent
 watch([markerRef, popupRef], () => {
   if (!markerRef.value || !popupRef.value) return;
-  const popup = new Popup({ className: "map-popup" }).setDOMContent(
-    popupRef.value
-  );
+  const popup = new Popup().setDOMContent(popupRef.value);
   markerRef.value.setPopup(popup);
 });
 </script>
 
-<style scoped>
-.popup-container {
-  display: none;
+<style>
+/* the actual popup container */
+.map-popup {
+  font-size: 0.8rem;
+}
+.map-popup h1,
+.map-popup h2,
+.map-popup h3 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  margin: 0;
+}
+.map-popup p {
+  margin: 0;
+}
+.mapboxgl-popup-content {
+  padding: 1.25rem 1rem 1rem;
 }
 </style>

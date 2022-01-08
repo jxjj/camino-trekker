@@ -59,6 +59,5 @@ onMounted(() => {
 <style scoped>
 .map-container {
   min-height: 20rem;
-  border: 1px solid red;
 }
 </style>
