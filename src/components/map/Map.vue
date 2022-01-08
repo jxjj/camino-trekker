@@ -41,7 +41,6 @@ function setupMap() {
   mapRef.value
     .addControl(new FullscreenControl())
     .addControl(new GeolocateControl())
-    .addControl(new NavigationControl())
     .addControl(new ScaleControl({ unit: "imperial" }));
 
   if (props.bounds) {
