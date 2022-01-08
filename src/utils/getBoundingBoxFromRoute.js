@@ -4,7 +4,7 @@
  */
 
 const compareUsing = (fn) => (acc, x) => fn(acc, x);
-const prop = (obj) => obj[prop];
+const prop = (key) => (obj) => obj[key];
 
 /**
  * returns bounding box corner points which contain
@@ -25,7 +25,7 @@ export default (route) => {
     .map(prop("lng"))
     .reduce(compareUsing(Math.max), -Infinity);
   const maxLat = route
-    .prop(prop("lat"))
+    .map(prop("lat"))
     .reduce(compareUsing(Math.max), -Infinity);
   return [
     [minLng, minLat],
