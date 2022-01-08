@@ -6,12 +6,6 @@
 <script setup>
 import { inject, watch, ref } from "vue";
 import { Popup } from "mapbox-gl";
-const props = defineProps({
-  isOpen: {
-    type: Boolean,
-    default: true,
-  },
-});
 
 const markerRef = inject("markerRef");
 const popupRef = ref(null);

@@ -19,6 +19,7 @@ const Template = (args) => ({
       <MapMarker v-bind="startPosition" color="red">
         <MapPopup v-bind="args">
           <h2>Starting Location</h2>
+          <p>Let's go!!</p>
         </MapPopup>
       </MapMarker>
     </Map>
@@ -26,6 +27,4 @@ const Template = (args) => ({
 });
 
 export const Default = Template.bind({});
-Default.args = {
-  isOpen: true,
-};
+Default.args = {};
