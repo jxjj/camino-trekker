@@ -10,21 +10,21 @@ const prop = (key) => (obj) => obj[key];
  * returns bounding box corner points which contain
  * a given route
  *
- * @param {LngLat[]} route - list of positions
+ * @param {LngLat[]} listOfLngLats - list of positions
  * @returns {BoundingBox} - corner points of the
  *  bounding box: [[minLng, minLat], [maxLng, maxLat]]
  */
-export default (route) => {
-  const minLng = route
+export default (listOfLngLats) => {
+  const minLng = listOfLngLats
     .map(prop("lng"))
     .reduce(compareUsing(Math.min), +Infinity);
-  const minLat = route
+  const minLat = listOfLngLats
     .map(prop("lat"))
     .reduce(compareUsing(Math.min), +Infinity);
-  const maxLng = route
+  const maxLng = listOfLngLats
     .map(prop("lng"))
     .reduce(compareUsing(Math.max), -Infinity);
-  const maxLat = route
+  const maxLat = listOfLngLats
     .map(prop("lat"))
     .reduce(compareUsing(Math.max), -Infinity);
   return [

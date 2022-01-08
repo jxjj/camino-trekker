@@ -6,7 +6,7 @@
 
 <script setup>
 import { onMounted, provide, ref } from "vue";
-import { number } from "vue-types";
+import { arrayOf, number } from "vue-types";
 import "mapbox-gl/dist/mapbox-gl.css";
 import {
   Map,
@@ -21,6 +21,7 @@ const props = defineProps({
   lng: number().isRequired,
   lat: number().isRequired,
   zoom: number().isRequired,
+  bounds: arrayOf(arrayOf(number())),
 });
 
 // reference to ref="mapContainer" element
@@ -42,6 +43,12 @@ function setupMap() {
     .addControl(new GeolocateControl())
     .addControl(new NavigationControl())
     .addControl(new ScaleControl({ unit: "imperial" }));
+
+  if (props.bounds) {
+    mapRef.value.fitBounds(props.bounds, {
+      padding: 32,
+    });
+  }
 }
 
 onMounted(() => {

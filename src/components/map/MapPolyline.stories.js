@@ -46,7 +46,7 @@ Default.args = {
     color: "#fed709",
   },
   route3: {
-    positions: getRouteByIndex(3),
+    positions: getRouteByIndex(mockTour, 3),
     id: "route-3",
     color: "#ff453a",
   },

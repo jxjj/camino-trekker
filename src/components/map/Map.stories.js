@@ -1,7 +1,8 @@
 import Map from "./Map.vue";
+import MapPolyline from "./MapPolyline.vue";
 import mockTour from "../../common/__mocks__/mockTour.json";
-import getFullTourRoute from "../../utils/getFullTourRoute";
-import getBoundingBoxFromRoute from "../../utils/getBoundingBoxFromRoute";
+import getFullTourRoute from "../../utils/getFullTourRoute.js";
+import getBoundingBox from "../../utils/getBoundingBox.js";
 
 export default {
   title: "Camino/Map/Map",
@@ -27,8 +28,23 @@ Default.args = {
 
 const fullTourRoute = getFullTourRoute(mockTour);
 
-export const FitBounds = Template.bind({});
+export const FitBounds = (args) => ({
+  components: { Map, MapPolyline },
+  setup() {
+    const mapPolyline = {
+      positions: fullTourRoute,
+      id: "tour",
+    };
+
+    return { args, mapPolyline };
+  },
+  template: `
+    <Map v-bind="args">
+      <MapPolyline v-bind="mapPolyline" />
+    </Map>
+  `,
+});
 FitBounds.args = {
   ...Default.args,
-  // bounds: getBoundingBoxFromRoute(fullTourRoute),
+  bounds: getBoundingBox(fullTourRoute),
 };
