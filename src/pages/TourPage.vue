@@ -116,7 +116,7 @@ onMounted(() => {
 }
 
 .tour-page__main {
-  padding-top: 4rem;
+  padding-top: 3.5rem;
 }
 
 .tour-page__stages {
