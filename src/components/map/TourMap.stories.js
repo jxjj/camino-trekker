@@ -1,3 +1,4 @@
+import TourProvider from "../TourProvider.vue";
 import TourMap from "./TourMap.vue";
 import mockTour from "../../common/__mocks__/mockTour.json";
 
@@ -7,20 +8,24 @@ export default {
 };
 
 const Template = (args) => ({
-  components: { TourMap },
+  components: { TourMap, TourProvider },
   setup() {
     return {
       args,
+      mockTour,
     };
   },
   template: `
-    <TourMap v-bind="args" />
+    <TourProvider :tour="mockTour" :stopIndex="args.tourProvider.stopIndex">
+      <TourMap v-bind="args" />
+    </TourProvider>
   `,
 });
 
 export const Default = Template.bind({});
 Default.args = {
   initialMapStyle: "light",
-  activeStopIndex: 3,
-  tour: mockTour,
+  tourProvider: {
+    stopIndex: 3,
+  },
 };

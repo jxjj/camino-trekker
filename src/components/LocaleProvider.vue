@@ -5,9 +5,13 @@ import { arrayOf, string } from "vue-types";
 
 const props = defineProps({
   locales: arrayOf(string()),
+  initialLocale: {
+    type: String,
+    default: "en",
+  },
 });
 
-const currentLocale = ref("en");
+const currentLocale = ref(initialLocale);
 const setCurrentLocale = (newLocale) => {
   if (!props.locales.includes(newLocale)) {
     throw Error(

@@ -1,26 +1,29 @@
 <template>
   <div class="tour-page">
-    <AppHeader class="tour-page__app-header" />
-    <div v-if="isLoading" class="loading">Loading...</div>
-    <div v-if="!isLoading">
-      <LocaleProvider :locales="locales">
-        <TourStop
-          v-if="tour"
-          :stop="currentStop"
-          :stopIndex="stopIndex"
-          :nextStopUrl="nextStopUrl"
-        />
-        <BottomNav v-if="tour" :stopIndex="stopIndex" :tour="tour" />
-      </LocaleProvider>
-    </div>
+    <TourProvider :tour="tour" :stopIndex="stopIndex">
+      <AppHeader class="tour-page__app-header" />
+      <div v-if="isLoading" class="loading">Loading...</div>
+      <div v-if="!isLoading">
+        <LocaleProvider :locales="locales">
+          <TourStop
+            v-if="tour"
+            :stop="currentStop"
+            :stopIndex="stopIndex"
+            :nextStopUrl="nextStopUrl"
+          />
+          <BottomNav v-if="tour" :stopIndex="stopIndex" :tour="tour" />
+        </LocaleProvider>
+      </div>
+    </TourProvider>
   </div>
 </template>
 <script setup>
 import { onMounted, computed } from "vue";
 import { useStore } from "vuex";
+import LocaleProvider from "../components/LocaleProvider.vue";
+import TourProvider from "../components/TourProvider.vue";
 import AppHeader from "../components/AppHeader.vue";
 import BottomNav from "../components/BottomNav.vue";
-import LocaleProvider from "../components/LocaleProvider.vue";
 import TourStop from "../components/TourStop.vue";
 
 const props = defineProps({
@@ -36,7 +39,6 @@ const props = defineProps({
 
 const store = useStore();
 const tour = computed(() => store.state.tour);
-
 const isLoading = computed(() => store.state.isLoading);
 const locales = computed(() => tour.value.tour_content.languages);
 const currentStop = computed(() => tour.value.stops[props.stopIndex]);

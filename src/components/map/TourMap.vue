@@ -1,5 +1,9 @@
 <template>
-  <div class="tour-map" :class="`tour-map--${initialMapStyle}`">
+  <div
+    v-if="!!tour && !!stopIndex"
+    class="tour-map"
+    :class="`tour-map--${initialMapStyle}`"
+  >
     <div class="button-bar" v-if="showMapStyleControl">
       <Button
         v-for="styleChoice in styleChoices"
@@ -69,14 +73,6 @@ import getAllRoutes from "../../utils/getAllRoutes";
 import { number, shape } from "vue-types";
 
 const props = defineProps({
-  tour: {
-    type: Object,
-    isRequired: true,
-  },
-  activeStopIndex: {
-    type: Number,
-    default: 0,
-  },
   initialMapStyle: {
     type: String,
     default: "light",
@@ -98,23 +94,40 @@ const props = defineProps({
   }),
 });
 
-const locale = inject("currentLocale", "en");
-const fullTourRoute = computed(() => getFullTourRoute(props.tour));
-const stopPoints = computed(() => getAllStopPoints(props.tour));
-const startPoint = computed(() => props.tour.start_location);
+const tour = inject("tour");
+console.log({ tour });
+if (!tour) {
+  throw Error(
+    `<TourMap> requires a 'tour' provider. Currently, 'tour' is '${tour}'. Is this component wrapped with <TourProvider :tour="theTourObject" />`
+  );
+}
+
+const stopIndex = inject("stopIndex");
+if (!stopIndex) {
+  throw Error(
+    `<TourMap> requires a 'stopIndex' provider. Currently, 'stopIndex' is '${stopIndex}'. Is this component wrapped with <TourProvider :stopIndex="stopIndexFromRoute" />`
+  );
+}
+console.log({ stopIndex });
+
+const locale = inject("locale", "en");
+
+const fullTourRoute = computed(() => getFullTourRoute(tour));
+const stopPoints = computed(() => getAllStopPoints(tour));
+const startPoint = computed(() => tour.start_location);
 const mapBounds = computed(
   () => props.intitialMapBounds || getBoundingBox(fullTourRoute.value)
 );
-const stopRoutes = computed(() => getAllRoutes(props.tour));
+const stopRoutes = computed(() => getAllRoutes(tour));
 const styleChoices = ["dark", "satellite", "streets", "light"].sort();
 const mapStyle = ref(props.initialMapStyle);
 
 const handleMapChange = (styleChoice) => (mapStyle.value = styleChoice);
 const isActive = (styleChoice) => mapStyle.value === styleChoice;
 const capitalize = (str) => str.charAt(0).toUpperCase() + str.substring(1);
-const getStopColor = (stopIndex) => {
-  if (stopIndex < props.activeStopIndex) return "#7EEAFC";
-  if (stopIndex === props.activeStopIndex) return "#0A84FF";
+const getStopColor = (index) => {
+  if (index < stopIndex) return "#7EEAFC";
+  if (index === stopIndex) return "#0A84FF";
   return "#999";
 };
 </script>

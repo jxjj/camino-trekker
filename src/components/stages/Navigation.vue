@@ -1,5 +1,6 @@
 <template>
   <div class="navigation-stage">
+    <TourMap v-if="tour" :tour="tour" :activeStopIndex="stopIndex" />
     <Markdown :content="markdown" />
   </div>
 </template>
@@ -7,6 +8,7 @@
 import { inject, computed } from "vue";
 import { shape } from "vue-types";
 import Markdown from "../Markdown.vue";
+import TourMap from "../map/TourMap.vue";
 
 const props = defineProps({
   stage: shape({
@@ -16,5 +18,8 @@ const props = defineProps({
 });
 
 const userLocale = inject("currentLocale", "en");
+const tour = inject("tour");
+const stopIndex = inject("stopIndex");
+
 const markdown = computed(() => props.stage.text[userLocale]);
 </script>
