@@ -7,7 +7,6 @@ export default {
     variant: {
       options: ["small", "medium", "large"],
       control: "radio",
-      defaultValue: "medium",
     },
   },
 };

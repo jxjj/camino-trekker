@@ -14,12 +14,10 @@ export default {
     variant: {
       options: ["primary", "secondary"],
       control: "radio",
-      defaultValue: "secondary",
     },
     iconPosition: {
       options: ["start", "end"],
       control: "radio",
-      defaultValue: "start",
     },
   },
 };
