@@ -1,5 +1,9 @@
 <template>
-  <component :is="componentName" :stage="stage" />
+  <component :is="componentName" v-if="componentName" :stage="stage" />
+  <div v-else class="stage-unknown">
+    <h3>{{ stage.type }}</h3>
+    <pre>{{ stage }}</pre>
+  </div>
 </template>
 <script setup>
 import { computed } from "vue";
@@ -24,3 +28,9 @@ const props = defineProps({
 
 const componentName = computed(() => componentLookup[props.stage.type]);
 </script>
+
+<style scoped>
+.stage-unknown {
+  border-left: 0.25rem solid var(--system-red);
+}
+</style>
