@@ -40,12 +40,28 @@
         :lat="stopPoint.lat"
         :color="getStopColor(index)"
       >
+        <MapPopup>
+          <p class="map-popup__stop-number-container">
+            <span class="map-popup__stop-number">{{ index + 1 }}</span>
+          </p>
+          <h2 class="map-popup__stop-title">
+            {{ tour.stops[index].stop_content.title[locale] }}
+          </h2>
+          <p class="map-popup__link-container">
+            <a
+              :href="`/tours/${tour.id}/stops/${index}`"
+              class="map-popup__link"
+            >
+              Go <span class="material-icons">arrow_forward</span>
+            </a>
+          </p>
+        </MapPopup>
       </MapMarker>
     </Map>
   </Sheet>
 </template>
 <script setup>
-import { ref } from "vue";
+import { ref, inject } from "vue";
 import Sheet from "./Sheet.vue";
 import Map from "./map/Map.vue";
 import MapPolyline from "./map/MapPolyline.vue";
@@ -55,6 +71,7 @@ import getAllStopPoints from "../utils/getAllStopPoints.js";
 import getBoundingBox from "../utils/getBoundingBox";
 import getAllRoutes from "../utils/getAllRoutes";
 import Button from "./Button.vue";
+import MapPopup from "./map/MapPopup.vue";
 
 const props = defineProps({
   isOpen: {
@@ -72,6 +89,7 @@ const props = defineProps({
 });
 
 defineEmits(["close"]);
+const locale = inject("currentLocale", "en");
 
 const fullTourRoute = getFullTourRoute(props.tour);
 const stopPoints = getAllStopPoints(props.tour);
@@ -132,5 +150,49 @@ const capitalize = (str) => str.charAt(0).toUpperCase() + str.substring(1);
 }
 .button-bar__button--is-active {
   color: var(--gray-light);
+}
+
+.map-popup__link-container {
+  text-align: center;
+  margin-top: 0.5rem;
+}
+.map-popup__link {
+  display: inline-flex;
+  /* border: 1px solid var(--black); */
+  font-size: 0.75rem;
+  color: var(--black);
+  padding: 0.25rem 0.5rem;
+  text-decoration: none;
+  align-items: center;
+  border-radius: 0.25rem;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.map-popup__link:hover {
+  background: var(--black);
+  color: var(--white);
+}
+.map-popup__link .material-icons {
+  font-size: 0.75rem;
+}
+
+.map-popup__stop-number {
+  display: inline-flex;
+  border: 2px solid var(--black);
+  color: var(--black);
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+.map-popup__stop-number-container {
+  text-align: left;
 }
 </style>

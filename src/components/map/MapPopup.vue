@@ -23,35 +23,37 @@ watch([markerRef, popupRef], () => {
 /* the actual popup container */
 .map-popup {
   font-size: 0.8rem;
+  font-family: Poppins, sans-serif;
 }
 .map-popup h1,
 .map-popup h2,
 .map-popup h3 {
-  font-size: 0.8rem;
+  font-size: 1rem;
   text-transform: uppercase;
   margin: 0;
+  font-weight: 600;
 }
 .map-popup p {
   margin: 0;
 }
 .mapboxgl-popup-content {
   padding: 1.25rem 1rem 1rem;
-  background: hsla(0, 0%, 100%, 0.5);
+  background: hsla(0, 0%, 100%, 0.75);
 }
 .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
-  border-top-color: hsla(0, 0%, 100%, 0.5);
+  border-top-color: hsla(0, 0%, 100%, 0.75);
 }
 
 .mapboxgl-popup-anchor-top .mapboxgl-popup-tip {
-  border-bottom-color: hsla(0, 0%, 100%, 0.5);
+  border-bottom-color: hsla(0, 0%, 100%, 0.75);
 }
 
 .mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
-  border-right-color: hsla(0, 0%, 100%, 0.5);
+  border-right-color: hsla(0, 0%, 100%, 0.75);
 }
 
 .mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
-  border-left-color: hsla(0, 0%, 100%, 0.5);
+  border-left-color: hsla(0, 0%, 100%, 0.75);
 }
 
 .mapboxgl-popup {
