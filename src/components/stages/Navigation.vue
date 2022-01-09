@@ -2,7 +2,7 @@
   <div class="navigation-stage">
     <div class="navigation-stage__tour-map-wrapper">
       <TourMap
-        initialMapStyle="streets"
+        initialMapStyle="satellite"
         :initialMapBounds="boundingBox"
         :zoom="18"
       />
