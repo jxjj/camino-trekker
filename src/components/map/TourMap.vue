@@ -116,8 +116,9 @@ const fullTourRoute = computed(() => getFullTourRoute(tour));
 const stopPoints = computed(() => getAllStopPoints(tour));
 const startPoint = computed(() => tour.start_location);
 const mapBounds = computed(
-  () => props.intitialMapBounds || getBoundingBox(fullTourRoute.value)
+  () => props.initialMapBounds || getBoundingBox(fullTourRoute.value)
 );
+console.log({ mapBounds: mapBounds.value });
 const stopRoutes = computed(() => getAllRoutes(tour));
 const styleChoices = ["dark", "satellite", "streets", "light"].sort();
 const mapStyle = ref(props.initialMapStyle);
