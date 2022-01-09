@@ -1,7 +1,6 @@
 <template>
   <div class="navigation-stage">
     <Markdown :content="markdown" />
-    <Button :icon="map"> Show Map </Button>
   </div>
 </template>
 <script setup>

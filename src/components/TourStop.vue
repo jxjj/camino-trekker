@@ -10,10 +10,7 @@
     <div class="tour-page__stages container">
       <h2 v-if="stopIndex === 0">Start</h2>
       <section v-for="stage in stop.stop_content.stages" :key="stage.id">
-        <component
-          :is="getComponentForStageType(stage.type)"
-          :stage="stage"
-        ></component>
+        <Stage :stage="stage" />
       </section>
       <footer class="tour-page__stop-footer">
         <Button
@@ -30,10 +27,10 @@
   </div>
 </template>
 <script setup>
-import Button from "../components/Button.vue";
-import StopHeader from "../components/StopHeader.vue";
-import TourHeader from "../components/TourHeader.vue";
-import getComponentForStageType from "../utils/getComponentForStageType.js";
+import Button from "./Button.vue";
+import StopHeader from "./StopHeader.vue";
+import TourHeader from "./TourHeader.vue";
+import Stage from "./Stage.vue";
 
 defineProps({
   stopIndex: {

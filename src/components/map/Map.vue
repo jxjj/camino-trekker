@@ -56,7 +56,7 @@ function setupMap() {
 
   if (props.bounds) {
     mapRef.value.fitBounds(props.bounds, {
-      padding: 32,
+      padding: 64,
     });
   }
 }
