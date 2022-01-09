@@ -22,7 +22,7 @@
       <Map
         :lng="startPoint.lng"
         :lat="startPoint.lat"
-        :zoom="15"
+        :zoom="1"
         :bounds="initialMapBounds"
         class="map-sheet__map-container"
         :mapStyle="mapStyle"

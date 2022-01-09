@@ -30,6 +30,8 @@
       />
       <MapSheet
         :is-open="isActiveSheet(SHEETS.MAP)"
+        :tour="tour"
+        :activeStopIndex="stopIndex"
         @close="handleSheetClose()"
       />
     </div>

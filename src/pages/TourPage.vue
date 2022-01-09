@@ -47,7 +47,7 @@
             </router-link>
           </div>
         </main>
-        <BottomNav v-if="tour" :stopIndex="props.stopIndex" :tour="tour" />
+        <BottomNav v-if="tour" :stopIndex="stopIndex" :tour="tour" />
       </LocaleProvider>
     </div>
   </div>
