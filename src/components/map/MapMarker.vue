@@ -2,7 +2,6 @@
 <script setup>
 import { number, string } from "vue-types";
 import { inject, provide, watch, ref } from "vue";
-// import { toGeoJsonPoint } from "./toGeoJson.js";
 import { Marker } from "mapbox-gl";
 
 const props = defineProps({

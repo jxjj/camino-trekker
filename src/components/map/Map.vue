@@ -5,23 +5,34 @@
 </template>
 
 <script setup>
-import { onMounted, provide, ref } from "vue";
-import { arrayOf, number } from "vue-types";
+import { onMounted, provide, ref, watch } from "vue";
+import { arrayOf, number, string } from "vue-types";
 import "mapbox-gl/dist/mapbox-gl.css";
 import {
   Map,
   FullscreenControl,
   GeolocateControl,
-  NavigationControl,
   ScaleControl,
 } from "mapbox-gl";
 import config from "../../config.js";
+
+const MAP_STYLES = {
+  streets: "mapbox://styles/mapbox/streets-v11",
+  outdoors: "mapbox://styles/mapbox/outdoors-v11",
+  light: "mapbox://styles/mapbox/light-v10",
+  dark: "mapbox://styles/mapbox/dark-v10",
+  satellite: "mapbox://styles/mapbox/satellite-v9",
+  "satellite-streets": "mapbox://styles/mapbox/satellite-streets-v11",
+  "navigation-day": "mapbox://styles/mapbox/navigation-day-v1",
+  "navigation-night": "mapbox://styles/mapbox/navigation-night-v1",
+};
 
 const props = defineProps({
   lng: number().isRequired,
   lat: number().isRequired,
   zoom: number().isRequired,
   bounds: arrayOf(arrayOf(number())),
+  mapStyle: string().def("streets"),
 });
 
 // reference to ref="mapContainer" element
@@ -32,7 +43,7 @@ provide("mapRef", mapRef);
 function setupMap() {
   mapRef.value = new Map({
     container: mapContainer.value,
-    style: "mapbox://styles/mapbox/streets-v11",
+    style: MAP_STYLES[props.mapStyle],
     center: [props.lng, props.lat],
     zoom: props.zoom,
     accessToken: config.mapBox.accessToken,
@@ -50,6 +61,14 @@ function setupMap() {
   }
 }
 
+watch(
+  () => props.mapStyle,
+  () => {
+    console.log(`style changed to ${props.mapStyle}`);
+    mapRef.value.setStyle(MAP_STYLES[props.mapStyle]);
+  }
+);
+
 onMounted(() => {
   setupMap();
 });
@@ -57,6 +76,7 @@ onMounted(() => {
 
 <style scoped>
 .map-container {
-  min-height: 20rem;
+  width: 100%;
+  height: 100%;
 }
 </style>

@@ -5,17 +5,132 @@
     :is-open="isOpen"
     @close="$emit('close')"
   >
-    <p>Map Sheet Contents</p>
+    <div class="button-bar">
+      <Button
+        v-for="styleChoice in styleChoices"
+        :key="styleChoice"
+        variant="inverse"
+        @click="handleMapChange(styleChoice)"
+        class="button-bar__button"
+        :class="{
+          'button-bar__button--is-active': isActive(styleChoice),
+        }"
+        >{{ capitalize(styleChoice) }}</Button
+      >
+    </div>
+    <Map
+      :lng="startPoint.lng"
+      :lat="startPoint.lat"
+      :zoom="15"
+      :bounds="initialMapBounds"
+      class="map-sheet__map-container"
+      :mapStyle="mapStyle"
+    >
+      <MapPolyline
+        v-for="(route, index) in stopRoutes"
+        :key="index"
+        :positions="route"
+        :id="`route-${index}`"
+        :color="getStopColor(index)"
+      />
+      <MapMarker
+        v-for="(stopPoint, index) in stopPoints"
+        :key="index"
+        :lng="stopPoint.lng"
+        :lat="stopPoint.lat"
+        :color="getStopColor(index)"
+      >
+      </MapMarker>
+    </Map>
   </Sheet>
 </template>
 <script setup>
+import { ref } from "vue";
 import Sheet from "./Sheet.vue";
-defineProps({
+import Map from "./map/Map.vue";
+import MapPolyline from "./map/MapPolyline.vue";
+import MapMarker from "./map/MapMarker.vue";
+import getFullTourRoute from "../utils/getFullTourRoute.js";
+import getAllStopPoints from "../utils/getAllStopPoints.js";
+import getBoundingBox from "../utils/getBoundingBox";
+import getAllRoutes from "../utils/getAllRoutes";
+import Button from "./Button.vue";
+
+const props = defineProps({
   isOpen: {
     type: Boolean,
     default: false,
   },
+  tour: {
+    type: Object,
+    isRequired: true,
+  },
+  activeStopIndex: {
+    type: Number,
+    default: 0,
+  },
 });
 
 defineEmits(["close"]);
+
+const fullTourRoute = getFullTourRoute(props.tour);
+const stopPoints = getAllStopPoints(props.tour);
+const startPoint = stopPoints[0];
+const initialMapBounds = getBoundingBox(fullTourRoute);
+const stopRoutes = getAllRoutes(props.tour);
+
+const getStopColor = (stopIndex) => {
+  if (stopIndex < props.activeStopIndex) {
+    // already visited
+    return "#7EEAFC";
+  }
+  if (stopIndex === props.activeStopIndex) {
+    return "#0A84FF";
+  }
+  return "#999";
+};
+
+const styleChoices = ["dark", "satellite", "streets"];
+const mapStyle = ref("dark");
+const handleMapChange = (styleChoice) => {
+  mapStyle.value = styleChoice;
+  console.log(mapStyle.value);
+};
+const isActive = (styleChoice) => mapStyle.value === styleChoice;
+const capitalize = (str) => str.charAt(0).toUpperCase() + str.substring(1);
 </script>
+
+<style>
+.map-sheet .sheet__header {
+  border-bottom: 0;
+  margin-bottom: 0;
+}
+</style>
+
+<style scoped>
+.button-bar {
+  display: flex;
+  justify-content: flex-end;
+}
+.button-bar__button {
+  border: 0;
+  outline: 0;
+  border-radius: 0;
+  padding: 0.5rem 1rem;
+  font-weight: normal;
+  font-size: 0.75rem;
+  color: var(--gray-dark);
+}
+
+.button-bar__button:hover {
+  outline: 0;
+}
+
+.button-bar__button:hover {
+  background: none;
+  color: var(--white);
+}
+.button-bar__button--is-active {
+  color: var(--gray-light);
+}
+</style>

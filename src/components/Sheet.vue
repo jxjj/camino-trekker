@@ -65,6 +65,8 @@ defineProps({
   transform: translate3d(0, 100vh, 0);
   transition: all ease 0.2s;
   padding: 2rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .sheet__inner::-webkit-scrollbar {
@@ -125,5 +127,9 @@ defineProps({
 .sheet__close-button:hover {
   background: var(--white);
   color: var(--system-red);
+}
+
+.sheet__body {
+  flex: 1;
 }
 </style>
