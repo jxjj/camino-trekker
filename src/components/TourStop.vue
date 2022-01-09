@@ -14,7 +14,7 @@
       </section>
       <footer class="tour-page__stop-footer">
         <Button
-          v-if="nextStopUrl"
+          v-if="stopIndex !== tour?.stops?.length - 1"
           icon="arrow_forward"
           iconPosition="end"
           variant="primary"
@@ -31,19 +31,9 @@ import Button from "./Button.vue";
 import StopHeader from "./StopHeader.vue";
 import TourHeader from "./TourHeader.vue";
 import Stage from "./Stage.vue";
+import { computed, inject } from "vue";
 
-defineProps({
-  stopIndex: {
-    type: Number,
-    required: true,
-  },
-  stop: {
-    type: Object,
-    required: true,
-  },
-  nextStopUrl: {
-    type: String,
-    default: null,
-  },
-});
+const stopIndex = inject("stopIndex", 0);
+const tour = inject("tour", null);
+const stop = computed(() => tour?.stops?.[stopIndex]);
 </script>
