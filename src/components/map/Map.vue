@@ -64,7 +64,6 @@ function setupMap() {
 watch(
   () => props.mapStyle,
   () => {
-    console.log(`style changed to ${props.mapStyle}`);
     mapRef.value.setStyle(MAP_STYLES[props.mapStyle]);
   }
 );

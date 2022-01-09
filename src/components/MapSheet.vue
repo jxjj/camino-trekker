@@ -5,59 +5,61 @@
     :is-open="isOpen"
     @close="$emit('close')"
   >
-    <div class="button-bar">
-      <Button
-        v-for="styleChoice in styleChoices"
-        :key="styleChoice"
-        variant="inverse"
-        @click="handleMapChange(styleChoice)"
-        class="button-bar__button"
-        :class="{
-          'button-bar__button--is-active': isActive(styleChoice),
-        }"
-        >{{ capitalize(styleChoice) }}</Button
+    <div class="map-sheet__contents">
+      <div class="button-bar">
+        <Button
+          v-for="styleChoice in styleChoices"
+          :key="styleChoice"
+          variant="inverse"
+          @click="handleMapChange(styleChoice)"
+          class="button-bar__button"
+          :class="{
+            'button-bar__button--is-active': isActive(styleChoice),
+          }"
+          >{{ capitalize(styleChoice) }}</Button
+        >
+      </div>
+      <Map
+        :lng="startPoint.lng"
+        :lat="startPoint.lat"
+        :zoom="15"
+        :bounds="initialMapBounds"
+        class="map-sheet__map-container"
+        :mapStyle="mapStyle"
       >
+        <MapPolyline
+          v-for="(route, index) in stopRoutes"
+          :key="index"
+          :positions="route"
+          :id="`route-${index}`"
+          :color="getStopColor(index)"
+        />
+        <MapMarker
+          v-for="(stopPoint, index) in stopPoints"
+          :key="index"
+          :lng="stopPoint.lng"
+          :lat="stopPoint.lat"
+          :color="getStopColor(index)"
+        >
+          <MapPopup>
+            <p class="map-popup__stop-number-container">
+              <span class="map-popup__stop-number">{{ index + 1 }}</span>
+            </p>
+            <h2 class="map-popup__stop-title">
+              {{ tour.stops[index].stop_content.title[locale] }}
+            </h2>
+            <p class="map-popup__link-container">
+              <a
+                :href="`/tours/${tour.id}/stops/${index}`"
+                class="map-popup__link"
+              >
+                Go <span class="material-icons">arrow_forward</span>
+              </a>
+            </p>
+          </MapPopup>
+        </MapMarker>
+      </Map>
     </div>
-    <Map
-      :lng="startPoint.lng"
-      :lat="startPoint.lat"
-      :zoom="15"
-      :bounds="initialMapBounds"
-      class="map-sheet__map-container"
-      :mapStyle="mapStyle"
-    >
-      <MapPolyline
-        v-for="(route, index) in stopRoutes"
-        :key="index"
-        :positions="route"
-        :id="`route-${index}`"
-        :color="getStopColor(index)"
-      />
-      <MapMarker
-        v-for="(stopPoint, index) in stopPoints"
-        :key="index"
-        :lng="stopPoint.lng"
-        :lat="stopPoint.lat"
-        :color="getStopColor(index)"
-      >
-        <MapPopup>
-          <p class="map-popup__stop-number-container">
-            <span class="map-popup__stop-number">{{ index + 1 }}</span>
-          </p>
-          <h2 class="map-popup__stop-title">
-            {{ tour.stops[index].stop_content.title[locale] }}
-          </h2>
-          <p class="map-popup__link-container">
-            <a
-              :href="`/tours/${tour.id}/stops/${index}`"
-              class="map-popup__link"
-            >
-              Go <span class="material-icons">arrow_forward</span>
-            </a>
-          </p>
-        </MapPopup>
-      </MapMarker>
-    </Map>
   </Sheet>
 </template>
 <script setup>
@@ -112,7 +114,6 @@ const styleChoices = ["dark", "satellite", "streets"];
 const mapStyle = ref("dark");
 const handleMapChange = (styleChoice) => {
   mapStyle.value = styleChoice;
-  console.log(mapStyle.value);
 };
 const isActive = (styleChoice) => mapStyle.value === styleChoice;
 const capitalize = (str) => str.charAt(0).toUpperCase() + str.substring(1);
@@ -126,6 +127,12 @@ const capitalize = (str) => str.charAt(0).toUpperCase() + str.substring(1);
 </style>
 
 <style scoped>
+.map-sheet__contents {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .button-bar {
   display: flex;
   justify-content: flex-end;
