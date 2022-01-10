@@ -6,8 +6,8 @@
       :title="currentStop.stop_content.title[locale]"
       :subtitle="`${tour.geocoded.city}, ${tour.geocoded.state}`"
       :stopNumber="stopIndex + 1"
-      :imageSrc="currentStop.stop_content.image.src"
-      :imageAlt="currentStop.stop_content.image.alt[locale]"
+      :imageSrc="currentStop.stop_content?.image?.src"
+      :imageAlt="currentStop.stop_content?.image?.alt?.[locale]"
     />
     <div class="tour-stop__stages container">
       <h2 v-if="stopIndex === 0">Start</h2>
@@ -60,6 +60,7 @@ const store = useStore();
 const stopIndex = computed(() => store.getters.stopIndex);
 const tour = computed(() => store.state.tour);
 const currentStop = computed(() => store.getters.currentStop);
+
 const isFirstStop = computed(() => store.getters.isFirstStop);
 const isLastStop = computed(() => store.getters.isLastStop);
 const stages = computed(() => currentStop.value?.stop_content?.stages) || [];
