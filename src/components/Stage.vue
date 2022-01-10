@@ -31,6 +31,8 @@ const componentName = computed(() => componentLookup[props.stage.type]);
 
 <style scoped>
 .stage-unknown {
+  background: #ffeff1;
   border-left: 0.25rem solid var(--system-red);
+  padding: 1rem;
 }
 </style>
