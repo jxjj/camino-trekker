@@ -21,4 +21,5 @@ Default.args = {
     text: { en: "Get your bearings" },
     type: "separator",
   },
+  locale: "en",
 };
