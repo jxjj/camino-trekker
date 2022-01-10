@@ -3,6 +3,7 @@ import MapPolyline from "./MapPolyline.vue";
 import mockTour from "../../common/__mocks__/mockTour.json";
 import getFullTourRoute from "../../utils/getFullTourRoute.js";
 import getBoundingBox from "../../utils/getBoundingBox.js";
+import config from "../../config.js";
 
 export default {
   title: "Camino/Map/Map",
@@ -24,6 +25,7 @@ Default.args = {
   lng: mockTour.start_location.lng,
   lat: mockTour.start_location.lat,
   zoom: 15,
+  accessToken: config.mapBox.accessToken,
 };
 
 const fullTourRoute = getFullTourRoute(mockTour);

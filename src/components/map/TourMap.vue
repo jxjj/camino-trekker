@@ -20,6 +20,7 @@
       :bounds="mapBoundsRef"
       class="map-sheet__map-container"
       :mapStyle="mapStyleRef"
+      :accessToken="accessToken"
     >
       <MapPolyline
         v-for="(route, index) in stopRoutesRef"
@@ -68,6 +69,7 @@ import getBoundingBox from "../../utils/getBoundingBox";
 import getAllRoutes from "../../utils/getAllRoutes";
 import { number, shape } from "vue-types";
 import { useStore } from "vuex";
+import config from "../../config.js";
 
 const props = defineProps({
   initialMapStyle: {
@@ -99,6 +101,7 @@ const locale = computed(() => store.state.locale);
 
 // data
 const mapStyleRef = ref(props.initialMapStyle);
+const accessToken = computed(() => config.mapBox.accessToken);
 const fullTourRouteRef = computed(() => getFullTourRoute(tour.value));
 const stopPointsRef = computed(() => getAllStopPoints(tour.value));
 const startPointRef = computed(() => tour.value.start_location);

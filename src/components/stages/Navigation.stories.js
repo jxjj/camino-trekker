@@ -1,5 +1,4 @@
 import Navigation from "./Navigation.vue";
-import TourProvider from "../TourProvider.vue";
 import mockTour from "../../common/__mocks__/mockTour.json";
 import getStagesFromTourWhere from "../../utils/getStagesFromTourWhere.js";
 
@@ -9,14 +8,12 @@ export default {
 };
 
 const Template = (args) => ({
-  components: { Navigation, TourProvider },
+  components: { Navigation },
   setup() {
     return { args, mockTour };
   },
   template: `
-    <TourProvider :tour="mockTour" :stopIndex="args.stopIndex">
       <Navigation v-bind="args" />
-    </TourProvider>
   `,
 });
 
@@ -26,4 +23,5 @@ export const Default = Template.bind({});
 Default.args = {
   stopIndex: 3,
   stage: navStages[3],
+  locale: "en",
 };
