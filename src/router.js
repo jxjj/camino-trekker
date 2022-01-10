@@ -4,17 +4,17 @@ import TourPage from "./pages/TourPage.vue";
 import SettingsPage from "./pages/SettingsPage.vue";
 import HelpPage from "./pages/HelpPage.vue";
 
-const toInt = (str) => Number.parseInt(str, 10);
+// const toInt = (str) => Number.parseInt(str, 10);
 
 const routes = [
   { path: "/", component: HomePage },
   {
     path: "/tours/:tourId/stops/:stopIndex",
     component: TourPage,
-    props: (route) => ({
-      tourId: toInt(route.params.tourId),
-      stopIndex: toInt(route.params.stopIndex),
-    }),
+    // props: (route) => ({
+    //   tourId: toInt(route.params.tourId),
+    //   stopIndex: toInt(route.params.stopIndex),
+    // }),
   },
   {
     path: "/settings",

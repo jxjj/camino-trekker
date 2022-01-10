@@ -2,8 +2,8 @@
   <h3 class="separator-stage">{{ text }}</h3>
 </template>
 <script setup>
-import { inject, computed } from "vue";
-import { object, shape } from "vue-types";
+import { computed } from "vue";
+import { object, shape, string } from "vue-types";
 
 const props = defineProps({
   stage: shape({
@@ -11,10 +11,10 @@ const props = defineProps({
       en: "",
     }),
   }).loose,
+  locale: string().isRequired,
 });
 
-const locale = inject("currentLocale", "en");
-const text = computed(() => props.stage.text[locale]);
+const text = computed(() => props.stage.text[props.locale]);
 </script>
 <style scoped>
 .separator-stage {

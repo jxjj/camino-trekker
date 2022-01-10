@@ -7,16 +7,16 @@
     >
       <h3>Language</h3>
       <label
-        v-for="(locale, index) in locales"
+        v-for="(localeChoice, index) in locales"
         :key="index"
         class="input-group"
       >
         <input
           name="locale"
           type="radio"
-          :value="locale"
-          :checked="form.locale === locale"
-          @change="handleChange(locale)"
+          :value="localeChoice"
+          :checked="selectedLocale === localeChoice"
+          @change="handleChange(localeChoice)"
         />
         {{ locale }}
       </label>
@@ -26,26 +26,29 @@
 </template>
 
 <script setup>
-import { inject, reactive } from "vue";
+import { ref, computed } from "vue";
+import { useStore } from "vuex";
 import Button from "../Button.vue";
 
-const locales = inject("locales", ["en"]);
-const currentLocale = inject("currentLocale", "en");
-const setCurrentLocale = inject("setCurrentLocale", (locale) => {
-  console.error(
-    `Unable to set locale to ${locale}. No function setCurrentLocale is defined`
-  );
+const props = defineProps({
+  stage: {
+    type: Object,
+    required: true,
+  },
+  locale: {
+    type: String,
+    required: true,
+  },
 });
 
-const form = reactive({
-  locale: currentLocale,
-});
+const store = useStore();
+const locales = computed(() => store.state.tour.tour_content.languages);
+const selectedLocale = ref(props.locale);
 
 const handleChange = (locale) => {
-  form.locale = locale;
+  selectedLocale.value = locale;
 };
-
-const handleSubmit = () => setCurrentLocale(form.locale);
+const handleSubmit = () => store.dispatch("setLocale", selectedLocale.value);
 </script>
 <style scoped>
 .input-group {

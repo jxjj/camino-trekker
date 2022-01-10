@@ -9,7 +9,7 @@
         class="bottom-nav__progress-button"
         @click="setActiveSheet(SHEETS.STOPLIST)"
       >
-        <ProgressIndicator :total="tour.stops.length" :active="stopIndex" />
+        <ProgressIndicator :total="totalStopsRef" :active="stopIndexRef" />
         <span class="sr-only">Open Tour Stops</span>
       </button>
       <button class="bottom-nav__button" @click="setActiveSheet(SHEETS.MAP)">
@@ -24,36 +24,22 @@
       />
       <StopListSheet
         :is-open="isActiveSheet(SHEETS.STOPLIST)"
-        :stops="tour.stops"
-        :active-stop-index="stopIndex"
         @close="handleSheetClose()"
       />
       <MapSheet
         :is-open="isActiveSheet(SHEETS.MAP)"
-        :tour="tour"
-        :activeStopIndex="stopIndex"
         @close="handleSheetClose()"
       />
     </div>
   </div>
 </template>
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
+import { useStore } from "vuex";
 import ProgressIndicator from "./ProgressIndicator.vue";
 import MapSheet from "./MapSheet.vue";
 import MenuSheet from "./MenuSheet.vue";
 import StopListSheet from "./StopListSheet.vue";
-import { object, shape, arrayOf } from "vue-types";
-
-defineProps({
-  tour: shape({
-    stops: arrayOf(object()).isRequired,
-  }).loose,
-  stopIndex: {
-    type: Number,
-    required: true,
-  },
-});
 
 const SHEETS = {
   MENU: "MENU",
@@ -62,6 +48,10 @@ const SHEETS = {
 };
 
 const activeSheet = ref(null);
+const store = useStore();
+
+const stopIndexRef = computed(() => store.getters.stopIndex);
+const totalStopsRef = computed(() => store.getters.totalStops);
 
 const setActiveSheet = (sheetKey) => {
   activeSheet.value = SHEETS[sheetKey];

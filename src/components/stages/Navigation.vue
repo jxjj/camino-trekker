@@ -11,34 +11,38 @@
   </div>
 </template>
 <script setup>
-import { inject, computed } from "vue";
-import { shape } from "vue-types";
+import { computed } from "vue";
+import { shape, string } from "vue-types";
 import Markdown from "../Markdown.vue";
 import TourMap from "../map/TourMap.vue";
 import getAllRoutes from "../../utils/getAllRoutes";
 import getAllStopPoints from "../../utils/getAllStopPoints";
 import getBoundingBox from "../../utils/getBoundingBox";
+import { useStore } from "vuex";
 
 const props = defineProps({
   stage: shape({
     // I18n object like: { en: 'hello', es: 'hola'}
     text: Object,
   }).loose,
+  locale: string().isRequired,
 });
 
-const locale = inject("locale", "en");
-const markdown = computed(() => props.stage.text[locale]);
+const markdown = computed(() => props.stage.text[props.locale]);
 
 // focus the map on navigating to this stop
 // we'll need to create a bounding box using:
 // last stop target, route, and current stop target
-const tour = inject("tour");
-const stopIndex = inject("stopIndex");
-const routes = getAllRoutes(tour);
-const stopPoints = getAllStopPoints(tour);
-const prevStopPoint = stopIndex > 0 ? stopPoints[stopIndex - 1] : null;
-const currentRoute = routes[stopIndex];
-const currentStopPoint = stopPoints[stopIndex];
+
+const store = useStore();
+const tourRef = computed(() => store.state.tour);
+const stopIndexRef = computed(() => store.getters.stopIndex);
+const routesRef = computed(() => getAllRoutes(tourRef.value));
+const stopPointsRef = computed(() => getAllStopPoints(tourRef.value));
+const prevStopPoint =
+  stopIndexRef.value > 0 ? stopPointsRef.value[stopIndexRef.value - 1] : null;
+const currentRoute = routesRef.value[stopIndexRef.value];
+const currentStopPoint = stopPointsRef.value[stopIndexRef.value];
 
 // the list of points we want to create a bounding box around. The
 // .filter(Boolean) removes any null values in case prevStopPoint is null.
@@ -48,7 +52,6 @@ const pointsForBoundingBox = [
   currentStopPoint,
 ].filter(Boolean);
 const boundingBox = getBoundingBox(pointsForBoundingBox);
-console.log({ boundingBox });
 </script>
 <style>
 .navigation-stage__tour-map-wrapper {

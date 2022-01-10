@@ -4,41 +4,35 @@
       <p>
         <span class="stop-header__number">{{ stopIndex + 1 }}</span>
       </p>
-      <h2 class="stop-header__title h2">{{ title }}</h2>
-      <p v-if="subtitle" class="stop-header__subtitle">{{ subtitle }}</p>
+      <h2 class="stop-header__title h2">{{ stop.title }}</h2>
+      <p v-if="subtitle" class="stop-header__subtitle">{{ stop.subtitle }}</p>
     </div>
     <div class="stop-header__img-container">
       <img
-        v-if="!!stopImage"
+        v-if="!!stop.image"
         class="stop-header__img"
-        :src="stopImage.src"
-        :alt="stopImage.alt[locale]"
+        :src="stop.image.src"
+        :alt="stop.image.alt[locale]"
       />
     </div>
   </header>
 </template>
 <script setup>
 import { computed, inject } from "vue";
+import { useStore } from "vuex";
 
-const props = defineProps({
-  stop: {
-    type: Object,
-    required: true,
-  },
-  stopIndex: {
-    type: Number,
-    required: true,
-  },
+const locale = inject("locale", "en");
+
+const store = useStore();
+const stopIndex = computed(() => store.getters.stopIndex);
+const stop = computed(() => {
+  const currentStop = store.getters.currentStop?.stop_content;
+  return {
+    title: currentStop?.title?.[locale] || "This Stop",
+    subtitle: currentStop?.subtitle?.[locale] || "",
+    image: currentStop?.image || null,
+  };
 });
-
-const locale = inject("currentLocale", "en");
-const title = computed(
-  () => props.stop.stop_content?.title?.[locale] ?? "This Stop"
-);
-const subtitle = computed(
-  () => props.stop.stop_content?.subtitle?.[locale] ?? ""
-);
-const stopImage = computed(() => props.stop.stop_content?.image ?? null);
 </script>
 <style scoped>
 .stop-header {

@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import { inject, computed } from "vue";
+import { computed } from "vue";
 import { shape } from "vue-types";
 import Markdown from "../Markdown.vue";
 
@@ -14,10 +14,12 @@ const props = defineProps({
     // I18n object like: { en: 'hello', es: 'hola'}
     text: Object,
   }).loose,
+  locale: {
+    type: String,
+    default: "en",
+  },
 });
-
-const userLocale = inject("currentLocale", "en");
-const markdown = computed(() => props.stage.text[userLocale]);
+const markdown = computed(() => props.stage.text[props.locale]);
 </script>
 
 <style scoped>

@@ -21,26 +21,19 @@
   </Sheet>
 </template>
 <script setup>
-import { inject } from "vue";
+import { computed } from "vue";
+import { useStore } from "vuex";
 import Sheet from "./Sheet.vue";
-
-const props = defineProps({
-  stops: {
-    type: Array,
-    required: true,
-  },
-  activeStopIndex: {
-    type: Number,
-    required: true,
-  },
-});
 
 defineEmits(["close"]);
 
-const currentLocale = inject("currentLocal", "en");
-
-const isActive = (index) => index === props.activeStopIndex;
-const getStopTitle = (stop) => stop.stop_content.title[currentLocale];
+const store = useStore();
+const stopIndex = computed(() => store.getters.stopIndex);
+const localeRef = computed(() => store.state.locale);
+const stops = computed(() => store.getters.allStops);
+const isActive = (index) => computed(() => index === stopIndex.value);
+const getStopTitle = (stop) =>
+  computed(() => stop.stop_content.title[localeRef.value]);
 </script>
 <style scoped>
 .stoplist {

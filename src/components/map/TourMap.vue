@@ -4,36 +4,36 @@
     class="tour-map"
     :class="`tour-map--${initialMapStyle}`"
   >
-    <div class="button-bar" v-if="showMapStyleControl">
+    <div v-if="showMapStyleControl" class="button-bar">
       <Button
         v-for="styleChoice in styleChoices"
         :key="styleChoice"
         variant="inverse"
-        @click="handleMapChange(styleChoice)"
         class="button-bar__button"
         :class="{
           'button-bar__button--is-active': isActive(styleChoice),
         }"
+        @click="handleMapChange(styleChoice)"
         >{{ capitalize(styleChoice) }}</Button
       >
     </div>
     <Map
-      :lng="center?.lng || startPoint.lng"
-      :lat="center?.lat || startPoint.lat"
+      :lng="center?.lng || startPointRef.lng"
+      :lat="center?.lat || startPointRef.lat"
       :zoom="zoom"
-      :bounds="mapBounds"
+      :bounds="mapBoundsRef"
       class="map-sheet__map-container"
       :mapStyle="mapStyle"
     >
       <MapPolyline
-        v-for="(route, index) in stopRoutes"
+        v-for="(route, index) in stopRoutesRef"
+        :id="`route-${index}`"
         :key="index"
         :positions="route"
-        :id="`route-${index}`"
         :color="getStopColor(index)"
       />
       <MapMarker
-        v-for="(stopPoint, index) in stopPoints"
+        v-for="(stopPoint, index) in stopPointsRef"
         :key="index"
         :lng="stopPoint.lng"
         :lat="stopPoint.lat"
@@ -60,7 +60,7 @@
   </div>
 </template>
 <script setup>
-import { ref, inject, computed } from "vue";
+import { ref, computed } from "vue";
 import Map from "./Map.vue";
 import MapPolyline from "./MapPolyline.vue";
 import MapMarker from "./MapMarker.vue";
@@ -92,43 +92,32 @@ const props = defineProps({
     lng: number().isRequired,
     lat: number().isRequired,
   }),
+  tour: {
+    type: Object,
+    required: true,
+  },
+  stopIndex: {
+    type: Number,
+    required: true,
+  },
 });
 
-const tour = inject("tour");
-console.log({ tour });
-if (!tour) {
-  throw Error(
-    `<TourMap> requires a 'tour' provider. Currently, 'tour' is '${tour}'. Is this component wrapped with <TourProvider :tour="theTourObject" />`
-  );
-}
-
-const stopIndex = inject("stopIndex");
-if (!stopIndex) {
-  throw Error(
-    `<TourMap> requires a 'stopIndex' provider. Currently, 'stopIndex' is '${stopIndex}'. Is this component wrapped with <TourProvider :stopIndex="stopIndexFromRoute" />`
-  );
-}
-console.log({ stopIndex });
-
-const locale = inject("locale", "en");
-
-const fullTourRoute = computed(() => getFullTourRoute(tour));
-const stopPoints = computed(() => getAllStopPoints(tour));
-const startPoint = computed(() => tour.start_location);
-const mapBounds = computed(
-  () => props.initialMapBounds || getBoundingBox(fullTourRoute.value)
+const mapStyleRef = ref(props.initialMapStyle);
+const fullTourRouteRef = computed(() => getFullTourRoute(props.tour));
+const stopPointsRef = computed(() => getAllStopPoints(props.tour));
+const startPointRef = computed(() => props.tour.start_location);
+const mapBoundsRef = computed(
+  () => props.initialMapBounds || getBoundingBox(fullTourRouteRef.value)
 );
-console.log({ mapBounds: mapBounds.value });
-const stopRoutes = computed(() => getAllRoutes(tour));
+const stopRoutesRef = computed(() => getAllRoutes(props.tour));
 const styleChoices = ["dark", "satellite", "streets", "light"].sort();
-const mapStyle = ref(props.initialMapStyle);
 
-const handleMapChange = (styleChoice) => (mapStyle.value = styleChoice);
-const isActive = (styleChoice) => mapStyle.value === styleChoice;
+const handleMapChange = (styleChoice) => (mapStyleRef.value = styleChoice);
+const isActive = (styleChoice) => mapStyleRef.value === styleChoice;
 const capitalize = (str) => str.charAt(0).toUpperCase() + str.substring(1);
 const getStopColor = (index) => {
-  if (index < stopIndex) return "#7EEAFC";
-  if (index === stopIndex) return "#0A84FF";
+  if (index < props.stopIndex) return "#7EEAFC";
+  if (index === props.stopIndex) return "#0A84FF";
   return "#999";
 };
 </script>

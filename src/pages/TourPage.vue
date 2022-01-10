@@ -1,55 +1,26 @@
 <template>
   <div class="tour-page">
-    <TourProvider :tour="tour" :stopIndex="stopIndex">
-      <AppHeader class="tour-page__app-header" />
-      <div v-if="isLoading" class="loading">Loading...</div>
-      <div v-if="!isLoading">
-        <LocaleProvider :locales="locales">
-          <TourStop
-            v-if="tour"
-            :stop="currentStop"
-            :stopIndex="stopIndex"
-            :nextStopUrl="nextStopUrl"
-          />
-          <BottomNav v-if="tour" :stopIndex="stopIndex" :tour="tour" />
-        </LocaleProvider>
-      </div>
-    </TourProvider>
+    <AppHeader class="tour-page__app-header" />
+    <div v-if="isLoading" class="loading">Loading...</div>
+    <div v-if="!isLoading">
+      <TourStop />
+      <BottomNav />
+    </div>
   </div>
 </template>
 <script setup>
 import { onMounted, computed } from "vue";
+import { useRoute } from "vue-router";
 import { useStore } from "vuex";
-import LocaleProvider from "../components/LocaleProvider.vue";
-import TourProvider from "../components/TourProvider.vue";
 import AppHeader from "../components/AppHeader.vue";
 import BottomNav from "../components/BottomNav.vue";
 import TourStop from "../components/TourStop.vue";
 
-const props = defineProps({
-  tourId: {
-    type: Number,
-    required: true,
-  },
-  stopIndex: {
-    type: Number,
-    default: 0,
-  },
-});
-
 const store = useStore();
-const tour = computed(() => store.state.tour);
 const isLoading = computed(() => store.state.isLoading);
-const locales = computed(() => tour.value.tour_content.languages);
-const currentStop = computed(() => tour.value.stops[props.stopIndex]);
-const totalStops = computed(() => tour.value.stops.length);
-const hasNextStop = computed(() => props.stopIndex < totalStops.value - 1);
-const nextStopUrl = computed(() =>
-  hasNextStop.value ? `/tours/${props.tourId}/stops/${stopIndex + 1}` : null
-);
 
 onMounted(() => {
-  store.dispatch("fetchTour", props.tourId);
+  store.dispatch("fetchTour", store.state.route.params.tourId);
 });
 </script>
 <style scoped>

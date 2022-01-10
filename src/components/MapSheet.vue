@@ -5,29 +5,27 @@
     :is-open="isOpen"
     @close="$emit('close')"
   >
-    <TourMap initialMapStyle="dark" />
+    <TourMap initialMapStyle="dark" :tour="tour" :stopIndex="stopIndex" />
   </Sheet>
 </template>
 <script setup>
+import { computed } from "vue";
+import { useStore } from "vuex";
 import Sheet from "./Sheet.vue";
 import TourMap from "./map/TourMap.vue";
 
-const props = defineProps({
+defineProps({
   isOpen: {
     type: Boolean,
     default: false,
   },
-  tour: {
-    type: Object,
-    isRequired: true,
-  },
-  activeStopIndex: {
-    type: Number,
-    default: 0,
-  },
 });
 
 defineEmits(["close"]);
+
+const store = useStore();
+const tour = computed(() => store.state.tour);
+const stopIndex = computed(() => store.getters.stopIndex);
 </script>
 
 <style>

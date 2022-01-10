@@ -23,7 +23,8 @@
     "vue": "^3.2.25",
     "vue-router": "^4.0.12",
     "vue-types": "^4.1.1",
-    "vuex": "^4.0.2"
+    "vuex": "^4.0.2",
+    "vuex-router-sync": "^6.0.0-rc.1"
   },
   "devDependencies": {
     "@babel/core": "^7.16.7",
