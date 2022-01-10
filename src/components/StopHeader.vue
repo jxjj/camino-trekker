@@ -2,37 +2,47 @@
   <header class="stop-header">
     <div class="stop-header__content">
       <p>
-        <span class="stop-header__number">{{ stopIndex + 1 }}</span>
+        <span class="stop-header__number">{{ stopNumber }}</span>
       </p>
-      <h2 class="stop-header__title h2">{{ stop.title }}</h2>
-      <p v-if="subtitle" class="stop-header__subtitle">{{ stop.subtitle }}</p>
+      <h2 class="stop-header__title h2">{{ title }}</h2>
+      <p v-if="subtitle" class="stop-header__subtitle">{{ subtitle }}</p>
     </div>
     <div class="stop-header__img-container">
       <img
-        v-if="!!stop.image"
+        v-if="imageSrc"
         class="stop-header__img"
-        :src="stop.image.src"
-        :alt="stop.image.alt[locale]"
+        :src="imageSrc"
+        :alt="imageAlt"
       />
     </div>
   </header>
 </template>
 <script setup>
-import { computed, inject } from "vue";
-import { useStore } from "vuex";
+import { number, object, shape, string } from "vue-types";
 
-const locale = inject("locale", "en");
-
-const store = useStore();
-const stopIndex = computed(() => store.getters.stopIndex);
-const stop = computed(() => {
-  const currentStop = store.getters.currentStop?.stop_content;
-  return {
-    title: currentStop?.title?.[locale] || "This Stop",
-    subtitle: currentStop?.subtitle?.[locale] || "",
-    image: currentStop?.image || null,
-  };
+defineProps({
+  title: {
+    type: String,
+    required: true,
+  },
+  subtitle: {
+    type: String,
+    required: true,
+  },
+  stopNumber: number().isRequired,
+  imageSrc: string(),
+  imageAlt: string(),
 });
+
+// const stopIndex = computed(() => store.getters.stopIndex);
+// const stop = computed(() => {
+//   const currentStop = store.getters.currentStop?.stop_content;
+//   return {
+//     title: currentStop?.title?.[locale] || "This Stop",
+//     subtitle: currentStop?.subtitle?.[locale] || "",
+//     image: currentStop?.image || null,
+//   };
+// });
 </script>
 <style scoped>
 .stop-header {

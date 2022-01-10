@@ -1,9 +1,5 @@
 <template>
-  <div
-    v-if="!!tour && !!stopIndex"
-    class="tour-map"
-    :class="`tour-map--${initialMapStyle}`"
-  >
+  <div class="tour-map" :class="`tour-map--${initialMapStyle}`">
     <div v-if="showMapStyleControl" class="button-bar">
       <Button
         v-for="styleChoice in styleChoices"
@@ -23,7 +19,7 @@
       :zoom="zoom"
       :bounds="mapBoundsRef"
       class="map-sheet__map-container"
-      :mapStyle="mapStyle"
+      :mapStyle="mapStyleRef"
     >
       <MapPolyline
         v-for="(route, index) in stopRoutesRef"
@@ -89,8 +85,8 @@ const props = defineProps({
     type: Array,
   },
   center: shape({
-    lng: number().isRequired,
-    lat: number().isRequired,
+    lng: number(),
+    lat: number(),
   }),
   tour: {
     type: Object,
@@ -98,6 +94,10 @@ const props = defineProps({
   },
   stopIndex: {
     type: Number,
+    required: true,
+  },
+  locale: {
+    type: String,
     required: true,
   },
 });

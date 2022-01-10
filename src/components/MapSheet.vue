@@ -5,7 +5,12 @@
     :is-open="isOpen"
     @close="$emit('close')"
   >
-    <TourMap initialMapStyle="dark" :tour="tour" :stopIndex="stopIndex" />
+    <TourMap
+      initialMapStyle="dark"
+      :tour="tour"
+      :stopIndex="stopIndex"
+      :locale="locale"
+    />
   </Sheet>
 </template>
 <script setup>
@@ -26,6 +31,7 @@ defineEmits(["close"]);
 const store = useStore();
 const tour = computed(() => store.state.tour);
 const stopIndex = computed(() => store.getters.stopIndex);
+const locale = computed(() => store.state.locale);
 </script>
 
 <style>

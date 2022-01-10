@@ -1,12 +1,14 @@
 <template>
   <div class="tour-stop">
-    <TourHeader
-      v-if="isFirstStop"
-      class="container"
-      :tour="tour"
-      :stopIndex="stopIndex"
+    <TourHeader v-if="isFirstStop" :tour="tour" :stopIndex="stopIndex" />
+    <StopHeader
+      v-if="!isFirstStop"
+      :title="currentStop.stop_content.title[locale]"
+      :subtitle="`${tour.geocoded.city}, ${tour.geocoded.state}`"
+      :stopNumber="stopIndex + 1"
+      :imageSrc="currentStop.stop_content.image.src"
+      :imageAlt="currentStop.stop_content.image.alt[locale]"
     />
-    <StopHeader v-else :stop="stop" :stopIndex="stopIndex" />
     <div class="tour-stop__stages container">
       <h2 v-if="stopIndex === 0">Start</h2>
       <section v-for="stage in stages" :key="stage.id">
@@ -57,10 +59,10 @@ import FAB from "./FAB.vue";
 const store = useStore();
 const stopIndex = computed(() => store.getters.stopIndex);
 const tour = computed(() => store.state.tour);
-const stop = computed(() => store.getters.currentStop);
+const currentStop = computed(() => store.getters.currentStop);
 const isFirstStop = computed(() => store.getters.isFirstStop);
 const isLastStop = computed(() => store.getters.isLastStop);
-const stages = computed(() => stop.value?.stop_content?.stages) || [];
+const stages = computed(() => currentStop.value?.stop_content?.stages) || [];
 const locale = computed(() => store.state.locale);
 </script>
 <style scoped>

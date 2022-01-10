@@ -34,6 +34,7 @@ const props = defineProps({
   bounds: arrayOf(arrayOf(number())),
   mapStyle: string().def("streets"),
 });
+console.log({ ...props });
 
 // reference to ref="mapContainer" element
 const mapContainer = ref(null);

@@ -3,8 +3,11 @@
     <div class="navigation-stage__tour-map-wrapper">
       <TourMap
         initialMapStyle="satellite"
+        :tour="tour"
+        :stopIndex="stopIndex"
         :initialMapBounds="boundingBox"
         :zoom="18"
+        :locale="locale"
       />
     </div>
     <Markdown :content="markdown" />
@@ -35,14 +38,14 @@ const markdown = computed(() => props.stage.text[props.locale]);
 // last stop target, route, and current stop target
 
 const store = useStore();
-const tourRef = computed(() => store.state.tour);
-const stopIndexRef = computed(() => store.getters.stopIndex);
-const routesRef = computed(() => getAllRoutes(tourRef.value));
-const stopPointsRef = computed(() => getAllStopPoints(tourRef.value));
+const tour = computed(() => store.state.tour);
+const stopIndex = computed(() => store.getters.stopIndex);
+const routes = computed(() => getAllRoutes(tour.value));
+const stopPoints = computed(() => getAllStopPoints(tour.value));
 const prevStopPoint =
-  stopIndexRef.value > 0 ? stopPointsRef.value[stopIndexRef.value - 1] : null;
-const currentRoute = routesRef.value[stopIndexRef.value];
-const currentStopPoint = stopPointsRef.value[stopIndexRef.value];
+  stopIndex.value > 0 ? stopPoints.value[stopIndex.value - 1] : null;
+const currentRoute = routes.value[stopIndex.value];
+const currentStopPoint = stopPoints.value[stopIndex.value];
 
 // the list of points we want to create a bounding box around. The
 // .filter(Boolean) removes any null values in case prevStopPoint is null.

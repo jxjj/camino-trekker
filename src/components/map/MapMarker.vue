@@ -9,7 +9,8 @@ const props = defineProps({
   lat: number().isRequired,
   color: string(),
 });
-const mapRef = inject("mapRef", null);
+
+const mapRef = inject("mapRef");
 
 const markerRef = ref(null);
 provide("markerRef", markerRef);

@@ -10,7 +10,6 @@
 </template>
 <script setup>
 import { onMounted, computed } from "vue";
-import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 import AppHeader from "../components/AppHeader.vue";
 import BottomNav from "../components/BottomNav.vue";
