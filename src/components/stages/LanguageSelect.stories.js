@@ -1,24 +1,22 @@
-import LanguageSelect from "./LanguageSelect.vue";
-import LocaleProvider from "../LocaleProvider.vue";
+import PureLanguageSelect from "./PureLanguageSelect.vue";
 
 export default {
   title: "Camino/Stages/LanguageSelect",
-  component: LanguageSelect,
+  component: PureLanguageSelect,
 };
 
 const Template = (args) => ({
-  components: { LanguageSelect, LocaleProvider },
+  components: { PureLanguageSelect },
   setup() {
     return { args };
   },
   template: `
-    <LocaleProvider :locales="args.locales">
-      <LanguageSelect />
-    </LocaleProvider>
+    <PureLanguageSelect v-bind="args" />
   `,
 });
 
 export const Default = Template.bind({});
 Default.args = {
-  locales: ["en", "es", "en-GB"],
+  locale: "en",
+  locales: ["en", "es"],
 };

@@ -18,6 +18,7 @@ module.exports = {
     "vue/script-setup-uses-vars": "error",
     "vue/require-default-prop": "off",
     "vue/attribute-hyphenation": "off",
+    "vue/v-on-event-hyphenation": "off",
     "vue/multi-word-component-names": "off",
   },
 };
