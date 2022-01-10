@@ -67,6 +67,7 @@ import getAllStopPoints from "../../utils/getAllStopPoints.js";
 import getBoundingBox from "../../utils/getBoundingBox";
 import getAllRoutes from "../../utils/getAllRoutes";
 import { number, shape } from "vue-types";
+import { useStore } from "vuex";
 
 const props = defineProps({
   initialMapStyle: {
@@ -88,36 +89,31 @@ const props = defineProps({
     lng: number(),
     lat: number(),
   }),
-  tour: {
-    type: Object,
-    required: true,
-  },
-  stopIndex: {
-    type: Number,
-    required: true,
-  },
-  locale: {
-    type: String,
-    required: true,
-  },
 });
 
+// state from store
+const store = useStore();
+const tour = computed(() => store.state.tour);
+const stopIndex = computed(() => store.getters.stopIndex);
+const locale = computed(() => store.state.locale);
+
+// data
 const mapStyleRef = ref(props.initialMapStyle);
-const fullTourRouteRef = computed(() => getFullTourRoute(props.tour));
-const stopPointsRef = computed(() => getAllStopPoints(props.tour));
-const startPointRef = computed(() => props.tour.start_location);
+const fullTourRouteRef = computed(() => getFullTourRoute(tour.value));
+const stopPointsRef = computed(() => getAllStopPoints(tour.value));
+const startPointRef = computed(() => tour.value.start_location);
 const mapBoundsRef = computed(
   () => props.initialMapBounds || getBoundingBox(fullTourRouteRef.value)
 );
-const stopRoutesRef = computed(() => getAllRoutes(props.tour));
+const stopRoutesRef = computed(() => getAllRoutes(tour.value));
 const styleChoices = ["dark", "satellite", "streets", "light"].sort();
 
 const handleMapChange = (styleChoice) => (mapStyleRef.value = styleChoice);
 const isActive = (styleChoice) => mapStyleRef.value === styleChoice;
 const capitalize = (str) => str.charAt(0).toUpperCase() + str.substring(1);
 const getStopColor = (index) => {
-  if (index < props.stopIndex) return "#7EEAFC";
-  if (index === props.stopIndex) return "#0A84FF";
+  if (index < stopIndex.value) return "#7EEAFC";
+  if (index === stopIndex.value) return "#0A84FF";
   return "#999";
 };
 </script>
