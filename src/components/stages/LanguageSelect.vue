@@ -1,20 +1,17 @@
 <template>
   <PureLanguageSelect
     :locale="locale"
-    :locales="locales"
-    @onSubmit="onSubmit(selectedLocale)"
+    :locales="tourLocales"
+    @setLocale="setLocale"
   />
 </template>
 
 <script setup>
-import { computed } from "vue";
-import { useStore } from "vuex";
 import PureLanguageSelect from "./PureLanguageSelect.vue";
+import { useLocale, useTourLocales } from "../../common/hooks";
 
-const store = useStore();
-const locale = computed(() => store.state.locale);
-const locales = computed(() => store.state.tour.tour_content.languages);
-const onSubmit = (selected) => store.dispatch("setLocale", selected);
+const { locale, setLocale } = useLocale();
+const { tourLocales } = useTourLocales();
 </script>
 <style scoped>
 .input-group {

@@ -43,8 +43,8 @@ const handleChange = (locale) => {
   selectedLocale.value = locale;
 };
 
-const emit = defineEmits(["onSubmit"]);
-const onSubmit = (selected) => emit("onSubmit", selected);
+const emit = defineEmits(["setLocale"]);
+const onSubmit = (selected) => emit("setLocale", selected);
 </script>
 <style scoped>
 .input-group {

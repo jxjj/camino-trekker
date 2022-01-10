@@ -17,7 +17,6 @@ const props = defineProps({
   mapStyle: string().def("streets"),
   accessToken: string().isRequired,
 });
-console.log(props.accessToken);
 
 const mapContainer = ref(null);
 const { map } = useMap(mapContainer, props);

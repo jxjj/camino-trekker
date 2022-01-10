@@ -3,11 +3,14 @@ import MapPolyline from "./MapPolyline.vue";
 import mockTour from "../../common/__mocks__/mockTour.json";
 import getRouteByIndex from "../../utils/getRouteByIndex.js";
 import getFullTourRoute from "../../utils/getFullTourRoute.js";
+import { useMapBoxAccessToken } from "../../common/hooks";
 
 export default {
   title: "Camino/Map/MapPolyline",
   component: MapPolyline,
 };
+
+const { accessToken } = useMapBoxAccessToken();
 
 const Template = (args) => ({
   components: { Map, MapPolyline },
@@ -30,6 +33,7 @@ Default.args = {
     lng: mockTour.start_location.lng,
     lat: mockTour.start_location.lat,
     zoom: 15,
+    accessToken: accessToken.value,
   },
   fullTourRoute: {
     positions: getFullTourRoute(mockTour),
