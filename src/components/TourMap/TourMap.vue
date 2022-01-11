@@ -16,8 +16,7 @@
     </div>
     <Map
       class="map-sheet__map-container"
-      :lng="tourMap.center.lng"
-      :lat="tourMap.center.lat"
+      :center="tourMap.center"
       :zoom="tourMap.zoom"
       :bounds="tourMap.bounds"
       :mapStyle="tourMap.mapStyle"
@@ -77,7 +76,6 @@ const props = defineProps({
 });
 
 const tourMap = useTourMap(props);
-console.log({ tourMap });
 </script>
 <style scoped>
 .tour-map {

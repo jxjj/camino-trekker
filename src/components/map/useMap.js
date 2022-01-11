@@ -21,7 +21,6 @@ const MAP_STYLES = {
 function setBounds(mapRef, bounds, { padding = 64 } = {}) {
   console.log("setBounds", { bounds });
   const map = unref(mapRef);
-  // if (!map) return;
   map.fitBounds(bounds, { padding });
   return mapRef;
 }
@@ -30,7 +29,7 @@ function setupMap(mapContainerRef, mapRef, props) {
   mapRef.value = new Map({
     container: mapContainerRef.value,
     style: MAP_STYLES[props.mapStyle],
-    center: [props.lng, props.lat],
+    center: [props.center.lng, props.center.lat],
     zoom: props.zoom,
     accessToken: props.accessToken,
   });

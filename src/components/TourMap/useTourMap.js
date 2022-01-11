@@ -92,15 +92,12 @@ export default ({ initialMapStyle, type = "tour" }) => {
       mapStyle.value = updatedStyle;
     },
     currentStopIndex: stopIndex,
-    // for polylines
-    stopRoutes: allStopRoutes,
-    // for map markers
-    stopPoints: allStopPoints,
-    // for map popups
+    stopRoutes: allStopRoutes, // for polylines
+    stopPoints: allStopPoints, // for map markers
     stopLabels: createAllStopLabels({
       tour: tour.value,
       locale: locale.value,
-    }),
+    }), // for map popups
     center,
     bounds,
     accessToken,
