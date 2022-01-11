@@ -1,14 +1,22 @@
-import { watch, ref } from "vue";
+import { watch, ref, unref } from "vue";
 import { Marker } from "mapbox-gl";
 
-export default (mapRef, { lng, lat, color }) => {
+export default (mapRef, props) => {
   const marker = ref(null);
-  watch(mapRef, () => {
-    const map = mapRef.value;
+
+  watch([mapRef, props], () => {
+    const map = unref(mapRef);
+
+    // if no map yet, nothing to do
     if (!map) return;
-    map.on("load", () => {
-      marker.value = new Marker({ color }).setLngLat([lng, lat]).addTo(map);
-    });
+
+    // remove old marker if it exists
+    const oldMarker = unref(marker);
+    if (oldMarker) oldMarker.remove();
+
+    marker.value = new Marker({ color: props.color })
+      .setLngLat([props.lng, props.lat])
+      .addTo(map);
   });
 
   return { marker };
