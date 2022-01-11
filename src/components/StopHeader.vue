@@ -18,7 +18,7 @@
   </header>
 </template>
 <script setup>
-import { number, object, shape, string } from "vue-types";
+import { number, string } from "vue-types";
 
 defineProps({
   title: {

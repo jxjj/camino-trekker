@@ -16,6 +16,10 @@ const Template = (args) => ({
 
 export const Default = Template.bind({});
 Default.args = {
-  stop: mockTour.stops[1],
-  stopIndex: 1,
+  title: "Stop Title Goes Here",
+  subtitle: "Ca-ca-ca-ca-ca-catmandooooo, Nepal",
+  stopNumber: 99,
+  imageSrc:
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Lynx_kitten.jpg/1920px-Lynx_kitten.jpg",
+  imageAlt: "Lynx Kitten. Aww so cute!",
 };
