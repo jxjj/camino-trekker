@@ -47,9 +47,13 @@
             {{ tourMap.stopLabels[i].title }}
           </h2>
           <p class="map-popup__link-container">
-            <a :href="tourMap.stopLabels[i].href" class="map-popup__link">
-              Go <span class="material-icons">arrow_forward</span>
-            </a>
+            <router-link
+              :href="tourMap.stopLabels[i].href"
+              class="map-popup__link"
+            >
+              <span class="material-icons">arrow_forward</span>
+              <span class="sr-only">Go to Stop</span>
+            </router-link>
           </p>
         </MapPopup>
       </MapMarker>
@@ -109,13 +113,12 @@ console.log({ tourMap });
 }
 
 .map-popup__link-container {
-  text-align: center;
+  text-align: right;
   margin-top: 0.5rem;
 }
 .map-popup__link {
   display: inline-flex;
-  /* border: 1px solid var(--black); */
-  font-size: 0.75rem;
+  border: none;
   color: var(--black);
   padding: 0.25rem 0.5rem;
   text-decoration: none;
@@ -130,7 +133,7 @@ console.log({ tourMap });
   color: var(--white);
 }
 .map-popup__link .material-icons {
-  font-size: 0.75rem;
+  font-size: 1.25rem;
 }
 
 .map-popup__stop-number {
