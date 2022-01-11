@@ -9,7 +9,7 @@
       >
         <li
           class="stoplist__item"
-          :class="{ 'stoplist__item--is-active': isActive(index) }"
+          :class="{ 'stoplist__item--is-active': index === stopIndex }"
         >
           <div class="stoplist__number">
             {{ index + 1 }}
@@ -23,17 +23,17 @@
 <script setup>
 import { computed } from "vue";
 import { useStore } from "vuex";
+import { useStopIndex, useLocale } from "../common/hooks";
 import Sheet from "./Sheet.vue";
 
 defineEmits(["close"]);
 
 const store = useStore();
-const stopIndex = computed(() => store.getters.stopIndex);
-const localeRef = computed(() => store.state.locale);
+// const stopIndex = computed(() => store.getters.stopIndex);
+const { stopIndex } = useStopIndex();
+const { locale } = useLocale();
 const stops = computed(() => store.getters.allStops);
-const isActive = (index) => computed(() => index === stopIndex.value);
-const getStopTitle = (stop) =>
-  computed(() => stop.stop_content.title[localeRef.value]);
+const getStopTitle = (stop) => stop.stop_content.title[locale.value];
 </script>
 <style scoped>
 .stoplist {

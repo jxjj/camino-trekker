@@ -11,7 +11,7 @@ export default {
 const Template = (args) => ({
   components: { StopListSheet, Button },
   setup() {
-    const isOpen = ref("true");
+    const isOpen = ref(args.isOpen);
     const toggleSheet = () => (isOpen.value = !isOpen.value);
     return { args, isOpen, toggleSheet };
   },
@@ -19,6 +19,7 @@ const Template = (args) => ({
   <div>
     <Button @click="toggleSheet">Toggle Sheet</Button>
     <StopListSheet v-bind="args" @close="toggleSheet" :isOpen="isOpen" />
+  </div>
   `,
 });
 
