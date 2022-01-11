@@ -6,12 +6,14 @@
 
 <script setup>
 import { provide, ref } from "vue";
-import { arrayOf, number, string } from "vue-types";
+import { arrayOf, number, string, shape } from "vue-types";
 import useMap from "./useMap.js";
 
 const props = defineProps({
-  lng: number().isRequired,
-  lat: number().isRequired,
+  center: shape({
+    lng: number().isRequired,
+    lat: number().isRequired,
+  }),
   zoom: number().isRequired,
   bounds: arrayOf(arrayOf(number())),
   mapStyle: string().def("streets"),

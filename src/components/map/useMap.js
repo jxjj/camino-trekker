@@ -1,4 +1,4 @@
-import { ref, watch, onMounted, onUnmounted } from "vue";
+import { ref, watch, onMounted, onUnmounted, unref, toRefs } from "vue";
 import "mapbox-gl/dist/mapbox-gl.css";
 import {
   Map,
@@ -18,6 +18,14 @@ const MAP_STYLES = {
   "navigation-night": "mapbox://styles/mapbox/navigation-night-v1",
 };
 
+function setBounds(mapRef, bounds, { padding = 64 } = {}) {
+  console.log("setBounds", { bounds });
+  const map = unref(mapRef);
+  // if (!map) return;
+  map.fitBounds(bounds, { padding });
+  return mapRef;
+}
+
 function setupMap(mapContainerRef, mapRef, props) {
   mapRef.value = new Map({
     container: mapContainerRef.value,
@@ -32,11 +40,9 @@ function setupMap(mapContainerRef, mapRef, props) {
     .addControl(new GeolocateControl())
     .addControl(new ScaleControl({ unit: "imperial" }));
 
-  if (props.bounds) {
-    mapRef.value.fitBounds(props.bounds, {
-      padding: 64,
-    });
-  }
+  if (props.bounds) setBounds(mapRef, props.bounds);
+
+  return mapRef;
 }
 
 /**
@@ -46,12 +52,13 @@ function setupMap(mapContainerRef, mapRef, props) {
  */
 export default function useMap(mapContainerRef, props) {
   const mapRef = ref(null);
-  watch(
-    () => props.mapStyle,
-    () => {
-      mapRef.value.setStyle(MAP_STYLES[props.mapStyle]);
-    }
-  );
+  const { mapStyle, bounds } = toRefs(props);
+
+  // watch style changes
+  watch(mapStyle, () => unref(mapRef).setStyle(MAP_STYLES[unref(mapStyle)]));
+
+  // watch map bounds changes
+  watch(bounds, () => setBounds(mapRef, bounds));
 
   onMounted(() => {
     setupMap(mapContainerRef, mapRef, props);
@@ -61,5 +68,7 @@ export default function useMap(mapContainerRef, props) {
     // probably need to do some cleanup here?
   });
 
-  return { map: mapRef };
+  return {
+    map: mapRef,
+  };
 }
