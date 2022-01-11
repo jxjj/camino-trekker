@@ -17,7 +17,7 @@
 import { computed } from "vue";
 import { shape, string } from "vue-types";
 import Markdown from "../Markdown.vue";
-import TourMap from "../map/TourMap.vue";
+import TourMap from "../TourMap/TourMap.vue";
 import getAllRoutes from "../../utils/getAllRoutes";
 import getAllStopPoints from "../../utils/getAllStopPoints";
 import getBoundingBox from "../../utils/getBoundingBox";

@@ -13,5 +13,5 @@ const props = defineProps({
 const map = inject("map");
 
 const { marker } = useMapMarker(map, props);
-provide("markerRef", marker);
+provide("marker", marker);
 </script>

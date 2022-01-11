@@ -3,29 +3,14 @@ import { toursService } from "../common/api.service.js";
 
 const toInt = (str) => Number.parseInt(str, 10);
 
-// const normalizeStop =
-//   (locale = "en") =>
-//   (stop, index) => ({
-//     ...stop,
-//     id: stop.id,
-//     tourId: stop.tour_id,
-//     number: index + 1,
-//     title: stop.stop_content.title[locale],
-//     image: {
-//       ...stop.image,
-//       alt: stop.stop_content.image.alt[locale],
-//     },
-//     stages: stop.stop_content.stages,
-//   });
-
-const initialState = {
+export const initialState = {
   tour: null,
   isLoading: true,
   locale: "en",
   errors: [],
 };
 
-const getters = {
+export const getters = {
   allStops(state) {
     const { tour } = state;
     if (!tour) return [];
@@ -60,7 +45,7 @@ const getters = {
   },
 };
 
-const mutations = {
+export const mutations = {
   fetchTourStarted(state) {
     state.isLoading = true;
   },
@@ -77,7 +62,7 @@ const mutations = {
   },
 };
 
-const actions = {
+export const actions = {
   fetchTour({ commit }, tourId) {
     commit("fetchTourStarted");
     toursService
@@ -95,12 +80,14 @@ const actions = {
   },
 };
 
-const store = createStore({
+export const storeConfig = {
   state: () => initialState,
   getters,
   mutations,
   actions,
   plugins: [createLogger()],
-});
+};
+
+export const store = createStore(storeConfig);
 
 export default store;

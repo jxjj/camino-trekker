@@ -1,5 +1,4 @@
 import { ref } from "vue";
-import TourProvider from "./TourProvider.vue";
 import MapSheet from "./MapSheet.vue";
 import Button from "./Button.vue";
 import mockTour from "../common/__mocks__/mockTour.json";
@@ -10,7 +9,7 @@ export default {
 };
 
 const Template = (args) => ({
-  components: { MapSheet, Button, TourProvider },
+  components: { MapSheet, Button },
   setup() {
     const isOpen = ref(true);
     const toggleSheet = () => {
@@ -25,7 +24,6 @@ const Template = (args) => ({
   },
   template: `
     <div>
-      <TourProvider :tour="mockTour" :stopIndex="3"
       <Button @click="toggleSheet">Toggle Sheet</Button>
       <MapSheet :isOpen="isOpen" @close="toggleSheet" v-bind="args"  />
     </div>

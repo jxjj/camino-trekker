@@ -3,24 +3,33 @@ import { useStore } from "vuex";
 import getFullTourRoute from "../utils/getFullTourRoute.js";
 import config from "../config.js";
 
-const store = useStore();
+export const useTour = () => {
+  const store = useStore();
+  return {
+    tour: computed(() => store.state.tour),
+  };
+};
 
-export const useTour = () => ({
-  tour: computed(() => store.state.tour),
-});
+export const useStopIndex = () => {
+  const store = useStore();
+  return {
+    stopIndex: computed(() => store.getters.stopIndex),
+  };
+};
 
-export const useStopIndex = () => ({
-  stopIndex: computed(() => store.getters.stopIndex),
-});
+export const useLocale = () => {
+  const store = useStore();
+  return {
+    locale: computed(() => store.state.locale),
+    setLocale: (newLocale) => store.dispatch("setLocale", newLocale),
+  };
+};
 
-export const useLocale = () => ({
-  locale: computed(() => store.state.locale),
-  setLocale: (newLocale) => store.dispatch("setLocale", newLocale),
-});
-
-export const useMapBoxAccessToken = () => ({
-  accessToken: computed(() => config.mapBox.accessToken),
-});
+export const useMapBoxAccessToken = () => {
+  return {
+    accessToken: computed(() => config.mapBox.accessToken),
+  };
+};
 
 export const useFullTourRoute = () =>
   computed(() => {

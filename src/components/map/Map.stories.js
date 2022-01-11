@@ -1,5 +1,5 @@
 import Map from "./Map.vue";
-import MapPolyline from "./MapPolyline.vue";
+import MapPolyline from "../MapPolyline/MapPolyline.vue";
 import mockTour from "../../common/__mocks__/mockTour.json";
 import getFullTourRoute from "../../utils/getFullTourRoute.js";
 import getBoundingBox from "../../utils/getBoundingBox.js";

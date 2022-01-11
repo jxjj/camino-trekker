@@ -1,8 +1,8 @@
-import Map from "./Map.vue";
 import MapMarker from "./MapMarker.vue";
+import Map from "../Map/Map.vue";
+import { Default as MapStory } from "../Map/Map.stories.js";
 import mockTour from "../../common/__mocks__/mockTour.json";
 import getStagesFromTourWhere from "../../utils/getStagesFromTourWhere.js";
-import { useMapBoxAccessToken } from "../../common/hooks";
 
 export default {
   title: "Camino/Map/MapMarker",
@@ -12,12 +12,11 @@ export default {
 const Template = (args) => ({
   components: { Map, MapMarker },
   setup() {
-    return { args };
+    return { args, MapStory };
   },
   template: `
-    <Map v-bind="args.map">
-      <MapMarker v-bind="args.startMarker" />
-      <MapMarker v-bind="args.targetMarker" />
+    <Map v-bind="MapStory.args">
+      <MapMarker v-bind="args" />
     </Map>
   `,
 });
@@ -25,23 +24,16 @@ const Template = (args) => ({
 const navStages = getStagesFromTourWhere("type", "navigation", mockTour);
 const navStagesWithRoutes = navStages.filter((stage) => stage?.route.length);
 const stage1 = navStagesWithRoutes[1];
-const { accessToken } = useMapBoxAccessToken();
 
 export const Default = Template.bind({});
 Default.args = {
-  map: {
-    lng: mockTour.start_location.lng,
-    lat: mockTour.start_location.lat,
-    zoom: 15,
-    accessToken: accessToken.value,
-  },
-  startMarker: {
-    lng: mockTour.start_location.lng,
-    lat: mockTour.start_location.lat,
-  },
-  targetMarker: {
-    lng: stage1.targetPoint.lng,
-    lat: stage1.targetPoint.lat,
-    color: "red",
-  },
+  lng: mockTour.start_location.lng,
+  lat: mockTour.start_location.lat,
+};
+
+export const ColoredMarker = Template.bind({});
+ColoredMarker.args = {
+  lng: stage1.targetPoint.lng,
+  lat: stage1.targetPoint.lat,
+  color: "red",
 };

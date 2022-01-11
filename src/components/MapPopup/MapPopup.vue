@@ -7,7 +7,7 @@
 import { inject, watch, ref } from "vue";
 import { Popup } from "mapbox-gl";
 
-const markerRef = inject("markerRef");
+const markerRef = inject("marker");
 const popupRef = ref(null);
 
 // use ref to get the content of the slot

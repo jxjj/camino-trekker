@@ -1,0 +1,161 @@
+<template>
+  <div class="tour-map" :class="`tour-map--${initialMapStyle}`">
+    <div v-if="showMapStyleControl" class="button-bar">
+      <Button
+        v-for="styleChoice in tourMap.mapStyleChoices"
+        :key="styleChoice"
+        variant="inverse"
+        class="button-bar__button"
+        :class="{
+          'button-bar__button--is-active': styleChoice === tourMap.mapStyle,
+        }"
+        @click="tourMap.setMapStyle(styleChoice)"
+      >
+        {{ capitalize(styleChoice) }}
+      </Button>
+    </div>
+    <Map
+      class="map-sheet__map-container"
+      :lng="tourMap.center.lng"
+      :lat="tourMap.center.lat"
+      :zoom="tourMap.zoom"
+      :bounds="tourMap.bounds"
+      :mapStyle="tourMap.mapStyle"
+      :accessToken="tourMap.accessToken"
+    >
+      <MapPolyline
+        v-for="(route, i) in tourMap.stopRoutes"
+        :id="`route-${i}`"
+        :key="i"
+        :positions="route"
+        :color="tourMap.getStopColor(i)"
+      />
+      <MapMarker
+        v-for="(stopPoint, i) in tourMap.stopPoints"
+        :key="i"
+        :lng="stopPoint.lng"
+        :lat="stopPoint.lat"
+        :color="tourMap.getStopColor(i)"
+      >
+        <MapPopup>
+          <p class="map-popup__stop-number-container">
+            <span class="map-popup__stop-number">
+              {{ tourMap.stopLabels[i].number }}
+            </span>
+          </p>
+          <h2 class="map-popup__stop-title">
+            {{ tourMap.stopLabels[i].title }}
+          </h2>
+          <p class="map-popup__link-container">
+            <a :href="tourMap.stopLabels[i].href" class="map-popup__link">
+              Go <span class="material-icons">arrow_forward</span>
+            </a>
+          </p>
+        </MapPopup>
+      </MapMarker>
+    </Map>
+  </div>
+</template>
+<script setup>
+import Map from "../Map/Map.vue";
+import MapPolyline from "../MapPolyline/MapPolyline.vue";
+import MapMarker from "../MapMarker/MapMarker.vue";
+import MapPopup from "../MapPopup/MapPopup.vue";
+import Button from "../Button.vue";
+import { string, oneOf, bool } from "vue-types";
+import useTourMap from "./useTourMap.js";
+import capitalize from "../../utils/capitalize.js";
+
+const props = defineProps({
+  initialMapStyle: string().def("light"),
+  type: oneOf(["tour", "stop"]),
+  showMapStyleControl: bool().def(true),
+});
+
+const tourMap = useTourMap(props);
+console.log({ tourMap });
+</script>
+<style scoped>
+.tour-map {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.button-bar {
+  display: flex;
+  justify-content: flex-end;
+}
+.button-bar__button {
+  border: 0;
+  outline: 0;
+  border-radius: 0;
+  padding: 0.5rem 1rem;
+  font-weight: normal;
+  font-size: 0.75rem;
+  color: var(--gray-light);
+}
+
+.button-bar__button:hover {
+  outline: 0;
+}
+
+.button-bar__button:hover {
+  background: none;
+  color: var(--gray-dark);
+}
+.button-bar__button--is-active {
+  color: var(--gray-dark);
+}
+
+.map-popup__link-container {
+  text-align: center;
+  margin-top: 0.5rem;
+}
+.map-popup__link {
+  display: inline-flex;
+  /* border: 1px solid var(--black); */
+  font-size: 0.75rem;
+  color: var(--black);
+  padding: 0.25rem 0.5rem;
+  text-decoration: none;
+  align-items: center;
+  border-radius: 0.25rem;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.map-popup__link:hover {
+  background: var(--black);
+  color: var(--white);
+}
+.map-popup__link .material-icons {
+  font-size: 0.75rem;
+}
+
+.map-popup__stop-number {
+  display: inline-flex;
+  border: 2px solid var(--black);
+  color: var(--black);
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+.map-popup__stop-number-container {
+  text-align: left;
+}
+
+.tour-map--dark .button-bar__button {
+  color: var(--gray-dark);
+}
+.tour-map--dark .button-bar__button--is-active {
+  color: var(--gray-light);
+}
+</style>

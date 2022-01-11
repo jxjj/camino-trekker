@@ -1,5 +1,4 @@
 import TourStop from "./TourStop.vue";
-import TourProvider from "./TourProvider.vue";
 import mockTour from "../common/__mocks__/mockTour.json";
 
 export default {
@@ -8,14 +7,12 @@ export default {
 };
 
 const Template = (args) => ({
-  components: { TourStop, TourProvider },
+  components: { TourStop },
   setup() {
     return { args };
   },
   template: `
-    <TourProvider  v-bind="args">
       <TourStop />
-    </TourProvider>
   `,
 });
 

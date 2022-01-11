@@ -1,6 +1,6 @@
+import MapPopup from "./MapPopup.vue";
 import Map from "../Map/Map.vue";
 import MapMarker from "../MapMarker/MapMarker.vue";
-import MapPopup from "../MapPopup/MapPopup.vue";
 import { Default as MapStory } from "../Map/Map.stories.js";
 import { Default as MapMarkerStory } from "../MapMarker/MapMarker.stories.js";
 

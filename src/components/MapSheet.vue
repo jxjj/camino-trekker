@@ -17,7 +17,7 @@
 import { computed } from "vue";
 import { useStore } from "vuex";
 import Sheet from "./Sheet.vue";
-import TourMap from "./map/TourMap.vue";
+import TourMap from "./TourMap/TourMap.vue";
 
 defineProps({
   isOpen: {
