@@ -48,7 +48,7 @@
           </h2>
           <p class="map-popup__link-container">
             <router-link
-              :href="tourMap.stopLabels[i].href"
+              :to="tourMap.stopLabels[i].href"
               class="map-popup__link"
             >
               <span class="material-icons">arrow_forward</span>
