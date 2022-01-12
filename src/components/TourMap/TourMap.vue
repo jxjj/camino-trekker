@@ -58,8 +58,8 @@
   </div>
 </template>
 <script setup>
-import { ref, computed, watch } from "vue";
-import { string, oneOf, bool } from "vue-types";
+import { ref, computed, watch, toRefs } from "vue";
+import { string, oneOf, bool, number } from "vue-types";
 import Map from "../Map/Map.vue";
 import MapPolyline from "../MapPolyline/MapPolyline.vue";
 import MapMarker from "../MapMarker/MapMarker.vue";
@@ -74,14 +74,14 @@ import getCenterOfBoundingBox from "./getCenterOfBoundingBox";
 import getAllRoutes from "../../utils/getAllRoutes";
 import {
   useTour,
-  useStopIndex,
   useLocale,
   useMapBoxAccessToken,
 } from "../../common/hooks.js";
 
 const props = defineProps({
-  initialMapStyle: string().def("light"),
   type: oneOf(["tour", "stop"]),
+  stopIndex: number().isRequired,
+  initialMapStyle: string().def("light"),
   showMapStyleControl: bool().def(true),
 });
 
@@ -104,7 +104,8 @@ function setMapStyle(updatedStyle) {
 }
 
 const { tour } = useTour();
-const { stopIndex } = useStopIndex();
+// const { stopIndex } = useStopIndex();
+const { stopIndex } = toRefs(props);
 const { locale } = useLocale();
 const { accessToken } = useMapBoxAccessToken();
 const boundsRef = ref(null);
@@ -135,7 +136,7 @@ if (props.type === "stop") {
   );
   boundsRef.value = getBoundingBox(stopPoints);
   centerRef.value = getCenterOfBoundingBox(boundsRef.value);
-  zoomRef.value = 14;
+  zoomRef.value = 16;
 }
 
 // update bounds when stop changes
@@ -147,7 +148,6 @@ watch(stopIndex, () => {
   );
   boundsRef.value = getBoundingBox(stopPoints);
   centerRef.value = getCenterOfBoundingBox(boundsRef.value);
-  zoomRef.value = 14;
 });
 </script>
 <style scoped>

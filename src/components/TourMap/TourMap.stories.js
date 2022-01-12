@@ -48,4 +48,5 @@ export const StopMap = Template.bind({});
 StopMap.args = {
   initialMapStyle: "satellite",
   type: "stop",
+  stopIndex: 4,
 };
