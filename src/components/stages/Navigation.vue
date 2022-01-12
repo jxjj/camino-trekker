@@ -1,7 +1,7 @@
 <template>
   <div class="navigation-stage">
     <div class="navigation-stage__tour-map-wrapper">
-      <TourMap initialMapStyle="satellite" type="stop" :stopIndex="stopIndex" />
+      <TourMap initialMapStyle="light" type="stop" :stopIndex="stopIndex" />
     </div>
     <Markdown :content="markdown" />
   </div>
