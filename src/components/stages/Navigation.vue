@@ -1,14 +1,7 @@
 <template>
   <div class="navigation-stage">
     <div class="navigation-stage__tour-map-wrapper">
-      <TourMap
-        initialMapStyle="satellite"
-        :tour="tour"
-        :stopIndex="stopIndex"
-        :initialMapBounds="boundingBox"
-        :zoom="18"
-        :locale="locale"
-      />
+      <TourMap initialMapStyle="satellite" type="stop" />
     </div>
     <Markdown :content="markdown" />
   </div>

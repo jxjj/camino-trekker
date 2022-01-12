@@ -1,4 +1,4 @@
-import { ref, computed, reactive } from "vue";
+import { ref, computed, reactive, watch } from "vue";
 import {
   useTour,
   useStopIndex,
@@ -40,7 +40,6 @@ function getCenterOfBoundingBox([[minLng, minLat], [maxLng, maxLat]]) {
 }
 
 const createStopLabel = (locale) => (stop, index) => {
-  console.log(stop.stop_content.title);
   return {
     title: stop.stop_content.title[locale],
     href: `/tours/${stop.tour_id}/stops/${index}`,
@@ -107,6 +106,13 @@ export default ({ initialMapStyle, type = "tour" }) => {
       if (index === stopIndex.value) return "#0A84FF";
       return "#999";
     },
+  });
+
+  // update bounds when stop changes
+  watch(stopIndex, () => {
+    tourMap.bounds = getBoundingBox(tourMap.stopPoints);
+    tourMap.center = getCenterOfBoundingBox(tourMap.bounds);
+    tourMap.zoom = 14;
   });
 
   return tourMap;

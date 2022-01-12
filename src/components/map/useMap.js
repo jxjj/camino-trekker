@@ -19,9 +19,8 @@ const MAP_STYLES = {
 };
 
 function setBounds(mapRef, bounds, { padding = 64 } = {}) {
-  console.log("setBounds", { bounds });
   const map = unref(mapRef);
-  map.fitBounds(bounds, { padding });
+  map.fitBounds(unref(bounds), { padding });
   return mapRef;
 }
 
