@@ -5,15 +5,7 @@
 </template>
 
 <script setup>
-import {
-  ref,
-  watch,
-  onMounted,
-  onUnmounted,
-  toRefs,
-  provide,
-  nextTick,
-} from "vue";
+import { ref, watch, onMounted, onUnmounted, toRefs, provide } from "vue";
 import "mapbox-gl/dist/mapbox-gl.css";
 import {
   Map,
@@ -78,9 +70,20 @@ watch(mapStyleRef, () => mapRef.value.setStyle(MAP_STYLES[mapStyleRef.value]));
 
 // watch map bounds changes
 watch(boundsRef, () => {
-  console.log("update bounds to", boundsRef.value);
-  if (!mapRef.value) return;
-  mapRef.value.fitBounds(boundsRef.value, { padding: 64 });
+  console.log("update bounds to", JSON.stringify(boundsRef.value));
+  const [[x1, y1], [x2, y2]] = boundsRef.value;
+  console.log([
+    [x1, y1],
+    [x2, y2],
+  ]);
+  // if (!mapRef.value) return;
+  mapRef.value.fitBounds(
+    [
+      [x1, y1],
+      [x2, y2],
+    ],
+    { padding: 64 }
+  );
 });
 
 onMounted(() => {

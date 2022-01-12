@@ -140,7 +140,12 @@ if (props.type === "stop") {
 
 // update bounds when stop changes
 watch(stopIndex, () => {
-  boundsRef.value = getBoundingBox(allStopPointsRef.value);
+  const stopPoints = getPointsForStop(
+    stopIndex.value,
+    allStopPointsRef.value,
+    allStopRoutesRef.value
+  );
+  boundsRef.value = getBoundingBox(stopPoints);
   centerRef.value = getCenterOfBoundingBox(boundsRef.value);
   zoomRef.value = 14;
 });
