@@ -1,4 +1,4 @@
-import { ref, computed, reactive, watch } from "vue";
+import { ref, computed, reactive, watch, unref } from "vue";
 import {
   useTour,
   useStopIndex,
@@ -32,7 +32,8 @@ function getPointsForStop(index = 0, allStopPoints, allStopRoutes) {
   ); // remove any null values
 }
 
-function getCenterOfBoundingBox([[minLng, minLat], [maxLng, maxLat]]) {
+function getCenterOfBoundingBox(bounds) {
+  const [[minLng, minLat], [maxLng, maxLat]] = bounds;
   return {
     lng: (minLng + maxLng) / 2,
     lat: (minLat + maxLat) / 2,
@@ -58,20 +59,21 @@ export default ({ initialMapStyle, type = "tour" }) => {
   const { accessToken } = useMapBoxAccessToken();
 
   // data
-  const mapStyleChoices = ["dark", "satellite", "streets", "light"].sort();
+  const mapStyleChoices = reactive(
+    ["dark", "satellite", "streets", "light"].sort()
+  );
   const mapStyle = ref(initialMapStyle);
   const fullTourRouteRef = computed(() => getFullTourRoute(tour.value));
   const allStopRoutes = computed(() => getAllRoutes(tour.value));
   const allStopPoints = computed(() => getAllStopPoints(tour.value));
   const startPoint = computed(() => tour.value.start_location);
 
-  let bounds;
-  let center;
-  let zoom;
+  const bounds = ref(null);
+  const center = ref(null);
+  const zoom = ref(10);
   if (type === "tour") {
-    bounds = getBoundingBox(fullTourRouteRef.value);
-    center = startPoint;
-    zoom = 10;
+    bounds.value = getBoundingBox(fullTourRouteRef.value);
+    center.value = startPoint;
   }
   if (type === "stop") {
     const stopPoints = getPointsForStop(
@@ -79,12 +81,12 @@ export default ({ initialMapStyle, type = "tour" }) => {
       allStopPoints.value,
       allStopRoutes.value
     );
-    bounds = getBoundingBox(stopPoints);
-    center = getCenterOfBoundingBox(bounds);
-    zoom = 14;
+    bounds.value = getBoundingBox(stopPoints);
+    center.value = getCenterOfBoundingBox(bounds.value);
+    zoom.value = 14;
   }
 
-  const tourMap = reactive({
+  const tourMap = {
     mapStyleChoices,
     mapStyle,
     setMapStyle(updatedStyle) {
@@ -106,12 +108,12 @@ export default ({ initialMapStyle, type = "tour" }) => {
       if (index === stopIndex.value) return "#0A84FF";
       return "#999";
     },
-  });
+  };
 
   // update bounds when stop changes
   watch(stopIndex, () => {
-    tourMap.bounds = getBoundingBox(tourMap.stopPoints);
-    tourMap.center = getCenterOfBoundingBox(tourMap.bounds);
+    tourMap.bounds = getBoundingBox(allStopPoints.value);
+    tourMap.center = getCenterOfBoundingBox(bounds.value);
     tourMap.zoom = 14;
   });
 

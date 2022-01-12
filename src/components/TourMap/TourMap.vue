@@ -2,54 +2,51 @@
   <div class="tour-map" :class="`tour-map--${initialMapStyle}`">
     <div v-if="showMapStyleControl" class="button-bar">
       <Button
-        v-for="styleChoice in tourMap.mapStyleChoices"
+        v-for="styleChoice in mapStyleChoices"
         :key="styleChoice"
         variant="inverse"
         class="button-bar__button"
         :class="{
-          'button-bar__button--is-active': styleChoice === tourMap.mapStyle,
+          'button-bar__button--is-active': styleChoice === mapStyle,
         }"
-        @click="tourMap.setMapStyle(styleChoice)"
+        @click="setMapStyle(styleChoice)"
       >
         {{ capitalize(styleChoice) }}
       </Button>
     </div>
     <Map
       class="map-sheet__map-container"
-      :center="tourMap.center"
-      :zoom="tourMap.zoom"
-      :bounds="tourMap.bounds"
-      :mapStyle="tourMap.mapStyle"
-      :accessToken="tourMap.accessToken"
+      :center="unref(center)"
+      :zoom="zoom"
+      :bounds="bounds"
+      :mapStyle="mapStyle"
+      :accessToken="accessToken"
     >
       <MapPolyline
-        v-for="(route, i) in tourMap.stopRoutes"
+        v-for="(route, i) in stopRoutes"
         :id="`route-${i}`"
         :key="i"
         :positions="route"
-        :color="tourMap.getStopColor(i)"
+        :color="getStopColor(i)"
       />
       <MapMarker
-        v-for="(stopPoint, i) in tourMap.stopPoints"
+        v-for="(stopPoint, i) in stopPoints"
         :key="i"
         :lng="stopPoint.lng"
         :lat="stopPoint.lat"
-        :color="tourMap.getStopColor(i)"
+        :color="getStopColor(i)"
       >
         <MapPopup>
           <p class="map-popup__stop-number-container">
             <span class="map-popup__stop-number">
-              {{ tourMap.stopLabels[i].number }}
+              {{ stopLabels[i].number }}
             </span>
           </p>
           <h2 class="map-popup__stop-title">
-            {{ tourMap.stopLabels[i].title }}
+            {{ stopLabels[i].title }}
           </h2>
           <p class="map-popup__link-container">
-            <router-link
-              :to="tourMap.stopLabels[i].href"
-              class="map-popup__link"
-            >
+            <router-link :to="stopLabels[i].href" class="map-popup__link">
               <span class="material-icons">arrow_forward</span>
               <span class="sr-only">Go to Stop</span>
             </router-link>
@@ -60,6 +57,7 @@
   </div>
 </template>
 <script setup>
+import { unref } from "vue";
 import Map from "../Map/Map.vue";
 import MapPolyline from "../MapPolyline/MapPolyline.vue";
 import MapMarker from "../MapMarker/MapMarker.vue";
@@ -75,7 +73,19 @@ const props = defineProps({
   showMapStyleControl: bool().def(true),
 });
 
-const tourMap = useTourMap(props);
+const {
+  center,
+  zoom,
+  bounds,
+  mapStyle,
+  accessToken,
+  stopRoutes,
+  stopPoints,
+  stopLabels,
+  getStopColor,
+  setMapStyle,
+  mapStyleChoices,
+} = useTourMap(props);
 </script>
 <style scoped>
 .tour-map {

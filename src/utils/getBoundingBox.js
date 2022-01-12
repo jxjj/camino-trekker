@@ -11,10 +11,15 @@ const prop = (key) => (obj) => obj[key];
  * a given route
  *
  * @param {LngLat[]} listOfLngLats - list of positions
- * @returns {BoundingBox} - corner points of the
+ * @returns {LngLat[][]} - SW and NE corner points of the
  *  bounding box: [[minLng, minLat], [maxLng, maxLat]]
  */
 export default (listOfLngLats) => {
+  if (!Array.isArray(listOfLngLats)) {
+    throw Error(
+      `listOfLngLats is not an array ${JSON.stringify(listOfLngLats)}`
+    );
+  }
   const minLng = listOfLngLats
     .map(prop("lng"))
     .reduce(compareUsing(Math.min), +Infinity);

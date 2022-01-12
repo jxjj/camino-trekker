@@ -56,7 +56,10 @@ export default function useMap(mapContainerRef, props) {
   watch(mapStyle, () => unref(mapRef).setStyle(MAP_STYLES[unref(mapStyle)]));
 
   // watch map bounds changes
-  watch(bounds, () => setBounds(mapRef, bounds));
+  watch(bounds, () => {
+    console.log("update bounds to", { ...bounds });
+    setBounds(mapRef, bounds);
+  });
 
   onMounted(() => {
     setupMap(mapContainerRef, mapRef, props);
