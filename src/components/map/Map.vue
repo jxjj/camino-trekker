@@ -70,20 +70,7 @@ watch(mapStyleRef, () => mapRef.value.setStyle(MAP_STYLES[mapStyleRef.value]));
 
 // watch map bounds changes
 watch(boundsRef, () => {
-  console.log("update bounds to", JSON.stringify(boundsRef.value));
-  const [[x1, y1], [x2, y2]] = boundsRef.value;
-  console.log([
-    [x1, y1],
-    [x2, y2],
-  ]);
-  // if (!mapRef.value) return;
-  mapRef.value.fitBounds(
-    [
-      [x1, y1],
-      [x2, y2],
-    ],
-    { padding: 64 }
-  );
+  mapRef.value.fitBounds(boundsRef.value, { padding: 64 });
 });
 
 onMounted(() => {
