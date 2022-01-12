@@ -15,3 +15,16 @@
  * @property {number} lng - Longitude
  * @property {number} lat - Latitude
  */
+
+/**
+ * @typedef {Object.<string, string>} LocalizedString
+ * @example
+ * { 'en': 'Hello', 'es': 'Hola' }
+ */
+
+/**
+ * @typedef {Object} ARWaypoint
+ * @property {LocalizedString} text
+ * @property {(number|null)} [altitude=null]
+ * @property {LngLat} location
+ */
