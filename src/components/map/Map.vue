@@ -40,11 +40,14 @@ const MAP_STYLES = {
   outdoors: "mapbox://styles/mapbox/outdoors-v11",
   light: "mapbox://styles/mapbox/light-v10",
   dark: "mapbox://styles/mapbox/dark-v10",
-  satellite: "mapbox://styles/mapbox/satellite-v9",
-  "satellite-streets": "mapbox://styles/mapbox/satellite-streets-v11",
+  // satellite: "mapbox://styles/mapbox/satellite-v9",
+  satellite: "mapbox://styles/mapbox/satellite-streets-v11",
   "navigation-day": "mapbox://styles/mapbox/navigation-day-v1",
   "navigation-night": "mapbox://styles/mapbox/navigation-night-v1",
 };
+
+// satellite gets a bit too pixelated up close
+const getMaxZoomForStyle = (mapStyle) => (mapStyle === "satellite" ? 18 : 22);
 
 function setupMap() {
   mapRef.value = new Map({
@@ -53,6 +56,7 @@ function setupMap() {
     center: [centerRef.value.lng, centerRef.value.lat],
     zoom: zoomRef.value,
     accessToken: props.accessToken,
+    maxZoom: getMaxZoomForStyle(props.mapStyle),
   });
 
   mapRef.value
@@ -66,7 +70,11 @@ function setupMap() {
 }
 
 // watch style changes
-watch(mapStyleRef, () => mapRef.value.setStyle(MAP_STYLES[mapStyleRef.value]));
+watch(mapStyleRef, () => {
+  const mapStyle = mapStyleRef.value;
+  mapRef.value.setStyle(MAP_STYLES[mapStyle]);
+  mapRef.value.setMaxZoom(getMaxZoomForStyle(mapStyle));
+});
 
 // watch map bounds changes
 watch(boundsRef, () => {
