@@ -1,9 +1,9 @@
 <template>
   <div class="navigation-stage">
+    <Markdown :content="markdown" />
     <div class="navigation-stage__tour-map-wrapper">
       <TourMap initialMapStyle="light" type="stop" :stopIndex="stopIndex" />
     </div>
-    <Markdown :content="markdown" />
   </div>
 </template>
 <script setup>

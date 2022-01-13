@@ -18,8 +18,12 @@
         </figcaption>
       </figure>
     </div>
-    <Sheet v-if="Number.isInteger(onStageIndex)" @close="handleSheetClose">
-      <div class="lightbox">
+    <Sheet
+      class="gallery__sheet"
+      :is-open="isSheetOpen"
+      @close="handleSheetClose"
+    >
+      <div v-if="isSheetOpen">
         <figure class="lightbox__figure">
           <img
             :src="images[onStageIndex].src"
@@ -37,7 +41,7 @@
   </div>
 </template>
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import config from "../../config";
 import Sheet from "../Sheet.vue";
 
@@ -58,6 +62,7 @@ const images = props.stage.images.map((img) => ({
   alt: img.text[props.locale],
   caption: img.text[props.locale],
 }));
+const isSheetOpen = computed(() => Number.isInteger(onStageIndex.value));
 
 const handleThumbnailClick = (index) => {
   onStageIndex.value = index;
@@ -66,7 +71,12 @@ const handleThumbnailClick = (index) => {
 const handleSheetClose = () => (onStageIndex.value = null);
 </script>
 <style scoped>
+.gallery-stage {
+  margin: 1rem 0;
+}
+
 img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -124,6 +134,13 @@ figure {
 .gallery__figure:hover:before {
   opacity: 100%;
 }
+
+.lightbox {
+  padding-bottom: 8rem;
+  position: relative;
+  z-index: 100;
+}
+
 .lightbox__figcaption {
   padding: 1rem 0;
   color: var(--gray-lighter);

@@ -15,11 +15,11 @@
         <Stage :stage="stage" :locale="locale" />
       </section>
       <Button
-        v-if="stopIndex !== tour?.stops?.length - 1"
+        v-if="!isLastStop"
         icon="arrow_forward"
         iconPosition="end"
         variant="primary"
-        @click="$router.push(nextStopUrl)"
+        @click="$router.push(`/tours/${tour.id}/stops/${stopIndex + 1}`)"
       >
         Continue
       </Button>
@@ -53,18 +53,17 @@ import StopHeader from "./StopHeader.vue";
 import TourHeader from "./TourHeader.vue";
 import Stage from "./Stage.vue";
 import { computed } from "vue";
-import { useStore } from "vuex";
 import FAB from "./FAB.vue";
+import { useStopIndex, useTour, useLocale } from "../common/hooks";
 
-const store = useStore();
-const stopIndex = computed(() => store.getters.stopIndex);
-const tour = computed(() => store.state.tour);
-const currentStop = computed(() => store.getters.currentStop);
+const { stopIndex } = useStopIndex();
+const { tour } = useTour();
+const { locale } = useLocale();
 
-const isFirstStop = computed(() => store.getters.isFirstStop);
-const isLastStop = computed(() => store.getters.isLastStop);
+const currentStop = computed(() => tour.value.stops[stopIndex.value]);
+const isFirstStop = computed(() => stopIndex.value === 0);
+const isLastStop = computed(() => stopIndex.value === tour.value.stops - 1);
 const stages = computed(() => currentStop.value?.stop_content?.stages) || [];
-const locale = computed(() => store.state.locale);
 </script>
 <style scoped>
 .tour-stop {

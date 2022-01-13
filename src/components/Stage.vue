@@ -11,12 +11,14 @@ import LanguageSelect from "./stages/LanguageSelect.vue";
 import Guide from "./stages/Guide.vue";
 import Separator from "./stages/Separator.vue";
 import Navigation from "./stages/Navigation.vue";
+import Gallery from "./stages/Gallery.vue";
 
 const componentLookup = {
   language: LanguageSelect,
   guide: Guide,
   separator: Separator,
   navigation: Navigation,
+  gallery: Gallery,
 };
 
 const props = defineProps({

@@ -47,7 +47,7 @@ defineProps({
 }
 
 .sheet.sheet--is-open {
-  z-index: 100;
+  z-index: 1000;
   background: rgba(0, 0, 0, 0.5);
 }
 .sheet__inner {
