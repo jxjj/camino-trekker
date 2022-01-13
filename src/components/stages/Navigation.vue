@@ -1,16 +1,20 @@
 <template>
   <div class="navigation-stage">
     <Markdown :content="markdown" />
-    <div class="navigation-stage__tour-map-wrapper">
-      <TourMap initialMapStyle="light" type="stop" :stopIndex="stopIndex" />
+    <Button v-if="hasShowMapToggle" icon="map" @click="toggleShowMap">
+      Show Map
+    </Button>
+    <div v-show="showMap" class="navigation-stage__tour-map-wrapper">
+      <TourMap initialMapStyle="satellite" type="stop" :stopIndex="stopIndex" />
     </div>
   </div>
 </template>
 <script setup>
-import { computed } from "vue";
-import { shape, string } from "vue-types";
+import { computed, ref } from "vue";
+import { bool, shape, string } from "vue-types";
 import { useStopIndex } from "../../common/hooks";
 import Markdown from "../Markdown.vue";
+import Button from "../Button.vue";
 import TourMap from "../TourMap/TourMap.vue";
 
 const props = defineProps({
@@ -19,10 +23,17 @@ const props = defineProps({
     text: Object,
   }).loose,
   locale: string().isRequired,
+  hasShowMapToggle: bool().def(false),
 });
 
 const markdown = computed(() => props.stage.text[props.locale]);
 const { stopIndex } = useStopIndex();
+
+// if no toggle, show map by default
+// if toggle, hide map
+const showMap = ref(!props.hasShowMapToggle);
+
+const toggleShowMap = () => (showMap.value = !showMap.value);
 </script>
 <style>
 .navigation-stage__tour-map-wrapper {
