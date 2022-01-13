@@ -1,8 +1,10 @@
-// vite uses import.meta.env while storybook uses process.env
+// vite uses import.meta.env for env variables
+// must be prefixed with VITE to be included in client side app build
+const { VITE_MAPBOX_ACCESS_TOKEN, VITE_IMAGE_STORAGE_BASE } = import.meta.env;
 
 export default {
+  imageStorageBase: VITE_IMAGE_STORAGE_BASE,
   mapBox: {
-    // accessToken: process.env.MAPBOX_ACCESS_TOKEN,
-    accessToken: import.meta.env.VITE_MAPBOX_ACCESS_TOKEN,
+    accessToken: VITE_MAPBOX_ACCESS_TOKEN,
   },
 };
