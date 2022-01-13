@@ -25,7 +25,10 @@
             :src="images[onStageIndex].src"
             :alt="images[onStageIndex].alt"
           />
-          <figcaption v-if="images[onStageIndex].caption">
+          <figcaption
+            v-if="images[onStageIndex].caption"
+            class="lightbox__figcaption"
+          >
             {{ images[onStageIndex].caption }}
           </figcaption>
         </figure>
@@ -121,28 +124,8 @@ figure {
 .gallery__figure:hover:before {
   opacity: 100%;
 }
-
-.lightbox {
-  border: 1px solid yellow;
-  position: relative;
-}
-
-.lightbox--is-open {
-  position: absolute;
-}
-.lightbox__nav {
-  border: 1px solid red;
-  color: white;
-}
-.lightbox__nav-button {
-  position: absolute;
-  top: 50%;
-  background: ;
-}
-.lightbox__nav-button--prev {
-  left: 0;
-}
-.lightbox__nav-button--next {
-  right: 0;
+.lightbox__figcaption {
+  padding: 1rem 0;
+  color: var(--gray-lighter);
 }
 </style>
