@@ -11,7 +11,7 @@
     />
     <div class="tour-stop__stages container">
       <h2 v-if="stopIndex === 0">Start</h2>
-      <section v-for="stage in stages" :key="stage.id">
+      <section v-for="stage in stages" :key="`${currentStop.id}-${stage.id}`">
         <Stage :stage="stage" :locale="locale" />
       </section>
       <Button
