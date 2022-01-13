@@ -1,9 +1,10 @@
 // vite uses import.meta.env for env variables
 // must be prefixed with VITE to be included in client side app build
-const { VITE_MAPBOX_ACCESS_TOKEN, VITE_IMAGE_STORAGE_BASE } = import.meta.env;
+const { VITE_MAPBOX_ACCESS_TOKEN, VITE_API_BASE_URL } = import.meta.env;
 
 export default {
-  imageStorageBase: VITE_IMAGE_STORAGE_BASE,
+  apiBaseUrl: VITE_API_BASE_URL,
+  imageStorageBase: `${VITE_API_BASE_URL}/storage`,
   mapBox: {
     accessToken: VITE_MAPBOX_ACCESS_TOKEN,
   },
