@@ -12,9 +12,11 @@
     "test:watch": "npm run test -- --watch"
   },
   "dependencies": {
+    "@ar-js-org/ar.js": "^3.3.3-es6-beta-02",
     "@fontsource/material-icons": "^4.5.0",
     "@fontsource/poppins": "^4.5.0",
     "@types/jest": "^27.4.0",
+    "aframe": "^1.2.0",
     "axios": "^0.24.0",
     "dompurify": "^2.3.4",
     "mapbox-gl": "^2.6.1",

@@ -1,6 +1,6 @@
 import Guide from "./Guide.vue";
 import mockTour from "../../common/__mocks__/mockTour.json";
-import getStagesFromTourWhere from "../../utils/getStagesFromTourWhere.js";
+import { getStagesFromTourWhere } from "../../utils/getStagesWhere.js";
 
 export default {
   title: "Camino/Stages/Guide",

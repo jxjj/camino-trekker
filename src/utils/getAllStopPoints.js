@@ -3,7 +3,7 @@
  * @param {Object} tour
  * @returns {LngLat[]} all tour stops
  */
-import getStagesFromTourWhere from "./getStagesFromTourWhere";
+import { getStagesFromTourWhere } from "./getStagesWhere.js";
 
 export default (tour) => {
   const startingPoint = tour.start_location;

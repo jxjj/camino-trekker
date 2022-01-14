@@ -1,6 +1,6 @@
 /// <reference path="../types.js" />;
 
-import getStagesFromTourWhere from "./getStagesFromTourWhere.js";
+import { getStagesFromTourWhere } from "./getStagesWhere.js";
 
 /**
  * gets all route points from a given tour, including

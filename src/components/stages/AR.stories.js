@@ -1,6 +1,6 @@
 import AR from "./AR.vue";
 import mockTour from "../../common/__mocks__/mockTour.json";
-import getStagesFromTourWhere from "../../utils/getStagesFromTourWhere.js";
+import { getStagesFromStopWhere } from "../../utils/getStagesWhere.js";
 
 export default {
   title: "Camino/Stages/AR",
@@ -16,10 +16,18 @@ const Template = (args) => ({
     <AR v-bind="args" />
   `,
 });
-const guideStages = getStagesFromTourWhere("type", "ar", mockTour);
+
+const arStop = mockTour.stops.find((stop) => {
+  return getStagesFromStopWhere("type", "ar", stop).length > 0;
+});
+const arStopTargetPoint =
+  getStagesFromStopWhere("type", "navigation", arStop)?.targetPoint ||
+  mockTour.start_location;
 
 export const Default = Template.bind({});
 Default.args = {
-  stage: guideStages[0],
+  stage: getStagesFromStopWhere("type", "ar", arStop)[0],
   locale: "en",
+  simulateLocation: mockTour.start_location,
+  currentStopTargetPoint: arStopTargetPoint,
 };
