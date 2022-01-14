@@ -52,6 +52,8 @@
 
 <script setup>
 import { computed } from "vue";
+import "aframe";
+import "@ar-js-org/ar.js";
 import { number, object, shape, string } from "vue-types";
 import Button from "../Button.vue";
 
