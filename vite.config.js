@@ -4,7 +4,15 @@ import vue from "@vitejs/plugin-vue";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  plugins: [vue()],
+  plugins: [
+    vue({
+      template: {
+        compilerOptions: {
+          isCustomElement: (tag) => tag.includes("-"),
+        },
+      },
+    }),
+  ],
   resolve: {
     ...(mode === "production" && {
       alias: {
@@ -12,4 +20,12 @@ export default defineConfig(({ mode }) => ({
       },
     }),
   },
+  build: {
+    sourcemap: "inline",
+  },
+
+  // vueCompilerOptions: {
+  //   // a-frame components
+  //   isCustomElement: (tag) => tag.startsWith("a-"),
+  // },
 }));
