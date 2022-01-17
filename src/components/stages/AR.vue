@@ -52,8 +52,10 @@
 
 <script setup>
 import { computed } from "vue";
-import "aframe";
-import "@ar-js-org/ar.js";
+// ONLY LOAD THIS ONCE! maybe move to a useAR() function?
+// import "aframe";
+// import "@ar-js-org/ar.js";
+// import useAR from "./ARTest/useAR";
 import { number, object, shape, string } from "vue-types";
 import Button from "../Button.vue";
 

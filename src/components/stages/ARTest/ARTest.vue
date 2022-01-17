@@ -1,27 +1,29 @@
 <template>
-  <div class="ar-test">
-    <a-scene
-      vr-mode-ui="enabled: false"
-      embedded
-      arjs="sourceType: webcam; debugUIEnabled: false;"
-    >
-      <a-text
-        value="This content will always face you."
-        look-at="[gps-camera]"
-        scale="120 120 120"
-        :gps-entity-place="
-          [`latitude: ${coords.lat}`, `longitude: ${coords.lng}`].join('; ')
-        "
-      ></a-text>
-      <a-camera gps-camera rotation-reader> </a-camera>
-    </a-scene>
+  <div class="ar-stage">
+    <Button>Show AR</Button>
+    <div class="ar-stage__scene-container">
+      <a-scene
+        vr-mode-ui="enabled: false"
+        arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;"
+        renderer="antialias: true; alpha: true"
+      >
+        <a-camera gps-projected-camera rotation-reader></a-camera>
+        <a-box
+          gps-projected-entity-place="latitude: 44.810982; longitude: -93.627016"
+          material="color: red"
+          scale="10 10 10"
+        ></a-box>
+      </a-scene>
+    </div>
   </div>
 </template>
+
 <script setup>
+import Button from "../../Button.vue";
+import { useGeolocation } from "@vueuse/core";
+import "@ar-js-org/ar.js";
 import "aframe";
-import "@ar-js-org/ar.js/aframe/build/aframe-ar";
-const coords = {
-  lat: 44.811498,
-  lng: -93.627266,
-};
+
+const { coords } = useGeolocation();
+console.log({ coords });
 </script>
