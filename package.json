@@ -9,7 +9,8 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+    "storybook:https": "npm run storybook -- --https --ssl-cert ./.env.d/localhost.cer.pem --ssl-key ./.env.d/localhost.key.pem"
   },
   "dependencies": {
     "@ar-js-org/ar.js": "^3.3.3-es6-beta-02",
@@ -33,6 +34,9 @@
     "@babel/core": "^7.16.7",
     "@storybook/addon-essentials": "^6.4.9",
     "@storybook/vue3": "^6.4.9",
+    "@types/aframe": "^1.0.5",
+    "@types/three": "^0.136.1",
+    "@types/tweenjs": "^1.0.4",
     "@vitejs/plugin-vue": "^2.0.1",
     "babel-loader": "^8.2.3",
     "eslint": "^8.6.0",
