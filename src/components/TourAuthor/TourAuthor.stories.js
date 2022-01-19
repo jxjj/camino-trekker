@@ -1,4 +1,4 @@
-import TourAuthor from "./TourAuthor.vue";
+import TourAuthor from "../TourAuthor/TourAuthor.vue";
 
 export default {
   title: "Camino/TourAuthor",
