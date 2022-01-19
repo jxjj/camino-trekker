@@ -13,7 +13,7 @@ import { onMounted, computed } from "vue";
 import { useStore } from "vuex";
 import AppHeader from "../components/AppHeader/AppHeader.vue";
 import BottomNav from "../components/BottomNav/BottomNav.vue";
-import TourStop from "../components/TourStop.vue";
+import TourStop from "../components/TourStop/TourStop.vue";
 
 const store = useStore();
 const isLoading = computed(() => store.state.isLoading);

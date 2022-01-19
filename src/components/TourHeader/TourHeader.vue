@@ -19,7 +19,7 @@
   </header>
 </template>
 <script setup>
-import TourAuthor from "./TourAuthor/TourAuthor.vue";
+import TourAuthor from "../TourAuthor/TourAuthor.vue";
 import { computed, inject } from "vue";
 import { object, shape, string } from "vue-types";
 
