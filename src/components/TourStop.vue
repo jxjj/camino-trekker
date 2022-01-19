@@ -53,7 +53,7 @@ import StopHeader from "./StopHeader.vue";
 import TourHeader from "./TourHeader.vue";
 import Stage from "./Stage.vue";
 import { computed } from "vue";
-import FAB from "./FAB.vue";
+import FAB from "./FAB/FAB.vue";
 import { useStopIndex, useTour, useLocale } from "../common/hooks";
 
 const { stopIndex } = useStopIndex();
