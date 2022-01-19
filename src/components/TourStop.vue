@@ -51,7 +51,7 @@
 import Button from "./Button/Button.vue";
 import StopHeader from "./StopHeader.vue";
 import TourHeader from "./TourHeader.vue";
-import Stage from "./Stage.vue";
+import Stage from "./Stage/Stage.vue";
 import { computed } from "vue";
 import FAB from "./FAB/FAB.vue";
 import { useStopIndex, useTour, useLocale } from "../common/hooks";

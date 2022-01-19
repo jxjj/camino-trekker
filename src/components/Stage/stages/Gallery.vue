@@ -42,8 +42,8 @@
 </template>
 <script setup>
 import { ref, computed } from "vue";
-import config from "../../config";
-import Sheet from "../Sheet/Sheet.vue";
+import config from "../../../config";
+import Sheet from "../../Sheet/Sheet.vue";
 
 const props = defineProps({
   stage: {

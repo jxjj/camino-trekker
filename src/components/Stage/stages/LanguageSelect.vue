@@ -8,7 +8,7 @@
 
 <script setup>
 import PureLanguageSelect from "./PureLanguageSelect.vue";
-import { useLocale, useTourLocales } from "../../common/hooks";
+import { useLocale, useTourLocales } from "../../../common/hooks";
 
 const { locale, setLocale } = useLocale();
 const { tourLocales } = useTourLocales();

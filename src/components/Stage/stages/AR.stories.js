@@ -1,6 +1,6 @@
 import AR from "./AR.vue";
-import mockTour from "../../common/__mocks__/mockTour.json";
-import { getStagesFromStopWhere } from "../../utils/getStagesWhere.js";
+import mockTour from "../../../common/__mocks__/mockTour.json";
+import { getStagesFromStopWhere } from "../../../utils/getStagesWhere.js";
 
 export default {
   title: "Camino/Stages/AR",

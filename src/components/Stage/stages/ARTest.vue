@@ -51,7 +51,7 @@
 
 <script setup>
 import { computed, watch, ref } from "vue";
-import Button from "../Button/Button.vue";
+import Button from "../../Button/Button.vue";
 import useAR from "./useAR.js";
 
 const { coords } = useAR();

@@ -66,7 +66,7 @@
 import { computed } from "vue";
 import { bool, number, object, shape, string } from "vue-types";
 import "./useAR.js";
-import Button from "../Button/Button.vue";
+import Button from "../../Button/Button.vue";
 
 const props = defineProps({
   stage: object().isRequired,
@@ -97,16 +97,6 @@ const cameraSettings = computed(() => {
     `simulateAltitude: 0,`,
   ].join("; ");
 });
-
-// const getScaleAttr = (waypoint) =>
-//   computed(() => {
-//     // const scaleFactor = Math.pow(
-//     //   Math.log(getDistanceFromWaypoint(waypoint)),
-//     //   2
-//     // );
-//     const scaleFactor = getDistanceFromWaypoint(waypoint);
-//     return [scaleFactor, scaleFactor, scaleFactor].join(" ");
-//   });
 
 const getTextWidth = (waypoint) => getSizeForPoint(waypoint) / 1.5;
 const getTextHeight = (waypoint) => {

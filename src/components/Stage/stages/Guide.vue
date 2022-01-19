@@ -7,7 +7,7 @@
 <script setup>
 import { computed } from "vue";
 import { shape } from "vue-types";
-import Markdown from "../Markdown/Markdown.vue";
+import Markdown from "../../Markdown/Markdown.vue";
 
 const props = defineProps({
   stage: shape({
