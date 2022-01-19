@@ -1,4 +1,4 @@
-import Gravatar from "./Gravatar.vue";
+import Gravatar from "../Gravatar/Gravatar.vue";
 
 export default {
   title: "Camino/Gravatar",

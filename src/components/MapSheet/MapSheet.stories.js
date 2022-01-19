@@ -1,7 +1,7 @@
 import { ref } from "vue";
 import MapSheet from "./MapSheet.vue";
-import Button from "./Button/Button.vue";
-import mockTour from "../common/__mocks__/mockTour.json";
+import Button from "../Button/Button.vue";
+import mockTour from "../../common/__mocks__/mockTour.json";
 
 export default {
   title: "Camino/MapSheet",

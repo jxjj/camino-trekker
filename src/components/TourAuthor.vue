@@ -15,7 +15,7 @@
   </div>
 </template>
 <script setup>
-import Gravatar from "../components/Gravatar.vue";
+import Gravatar from "./Gravatar/Gravatar.vue";
 import { shape, string } from "vue-types";
 
 defineProps({
