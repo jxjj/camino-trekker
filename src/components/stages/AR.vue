@@ -23,24 +23,23 @@
           :position="`0 ${waypoint.altitude || 0} 0`"
           rotation="0 0 0"
           look-at="[gps-camera]"
-          :scale="`${getScaledDistanceFromWaypoint(
-            waypoint
-          )} ${getScaledDistanceFromWaypoint(
-            waypoint
-          )} ${getScaledDistanceFromWaypoint(waypoint)}`"
         >
           <a-text
             :value="waypoint.text"
             color="black"
             align="center"
+            position="0 1.6 0"
+            :geometry="
+              [
+                'primitive: plane',
+                `width: ${getTextWidth(waypoint)}`,
+                `height: ${getTextHeight(waypoint)}`,
+              ].join('; ')
+            "
+            :z-offset="getDistanceFromWaypoint(waypoint) * 0.1"
             material="color: #eee; opacity: 0.6; transparent: true"
+            :width="getSizeForPoint(waypoint)"
           ></a-text>
-          <!-- <a-plane
-            color="white"
-            position="0 1.6 -0.01"
-            width="3"
-            material="transparent: true; opacity: 0.90"
-          ></a-plane> -->
 
           <a-cone
             radius-bottom="1"
@@ -51,30 +50,6 @@
           >
           </a-cone>
         </a-entity>
-        <!-- <a-text
-          v-for="(waypoint, index) in waypoints"
-          :key="index"
-          :value="waypoint.text"
-          :gps-entity-place="`latitude: ${waypoint.location.lat}; longitude: ${waypoint.location.lng}`"
-          :position="`0 ${waypoint.altitude || 0} 0`"
-          rotation="0 0 0"
-          font="roboto"
-          color="#e43e31"
-          look-at="[gps-camera]"
-          side="double"
-          align="center"
-          :z-offset="getDistanceFromWaypoint(waypoint) * 0.1"
-          :geometry="
-            [
-              'primitive: plane',
-              `width: ${getTextWidth(waypoint)}`,
-              `height: ${getTextHeight(waypoint)}`,
-            ].join('; ')
-          "
-          material="color: #eee; opacity: 0.6; transparent: true"
-          :width="getSizeForPoint(waypoint)"
-        >                       
-        </a-text> -->
 
         <a-camera
           :gps-camera="cameraSettings"
@@ -82,14 +57,6 @@
           maxDistance="10000"
           far="90000"
         ></a-camera>
-
-        <!-- <a-camera
-          :gps-camera="cameraSettings"
-          rotation-reader
-          max-distance="10000"
-          far="90000"
-        >
-        </a-camera> -->
       </a-scene>
     </div>
   </div>
@@ -131,15 +98,25 @@ const cameraSettings = computed(() => {
   ].join("; ");
 });
 
+// const getScaleAttr = (waypoint) =>
+//   computed(() => {
+//     // const scaleFactor = Math.pow(
+//     //   Math.log(getDistanceFromWaypoint(waypoint)),
+//     //   2
+//     // );
+//     const scaleFactor = getDistanceFromWaypoint(waypoint);
+//     return [scaleFactor, scaleFactor, scaleFactor].join(" ");
+//   });
+
 const getTextWidth = (waypoint) => getSizeForPoint(waypoint) / 1.5;
 const getTextHeight = (waypoint) => {
   const distance = getDistanceFromWaypoint(waypoint);
   return Math.pow(Math.log(distance), 2) * 1.5;
 };
 const getDistanceFromWaypoint = (waypoint) => {
-  const stageLocation = props.currentStopTargetPoint;
-  const a = waypoint.location.lat - stageLocation.lat;
-  const b = waypoint.location.lng - stageLocation.lng;
+  if (!waypoint.location) return 2000;
+  const a = waypoint.location.lat - props.currentStopTargetPoint.lat;
+  const b = waypoint.location.lng - props.currentStopTargetPoint.lng;
   const distance = Math.sqrt(a * a + b * b) * 111139; //meters per degree
   return distance;
 };
