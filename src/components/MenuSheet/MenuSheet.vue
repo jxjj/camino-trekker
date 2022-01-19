@@ -16,7 +16,7 @@
   </Sheet>
 </template>
 <script setup>
-import Sheet from "../Sheet.vue";
+import Sheet from "../Sheet/Sheet.vue";
 defineProps({
   isOpen: {
     type: Boolean,

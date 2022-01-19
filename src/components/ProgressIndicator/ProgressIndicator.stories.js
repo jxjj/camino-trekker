@@ -1,4 +1,4 @@
-import ProgressIndicator from "./ProgressIndicator.vue";
+import ProgressIndicator from "../ProgressIndicator/ProgressIndicator.vue";
 
 export default {
   title: "Camino/ProgressIndicator",

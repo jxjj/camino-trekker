@@ -10,7 +10,7 @@
 </template>
 <script setup>
 import { useStopIndex } from "../../common/hooks";
-import Sheet from "../Sheet.vue";
+import Sheet from "../Sheet/Sheet.vue";
 import TourMap from "../TourMap/TourMap.vue";
 
 defineProps({

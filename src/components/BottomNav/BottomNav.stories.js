@@ -1,5 +1,5 @@
 import BottomNav from "./BottomNav.vue";
-import ProgressIndicator from "../ProgressIndicator.vue";
+import ProgressIndicator from "../ProgressIndicator/ProgressIndicator.vue";
 import mockTour from "../../common/__mocks__/mockTour.json";
 
 export default {

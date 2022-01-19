@@ -36,7 +36,7 @@
 <script setup>
 import { ref, computed } from "vue";
 import { useStore } from "vuex";
-import ProgressIndicator from "../ProgressIndicator.vue";
+import ProgressIndicator from "../ProgressIndicator/ProgressIndicator.vue";
 import MapSheet from "../MapSheet/MapSheet.vue";
 import MenuSheet from "../MenuSheet/MenuSheet.vue";
 import StopListSheet from "../StopListSheet.vue";
