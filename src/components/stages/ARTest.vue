@@ -51,8 +51,8 @@
 
 <script setup>
 import { computed, watch, ref } from "vue";
-import Button from "../../Button.vue";
-import useAR from "./useAR";
+import Button from "../Button.vue";
+import useAR from "./useAR.js";
 
 const { coords } = useAR();
 const isLocationLoaded = computed(() => !!coords.value.latitude);

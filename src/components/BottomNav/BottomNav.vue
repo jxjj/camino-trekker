@@ -36,10 +36,10 @@
 <script setup>
 import { ref, computed } from "vue";
 import { useStore } from "vuex";
-import ProgressIndicator from "./ProgressIndicator.vue";
-import MapSheet from "./MapSheet.vue";
-import MenuSheet from "./MenuSheet.vue";
-import StopListSheet from "./StopListSheet.vue";
+import ProgressIndicator from "../ProgressIndicator.vue";
+import MapSheet from "../MapSheet.vue";
+import MenuSheet from "../MenuSheet.vue";
+import StopListSheet from "../StopListSheet.vue";
 
 const SHEETS = {
   MENU: "MENU",

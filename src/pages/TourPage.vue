@@ -11,8 +11,8 @@
 <script setup>
 import { onMounted, computed } from "vue";
 import { useStore } from "vuex";
-import AppHeader from "../components/AppHeader.vue";
-import BottomNav from "../components/BottomNav.vue";
+import AppHeader from "../components/AppHeader/AppHeader.vue";
+import BottomNav from "../components/BottomNav/BottomNav.vue";
 import TourStop from "../components/TourStop.vue";
 
 const store = useStore();

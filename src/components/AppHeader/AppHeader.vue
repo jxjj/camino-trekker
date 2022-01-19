@@ -7,7 +7,7 @@
   </header>
 </template>
 <script setup>
-import umnLogo from "../assets/umn-logo.svg";
+import umnLogo from "../../assets/umn-logo.svg";
 </script>
 <style scoped>
 .app-header {

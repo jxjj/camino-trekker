@@ -65,7 +65,7 @@
 <script setup>
 import { computed } from "vue";
 import { bool, number, object, shape, string } from "vue-types";
-import "./ARTest/useAR.js";
+import "./useAR.js";
 import Button from "../Button.vue";
 
 const props = defineProps({

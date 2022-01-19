@@ -1,5 +1,5 @@
 import AppHeader from "./AppHeader.vue";
-import umnLogo from "../assets/umn-logo.svg";
+import umnLogo from "../../assets/umn-logo.svg";
 
 export default {
   title: "Camino/AppHeader",
