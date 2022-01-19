@@ -22,7 +22,6 @@
           :gps-entity-place="`latitude: ${waypoint.location.lat}; longitude: ${waypoint.location.lng}`"
           :position="`0 ${waypoint.altitude || 0} 0`"
           rotation="0 0 0"
-          look-at="[gps-camera]"
         >
           <a-text
             :value="waypoint.text"
@@ -39,14 +38,15 @@
             :z-offset="getDistanceFromWaypoint(waypoint) * 0.1"
             material="color: #eee; opacity: 0.6; transparent: true"
             :width="getSizeForPoint(waypoint)"
+            look-at="[gps-camera]"
           ></a-text>
 
           <a-cone
-            radius-bottom="1"
-            height="2"
+            :radius-bottom="getScaledDistanceFromWaypoint(waypoint)"
+            :height="2 * getScaledDistanceFromWaypoint(waypoint)"
             material="color: magenta;"
             rotation="0 0 180"
-            position="0 -0.25 0"
+            position="0 -2 0"
           >
           </a-cone>
         </a-entity>
