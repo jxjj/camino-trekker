@@ -49,7 +49,7 @@
 </template>
 <script setup>
 import Button from "./Button/Button.vue";
-import StopHeader from "./StopHeader.vue";
+import StopHeader from "./StopHeader/StopHeader.vue";
 import TourHeader from "./TourHeader.vue";
 import Stage from "./Stage/Stage.vue";
 import { computed } from "vue";

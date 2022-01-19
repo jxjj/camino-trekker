@@ -1,5 +1,4 @@
-import StopHeader from "./StopHeader.vue";
-import mockTour from "../common/__mocks__/mockTour.json";
+import StopHeader from "../StopHeader/StopHeader.vue";
 
 export default {
   title: "Camino/StopHeader",
