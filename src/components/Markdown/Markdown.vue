@@ -6,7 +6,7 @@
 <script setup>
 import { marked } from "marked";
 import DOMPurify from "dompurify";
-import pipe from "../utils/pipe";
+import pipe from "../../utils/pipe";
 import { computed } from "vue";
 import { string } from "vue-types";
 

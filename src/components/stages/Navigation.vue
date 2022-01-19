@@ -13,7 +13,7 @@
 import { computed, ref } from "vue";
 import { bool, shape, string } from "vue-types";
 import { useStopIndex } from "../../common/hooks";
-import Markdown from "../Markdown.vue";
+import Markdown from "../Markdown/Markdown.vue";
 import Button from "../Button/Button.vue";
 import TourMap from "../TourMap/TourMap.vue";
 
