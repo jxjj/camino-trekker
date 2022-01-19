@@ -1,6 +1,6 @@
 import StopListSheet from "./StopListSheet.vue";
-import Button from "./Button/Button.vue";
-import MockTour from "../common/__mocks__/mockTour.json";
+import Button from "../Button/Button.vue";
+import MockTour from "../../common/__mocks__/mockTour.json";
 import { ref } from "vue";
 
 export default {

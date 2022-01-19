@@ -23,8 +23,8 @@
 <script setup>
 import { computed } from "vue";
 import { useStore } from "vuex";
-import { useStopIndex, useLocale } from "../common/hooks";
-import Sheet from "./Sheet/Sheet.vue";
+import { useStopIndex, useLocale } from "../../common/hooks";
+import Sheet from "../Sheet/Sheet.vue";
 
 defineEmits(["close"]);
 
