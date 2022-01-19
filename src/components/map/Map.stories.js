@@ -23,8 +23,10 @@ const Template = (args) => ({
 export const Default = Template.bind({});
 const { accessToken } = useMapBoxAccessToken();
 Default.args = {
-  lng: mockTour.start_location.lng,
-  lat: mockTour.start_location.lat,
+  center: {
+    lng: mockTour.start_location.lng,
+    lat: mockTour.start_location.lat,
+  },
   zoom: 15,
   accessToken: accessToken.value,
 };

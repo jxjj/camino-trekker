@@ -2,18 +2,24 @@
   <div class="ar-stage">
     <Button>Show AR</Button>
     <div class="ar-stage__scene-container">
+      <dl>
+        <dt>Longitude</dt>
+        <dd>{{ coords.longitude }}</dd>
+        <dt>Latitude</dt>
+        <dd>{{ coords.latitude }}</dd>
+      </dl>
       <a-scene
         v-if="isLocationLoaded"
         vr-mode-ui="enabled: false"
-        arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: true;"
         renderer="antialias: true; alpha: true"
+        arjs="sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: true"
       >
-        <a-camera gps-projected-camera rotation-reader></a-camera>
+        <a-camera gps-camera rotation-reader></a-camera>
         <a-entity
           v-for="(waypoint, i) in waypoints"
           :key="i"
-          :gps-projected-entity-place="`latitude: ${waypoint.location.lat}; longitude: ${waypoint.location.lng}`"
-          look-at="[gps-projected-camera]"
+          :gps-entity-place="`latitude: ${waypoint.location.lat}; longitude: ${waypoint.location.lng}`"
+          look-at="[gps-camera]"
         >
           <a-text
             :value="waypoint.text"
@@ -45,13 +51,10 @@
 
 <script setup>
 import { computed, watch, ref } from "vue";
-import { useGeolocation } from "@vueuse/core";
 import Button from "../../Button.vue";
-import "@ar-js-org/ar.js";
-import "aframe-look-at-component";
-import "aframe";
+import useAR from "./useAR";
 
-const { coords } = useGeolocation();
+const { coords } = useAR();
 const isLocationLoaded = computed(() => !!coords.value.latitude);
 
 const waypoints = ref([]);

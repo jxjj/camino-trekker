@@ -30,4 +30,5 @@ Default.args = {
   locale: "en",
   simulateLocation: mockTour.start_location,
   currentStopTargetPoint: arStopTargetPoint,
+  debugMode: true,
 };
