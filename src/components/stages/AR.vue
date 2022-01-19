@@ -66,7 +66,7 @@
 import { computed } from "vue";
 import { bool, number, object, shape, string } from "vue-types";
 import "./useAR.js";
-import Button from "../Button.vue";
+import Button from "../Button/Button.vue";
 
 const props = defineProps({
   stage: object().isRequired,

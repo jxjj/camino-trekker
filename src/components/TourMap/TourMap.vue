@@ -64,7 +64,7 @@ import Map from "../Map/Map.vue";
 import MapPolyline from "../MapPolyline/MapPolyline.vue";
 import MapMarker from "../MapMarker/MapMarker.vue";
 import MapPopup from "../MapPopup/MapPopup.vue";
-import Button from "../Button.vue";
+import Button from "../Button/Button.vue";
 import capitalize from "../../utils/capitalize.js";
 import getFullTourRoute from "../../utils/getFullTourRoute.js";
 import getAllStopPoints from "../../utils/getAllStopPoints.js";

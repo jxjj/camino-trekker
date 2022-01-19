@@ -1,6 +1,6 @@
 import { ref } from "vue";
 import MapSheet from "./MapSheet.vue";
-import Button from "./Button.vue";
+import Button from "./Button/Button.vue";
 import mockTour from "../common/__mocks__/mockTour.json";
 
 export default {

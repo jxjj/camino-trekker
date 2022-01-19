@@ -28,7 +28,7 @@
 <script setup>
 import { ref } from "vue";
 import { arrayOf, string } from "vue-types";
-import Button from "../Button.vue";
+import Button from "../Button/Button.vue";
 
 const props = defineProps({
   locale: {

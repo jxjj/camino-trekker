@@ -1,6 +1,6 @@
 import { ref } from "vue";
 import Sheet from "./Sheet.vue";
-import Button from "./Button.vue";
+import Button from "./Button/Button.vue";
 
 export default {
   title: "Camino/Sheet",

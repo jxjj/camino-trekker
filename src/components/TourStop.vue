@@ -48,7 +48,7 @@
   </div>
 </template>
 <script setup>
-import Button from "./Button.vue";
+import Button from "./Button/Button.vue";
 import StopHeader from "./StopHeader.vue";
 import TourHeader from "./TourHeader.vue";
 import Stage from "./Stage.vue";
