@@ -126,7 +126,7 @@ const allStopLabelsRef = computed(() =>
 
 if (props.type === "tour") {
   boundsRef.value = getBoundingBox(fullTourRouteRef.value);
-  centerRef.value = startPointRef;
+  centerRef.value = startPointRef.value;
 }
 if (props.type === "stop") {
   const stopPoints = getPointsForStop(
