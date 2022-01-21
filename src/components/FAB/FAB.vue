@@ -27,6 +27,7 @@ defineProps({
   height: 4rem;
   border-radius: 50%;
   background: var(--yellow);
+  color: var(--black);
   box-shadow: 0px 0.25rem 0.5rem hsl(0deg 0% 0% / 15%);
   z-index: 100;
 }

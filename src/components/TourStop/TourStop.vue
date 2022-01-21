@@ -24,27 +24,20 @@
         Continue
       </Button>
     </div>
-    <router-link
+    <FAB
       v-if="!isFirstStop"
-      :to="`/tours/${tour.id}/stops/${stopIndex - 1}`"
-    >
-      <FAB
-        v-if="!isFirstStop"
-        class="tour-stop__prev-button"
-        icon="arrow_back"
-        alt="Previous Stop"
-      />
-    </router-link>
-    <router-link
+      class="tour-stop__prev-button"
+      icon="arrow_back"
+      alt="Previous Stop"
+      @click="$router.push(`/tours/${tour.id}/stops/${stopIndex - 1}`)"
+    />
+    <FAB
       v-if="!isLastStop"
-      :to="`/tours/${tour.id}/stops/${stopIndex + 1}`"
-    >
-      <FAB
-        class="tour-stop__next-button"
-        icon="arrow_forward"
-        alt="Next Stop"
-      />
-    </router-link>
+      class="tour-stop__next-button"
+      icon="arrow_forward"
+      alt="Next Stop"
+      @click="$router.push(`/tours/${tour.id}/stops/${stopIndex + 1}`)"
+    />
   </div>
 </template>
 <script setup>
