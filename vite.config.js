@@ -8,7 +8,8 @@ export default defineConfig(({ mode }) => ({
     vue({
       template: {
         compilerOptions: {
-          isCustomElement: (tag) => tag.includes("-"),
+          // a-frame components
+          isCustomElement: (tag) => tag.startsWith("a-"),
         },
       },
     }),
@@ -23,9 +24,4 @@ export default defineConfig(({ mode }) => ({
   build: {
     sourcemap: "inline",
   },
-
-  // vueCompilerOptions: {
-  //   // a-frame components
-  //   isCustomElement: (tag) => tag.startsWith("a-"),
-  // },
 }));
