@@ -3,15 +3,15 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "dev:https": "vite --https --host",
+    "cert": "rm -rf .cert && mkdir -p .cert && mkcert -key-file ./.cert/key.pem -cert-file ./.cert/cert.pem 'localhost'",
+    "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
     "test:watch": "npm run test -- --watch",
-    "storybook:https": "npm run storybook -- --https --ssl-cert ./.env.d/cert.pem --ssl-key ./.env.d/key.pem"
+    "storybook:https": "npm run storybook -- --https --ssl-cert ./.cert/cert.pem --ssl-key ./.cert/key.pem"
   },
   "dependencies": {
     "@ar-js-org/ar.js": "^3.3.3-es6-beta-02",

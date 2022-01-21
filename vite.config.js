@@ -26,8 +26,8 @@ export default defineConfig(({ mode }) => ({
   },
   server: {
     https: {
-      key: "./.env.d/key.pem",
-      cert: "./.env.d/cert.pem",
+      key: "./.cert/key.pem",
+      cert: "./.cert/cert.pem",
     },
   },
 }));
