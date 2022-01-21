@@ -47,7 +47,7 @@ const tourImage = computed(() => props.tour.stops[0].stop_content.image);
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr;
   overflow: hidden;
-  background: var(--blue-light) url("../assets/topography.svg");
+  background: var(--blue-light) url("../../assets/topography.svg");
 }
 
 .tour-header:before,
