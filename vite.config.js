@@ -24,4 +24,10 @@ export default defineConfig(({ mode }) => ({
   build: {
     sourcemap: "inline",
   },
+  server: {
+    https: {
+      key: "./.env.d/key.pem",
+      cert: "./.env.d/cert.pem",
+    },
+  },
 }));
