@@ -51,9 +51,10 @@ function onSlideChange(event) {
 }
 
 /**
- * hack to make swiper set the correct active slide
- * if the stopIndex props changes. for example, if the user
- * selects a new route from the bottom nav, and not via swiping in slider
+ * If the stopIndex is updated via the bottomNav, the correct tourStop will
+ * load, but Swiper will be sitting on the old active slide, which is now
+ * skeleton. So, we need to tell Swiper to slideTo the updated stopIndex..
+ * which we do with the watch on stopIndex.
  */
 watch(
   () => props.stopIndex,
