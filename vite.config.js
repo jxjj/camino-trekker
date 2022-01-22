@@ -22,7 +22,7 @@ export default defineConfig(({ mode }) => ({
     }),
   },
   build: {
-    sourcemap: "inline",
+    sourcemap: true,
   },
   server: {
     https: {
