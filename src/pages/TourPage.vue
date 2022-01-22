@@ -1,6 +1,6 @@
 <template>
   <div class="tour-page">
-    <AppHeader class="tour-page__app-header" />
+    <!-- <AppHeader class="tour-page__app-header" /> -->
     <div v-if="isLoading" class="loading">Loading...</div>
     <div v-if="!isLoading">
       <TourStopSwiper :tour="tour" :stopIndex="stopIndex" />
