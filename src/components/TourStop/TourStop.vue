@@ -3,15 +3,15 @@
     <TourHeader v-if="isFirstStop" :tour="tour" :stopIndex="stopIndex" />
     <StopHeader
       v-if="!isFirstStop"
-      :title="currentStop.stop_content.title[locale]"
+      :title="stop.stop_content.title[locale]"
       :subtitle="`${tour.geocoded.city}, ${tour.geocoded.state}`"
       :stopNumber="stopIndex + 1"
-      :imageSrc="currentStop.stop_content?.image?.src"
-      :imageAlt="currentStop.stop_content?.image?.alt?.[locale]"
+      :imageSrc="stop.stop_content?.image?.src"
+      :imageAlt="stop.stop_content?.image?.alt?.[locale]"
     />
     <div class="tour-stop__stages container">
-      <h2 v-if="stopIndex === 0">Start</h2>
-      <section v-for="stage in stages" :key="`${currentStop.id}-${stage.id}`">
+      <h2 v-if="isFirstStop">Start</h2>
+      <section v-for="stage in stages" :key="`${stop.id}-${stage.id}`">
         <Stage :stage="stage" :locale="locale" />
       </section>
       <Button
@@ -47,16 +47,20 @@ import TourHeader from "../TourHeader/TourHeader.vue";
 import Stage from "../Stage/Stage.vue";
 import { computed } from "vue";
 import FAB from "../FAB/FAB.vue";
-import { useStopIndex, useTour, useLocale } from "../../common/hooks";
+import { useTour, useLocale } from "../../common/hooks";
+import { bool, number, object } from "vue-types";
 
-const { stopIndex } = useStopIndex();
+const props = defineProps({
+  stopIndex: number().def(0),
+  stop: object().isRequired,
+  isLastStop: bool().def(false),
+});
+
 const { tour } = useTour();
 const { locale } = useLocale();
 
-const currentStop = computed(() => tour.value.stops[stopIndex.value]);
-const isFirstStop = computed(() => stopIndex.value === 0);
-const isLastStop = computed(() => stopIndex.value === tour.value.stops - 1);
-const stages = computed(() => currentStop.value?.stop_content?.stages) || [];
+const isFirstStop = computed(() => props.stopIndex === 0);
+const stages = computed(() => props.stop?.stop_content?.stages) || [];
 </script>
 <style scoped>
 .tour-stop {

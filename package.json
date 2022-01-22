@@ -27,6 +27,7 @@
     "marked": "^4.0.9",
     "md5": "^2.3.0",
     "normalize.css": "^8.0.1",
+    "swiper": "^7.4.1",
     "vue": "^3.2.25",
     "vue-router": "^4.0.12",
     "vue-types": "^4.1.1",

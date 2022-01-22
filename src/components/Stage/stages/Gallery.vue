@@ -73,6 +73,7 @@ const handleSheetClose = () => (onStageIndex.value = null);
 <style scoped>
 .gallery-stage {
   margin: 1rem 0;
+  position: relative;
 }
 
 img {

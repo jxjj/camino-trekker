@@ -49,7 +49,7 @@ defineProps({
   position: relative;
   padding: 4rem 2rem;
   overflow: hidden;
-  background: var(--blue-light) url("../assets/wiggle.svg");
+  background: var(--blue-light) url("../../assets/wiggle.svg");
 }
 
 .stop-header:after {

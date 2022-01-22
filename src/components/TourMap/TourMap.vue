@@ -1,5 +1,9 @@
 <template>
-  <div class="tour-map" :class="`tour-map--${initialMapStyle}`">
+  <div
+    class="tour-map"
+    :class="`tour-map--${initialMapStyle}`"
+    @pointerdown="(evt) => evt.stopPropagation()"
+  >
     <div v-if="showMapStyleControl" class="button-bar">
       <Button
         v-for="styleChoice in mapStyleChoices"
