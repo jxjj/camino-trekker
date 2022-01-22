@@ -2,7 +2,7 @@
   <Swiper
     :slides-per-view="1"
     :space-between="16"
-    :initialSlide="initialSlide"
+    :initialSlide="stopIndex"
     @swiper="onSwiper"
     @slideChangeTransitionEnd="onSlideChange"
   >
@@ -32,38 +32,30 @@ const props = defineProps({
   stopIndex: number().def(0),
 });
 
-const initialSlide = ref(props.stopIndex);
 const swiperRef = ref(null);
-
 const router = useRouter();
 
 function onSwiper(swiper) {
   swiperRef.value = swiper;
-  console.log({ swiper });
 }
 
-function onSlideChange(event, args) {
-  console.log({ swiperRef: swiperRef.value });
-  console.log("slideChange", { event, args });
-  initialSlide.value = event.activeIndex;
-  if (swiperRef.value) {
-    swiperRef.value.initialSlide = initialSlide.value;
-  }
+function onSlideChange(event) {
   // update route
   nextTick(() => {
-    router.push(`/tours/${props.tour.id}/stops/${initialSlide.value}`);
-    // swiper.value.slideTo(event.activeIndex, 0);
-    console.log(initialSlide.value);
-    swiperRef.value.update();
+    router.push(`/tours/${props.tour.id}/stops/${event.activeIndex}`);
   });
 }
 
+/**
+ * hack to make swiper set the correct active slide
+ * if the stopIndex props changes. for example, if the user
+ * selects a new route from the bottom nav, and not via swiping in slider
+ */
 watch(
   () => props.stopIndex,
   () => {
-    if (swiperRef.value) {
-      swiperRef.value.slideTo(props.stopIndex, 0);
-    }
+    if (!swiperRef.value) return;
+    swiperRef.value.slideTo(props.stopIndex, 0);
   }
 );
 </script>
