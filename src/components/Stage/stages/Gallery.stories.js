@@ -1,6 +1,6 @@
 import Gallery from "./Gallery.vue";
 import mockTour from "../../../common/__mocks__/mockTour.json";
-import { getStagesFromTourWhere } from "../../../utils/getStagesWhere.js";
+import { getStagesFromTourWhere } from "../../../utils/index.js";
 
 export default {
   title: "Camino/Stages/Gallery",

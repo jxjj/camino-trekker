@@ -12,24 +12,28 @@
       :autoHeight="true"
     >
       <TourStop v-if="stopIndex === index" :stop="stop" :stopIndex="index" />
-      <div v-else>
-        <!-- Make this a skeleton page -->
-        {{ stop.stop_content.title }}
-      </div>
+      <TourStopSkeleton
+        v-else
+        :tour="tour"
+        :stopIndex="index"
+        :locale="locale"
+      />
     </SwiperSlide>
   </Swiper>
 </template>
 <script setup>
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { useRouter } from "vue-router";
+import { number, object, string } from "vue-types";
+import { nextTick, ref, watch } from "vue";
+import TourStopSkeleton from "../TourStopSkeleton/TourStopSkeleton.vue";
 import TourStop from "../TourStop/TourStop.vue";
 import "swiper/css";
-import { number, object } from "vue-types";
-import { nextTick, ref, watch } from "vue";
 
 const props = defineProps({
   tour: object().isRequired,
   stopIndex: number().def(0),
+  locale: string().isRequired,
 });
 
 const swiperRef = ref(null);

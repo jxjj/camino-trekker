@@ -106,12 +106,13 @@ figure {
 }
 
 .gallery-stage__figure-figcaption {
+  display: block;
   font-size: 0.75rem;
-  padding: 1rem 1rem;
+  padding: 1rem;
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 100%;
+  right: 0;
   background: hsla(0, 0%, 0%, 0.5);
   color: var(--white);
 }

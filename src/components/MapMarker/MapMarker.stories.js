@@ -2,7 +2,7 @@ import MapMarker from "./MapMarker.vue";
 import Map from "../Map/Map.vue";
 import { Default as MapStory } from "../Map/Map.stories.js";
 import mockTour from "../../common/__mocks__/mockTour.json";
-import { getStagesFromTourWhere } from "../../utils/getStagesWhere.js";
+import { getStagesFromTourWhere } from "../../utils/index.js";
 
 export default {
   title: "Camino/Map/MapMarker",

@@ -19,25 +19,19 @@
   </header>
 </template>
 <script setup>
+import { computed } from "vue";
 import TourAuthor from "../TourAuthor/TourAuthor.vue";
-import { computed, inject } from "vue";
-import { object, shape, string } from "vue-types";
+import { useLocale, useTour } from "../../common/hooks.js";
 
-const props = defineProps({
-  tour: shape({
-    title: string().def("Tour Title"),
-    author: object().isRequired,
-    geocoded: object().isRequired,
-  }).loose,
-});
+const { tour } = useTour();
+const { locale } = useLocale();
 
 const location = computed(() => {
-  const { city, state } = props.tour.geocoded;
+  const { city, state } = tour.value.geocoded;
   return `${city}, ${state}`;
 });
 
-const locale = inject("currentLocale", "en");
-const tourImage = computed(() => props.tour.stops[0].stop_content.image);
+const tourImage = computed(() => tour.value.stops[0].stop_content.image);
 </script>
 <style scoped>
 .tour-header {

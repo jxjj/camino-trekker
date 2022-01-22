@@ -3,7 +3,7 @@
     <!-- <AppHeader class="tour-page__app-header" /> -->
     <div v-if="isLoading" class="loading">Loading...</div>
     <div v-if="!isLoading">
-      <TourStopSwiper :tour="tour" :stopIndex="stopIndex" />
+      <TourStopSwiper :tour="tour" :stopIndex="stopIndex" :locale="locale" />
       <BottomNav />
     </div>
   </div>
@@ -11,7 +11,7 @@
 <script setup>
 import { onMounted, computed } from "vue";
 import { useStore } from "vuex";
-import { useStopIndex, useTour } from "../common/hooks";
+import { useStopIndex, useTour, useLocale } from "../common/hooks";
 
 import AppHeader from "../components/AppHeader/AppHeader.vue";
 import BottomNav from "../components/BottomNav/BottomNav.vue";
@@ -20,10 +20,10 @@ import TourStopSwiper from "../components/TourStopSwiper/TourStopSwiper.vue";
 const store = useStore();
 const { stopIndex } = useStopIndex();
 const { tour } = useTour();
+const { locale } = useLocale();
 const isLoading = computed(() => store.state.isLoading);
 
 onMounted(() => {
-  console.log("fetchTour");
   store.dispatch("fetchTour", store.state.route.params.tourId);
 });
 </script>
