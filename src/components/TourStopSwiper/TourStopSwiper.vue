@@ -3,12 +3,9 @@
     :modules="[Virtual]"
     :slides-per-view="1"
     :space-between="16"
-    virtual
     :initialSlide="stopIndex"
-    :addSlidesAfter="2"
-    :addSlidesBefore="2"
     @swiper="onSwiper"
-    @slideChange="onSlideChange"
+    @slideChangeTransitionEnd="onSlideChange"
   >
     <SwiperSlide
       v-for="(stop, index) in tour.stops"
@@ -16,7 +13,11 @@
       :virtualIndex="index"
       :autoHeight="true"
     >
-      <TourStop :stop="stop" :stopIndex="index" />
+      <TourStop v-if="stopIndex === index" :stop="stop" :stopIndex="index" />
+      <div v-else>
+        <!-- Make this a skeleton page -->
+        {{ stop.stop_content.title }}
+      </div>
     </SwiperSlide>
   </Swiper>
 </template>
