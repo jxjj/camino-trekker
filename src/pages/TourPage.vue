@@ -1,6 +1,8 @@
 <template>
   <div class="tour-page">
-    <!-- <AppHeader class="tour-page__app-header" /> -->
+    <TuckOnScroll>
+      <AppHeader class="tour-page__app-header" />
+    </TuckOnScroll>
     <div v-if="isLoading" class="loading">Loading...</div>
     <div v-if="!isLoading">
       <TourStopSwiper :tour="tour" :stopIndex="stopIndex" :locale="locale" />
@@ -16,6 +18,7 @@ import { useStopIndex, useTour, useLocale } from "../common/hooks";
 import AppHeader from "../components/AppHeader/AppHeader.vue";
 import BottomNav from "../components/BottomNav/BottomNav.vue";
 import TourStopSwiper from "../components/TourStopSwiper/TourStopSwiper.vue";
+import TuckOnScroll from "../components/TuckOnScroll/TuckOnScroll.vue";
 
 const store = useStore();
 const { stopIndex } = useStopIndex();
@@ -31,13 +34,6 @@ onMounted(() => {
 .tour-page {
   background: var(--blue-light);
   height: 100%;
-}
-
-.tour-page__app-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
 }
 
 .tour-page__main {
