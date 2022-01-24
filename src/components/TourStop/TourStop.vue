@@ -24,20 +24,6 @@
         Continue
       </Button>
     </div>
-    <FAB
-      v-if="!isFirstStop"
-      class="tour-stop__prev-button"
-      icon="arrow_back"
-      alt="Previous Stop"
-      @click="$router.push(`/tours/${tour.id}/stops/${stopIndex - 1}`)"
-    />
-    <FAB
-      v-if="!isLastStop"
-      class="tour-stop__next-button"
-      icon="arrow_forward"
-      alt="Next Stop"
-      @click="$router.push(`/tours/${tour.id}/stops/${stopIndex + 1}`)"
-    />
   </div>
 </template>
 <script setup>
@@ -46,7 +32,6 @@ import StopHeader from "../StopHeader/StopHeader.vue";
 import TourHeader from "../TourHeader/TourHeader.vue";
 import Stage from "../Stage/Stage.vue";
 import { computed } from "vue";
-import FAB from "../FAB/FAB.vue";
 import { useTour, useLocale } from "../../common/hooks";
 import { bool, number, object } from "vue-types";
 
