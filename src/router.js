@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomePage from "./pages/HomePage.vue";
 import TourPage from "./pages/TourPage.vue";
+import ARPage from "./pages/ARPage.vue";
 import SettingsPage from "./pages/SettingsPage.vue";
 import HelpPage from "./pages/HelpPage.vue";
 
@@ -11,6 +12,14 @@ const routes = [
   {
     path: "/tours/:tourId/stops/:stopIndex",
     component: TourPage,
+    // props: (route) => ({
+    //   tourId: toInt(route.params.tourId),
+    //   stopIndex: toInt(route.params.stopIndex),
+    // }),
+  },
+  {
+    path: "/tours/:tourId/stops/:stopIndex/ar",
+    component: ARPage,
     // props: (route) => ({
     //   tourId: toInt(route.params.tourId),
     //   stopIndex: toInt(route.params.stopIndex),

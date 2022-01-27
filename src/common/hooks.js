@@ -45,3 +45,5 @@ export const useTourLocales = () => {
     tourLocales: computed(() => tour.value.tour_content.languages),
   };
 };
+
+export const useConfig = () => computed(() => config);

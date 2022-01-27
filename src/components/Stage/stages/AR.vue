@@ -63,7 +63,7 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 import { bool, number, object, shape, string } from "vue-types";
 import "./useAR.js";
 import Button from "../../Button/Button.vue";
@@ -118,6 +118,14 @@ const getSizeForPoint = (waypoint) => {
   const scaledDistance = getScaledDistanceFromWaypoint(waypoint);
   return scaledDistance * waypoint.text.length;
 };
+
+onMounted(() => {
+  // const scene = document.querySelector("a-scene");
+  window.addEventListener("arjs-video-loaded", (event) => {
+    console.log('video loaded', {event});
+  });
+});
+
 </script>
 <style scope>
 .ar-stage__debug {
