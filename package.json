@@ -29,6 +29,7 @@
     "normalize.css": "^8.0.1",
     "swiper": "^7.4.1",
     "vue": "^3.2.25",
+    "vue-easy-lightbox": "^1.2.4",
     "vue-router": "^4.0.12",
     "vue-types": "^4.1.1",
     "vuex": "^4.0.2",

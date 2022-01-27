@@ -8,42 +8,31 @@
         @click="handleThumbnailClick(i)"
       >
         <div class="gallery-stage__figure-image-wrap">
-          <img :src="image.src" :alt="image.alt" loading="lazy" />
+          <img :src="image.src" :alt="image.text" loading="lazy" />
         </div>
-        <figcaption
-          v-if="image.caption"
-          class="gallery-stage__figure-figcaption"
-        >
-          {{ image.caption }}
+        <figcaption v-if="image.text" class="gallery-stage__figure-figcaption">
+          {{ image.text }}
         </figcaption>
       </figure>
+
+      <!-- all props & events -->
+      <VueEasyLightbox
+        scrollDisabled
+        escDisabled
+        moveDisabled
+        :visible="lightboxVisible"
+        :imgs="images"
+        :index="onStageIndex"
+        teleport="body"
+        @hide="handleHide"
+      ></VueEasyLightbox>
     </div>
-    <Sheet
-      class="gallery__sheet"
-      :is-open="isSheetOpen"
-      @close="handleSheetClose"
-    >
-      <div v-if="isSheetOpen">
-        <figure class="lightbox__figure">
-          <img
-            :src="images[onStageIndex].src"
-            :alt="images[onStageIndex].alt"
-          />
-          <figcaption
-            v-if="images[onStageIndex].caption"
-            class="lightbox__figcaption"
-          >
-            {{ images[onStageIndex].caption }}
-          </figcaption>
-        </figure>
-      </div>
-    </Sheet>
   </div>
 </template>
 <script setup>
 import { ref, computed } from "vue";
 import config from "../../../config";
-import Sheet from "../../Sheet/Sheet.vue";
+import VueEasyLightbox from "vue-easy-lightbox";
 
 const props = defineProps({
   stage: {
@@ -56,19 +45,23 @@ const props = defineProps({
   },
 });
 
-const onStageIndex = ref(null);
-const images = props.stage.images.map((img) => ({
-  src: `${config.imageStorageBase}/${img.src}`,
-  alt: img.text[props.locale],
-  caption: img.text[props.locale],
-}));
-const isSheetOpen = computed(() => Number.isInteger(onStageIndex.value));
-
+const onStageIndex = ref(0);
+const images = computed(() =>
+  props.stage.images.map((img) => ({
+    src: `${config.imageStorageBase}/${img.src}`,
+    alt: img.text[props.locale],
+    text: img.text[props.locale],
+  }))
+);
+const lightboxVisible = ref(false);
 const handleThumbnailClick = (index) => {
   onStageIndex.value = index;
+  lightboxVisible.value = true;
 };
 
-const handleSheetClose = () => (onStageIndex.value = null);
+const handleHide = () => {
+  lightboxVisible.value = false;
+};
 </script>
 <style scoped>
 .gallery-stage {
@@ -135,16 +128,5 @@ figure {
 
 .gallery__figure:hover:before {
   opacity: 100%;
-}
-
-.lightbox {
-  padding-bottom: 8rem;
-  position: relative;
-  z-index: 100;
-}
-
-.lightbox__figcaption {
-  padding: 1rem 0;
-  color: var(--gray-lighter);
 }
 </style>
