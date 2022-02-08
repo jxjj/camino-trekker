@@ -66,11 +66,17 @@ const tourImage = computed(() => tour.value.stops[0].stop_content.image);
   right: 0;
   bottom: 0;
   left: 0;
+  /* background: linear-gradient(
+    90deg,
+    hsla(0, 100%, 50%, 0.4) 0%,
+    hsla(30, 100%, 50%, 0.2) 50%,
+    hsla(60, 100%, 50%, 0) 100%
+  ); */
   background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.5) 25%,
-    rgba(0, 0, 0, 0.9) 100%
+    90deg,
+    hsla(0, 25%, 25%, 0.4) 0%,
+    hsla(30, 100%, 10%, 0.2) 50%,
+    hsla(60, 100%, 20%, 0) 100%
   );
 }
 

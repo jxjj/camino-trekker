@@ -1,5 +1,10 @@
 <template>
-  <header class="stop-header">
+  <header
+    class="stop-header"
+    :class="{
+      'stop-header--no-img': !imageSrc,
+    }"
+  >
     <div class="stop-header__content">
       <p class="stop-header__number">
         {{ stopNumber }}
@@ -50,6 +55,10 @@ defineProps({
   margin-bottom: -2rem;
 }
 
+.stop-header--no-img {
+  color: var(--black);
+}
+
 .stop-header__img-container {
   position: absolute;
   top: 0;
@@ -59,6 +68,15 @@ defineProps({
   background: var(--white);
   z-index: -10;
 }
+.stop-header--no-img .stop-header__img-container:before {
+  background: linear-gradient(
+    90deg,
+    hsla(calc(v-bind(stopNumber) * 51), 100%, 50%, 0.4) 0%,
+    hsla(calc(v-bind(stopNumber) * 51 + 30), 100%, 50%, 0.2) 50%,
+    hsla(calc(v-bind(stopNumber) * 51 + 60), 100%, 50%, 0) 100%
+  );
+}
+
 .stop-header__img-container:before {
   content: "";
   position: absolute;
@@ -67,10 +85,10 @@ defineProps({
   bottom: 0;
   left: 0;
   background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.5) 25%,
-    rgba(0, 0, 0, 0.9) 100%
+    90deg,
+    hsla(calc(v-bind(stopNumber) * 51), 25%, 25%, 0.4) 0%,
+    hsla(calc(v-bind(stopNumber) * 51 + 30), 100%, 10%, 0.2) 50%,
+    hsla(calc(v-bind(stopNumber) * 51 + 60), 100%, 20%, 0) 100%
   );
 }
 
@@ -95,6 +113,9 @@ defineProps({
   margin: 0;
   margin-bottom: 1rem;
 }
+.stop-header--no-img .stop-header__number {
+  border: 2px solid var(--black);
+}
 
 .stop-header__title {
   font-family: "Libre Baskerville", sans-serif;
@@ -102,6 +123,10 @@ defineProps({
   font-size: 2.5rem;
   margin: 0;
   font-weight: 700;
+}
+
+.stop-header--no-img .stop-header__title {
+  color: var(--black);
 }
 
 .stop-header__author {
