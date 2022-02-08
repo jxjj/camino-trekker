@@ -144,7 +144,10 @@ if (props.type === "stop") {
 }
 
 // update bounds when stop changes
+// if stop map
 watch(stopIndex, () => {
+  if (props.type !== "stop") return;
+
   const stopPoints = getPointsForStop(
     stopIndex.value,
     allStopPointsRef.value,
