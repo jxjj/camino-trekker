@@ -23,7 +23,7 @@ const props = defineProps({
     text: Object,
   }).loose,
   locale: string().isRequired,
-  hasShowMapToggle: bool().def(false),
+  hasShowMapToggle: bool().def(true),
 });
 
 const markdown = computed(() => props.stage.text[props.locale]);
