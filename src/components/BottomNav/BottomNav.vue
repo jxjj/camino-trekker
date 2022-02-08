@@ -65,7 +65,9 @@ const isActiveSheet = (sheetKey) => {
 </script>
 <style scoped>
 .bottom-nav__navbar {
-  background: var(--black);
+  background: hsla(0, 0%, 100%, 0.5);
+  border-top: 2px solid hsla(0, 0%, 0%, 0.05);
+  backdrop-filter: blur(0.5rem);
   display: grid;
   grid-template-columns: min-content minmax(0, 1fr) min-content;
   gap: 1rem;
@@ -81,7 +83,7 @@ const isActiveSheet = (sheetKey) => {
 .bottom-nav__button {
   background: transparent;
   border: 0;
-  color: var(--gray-dark);
+  color: var(--black);
   width: 3rem;
   height: 3rem;
   display: inline-flex;

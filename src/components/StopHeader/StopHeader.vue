@@ -57,7 +57,6 @@ defineProps({
   bottom: 0;
   left: 0;
   background: var(--white);
-  border-radius: 2rem 2rem 0 0;
   z-index: -10;
 }
 .stop-header__img-container:before {
