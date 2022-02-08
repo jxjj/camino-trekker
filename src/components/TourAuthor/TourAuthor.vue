@@ -8,9 +8,6 @@
     <div class="tour-author__body">
       <p class="tour-author__name">{{ author.name }}</p>
       <p class="tour-author__title">{{ author.title }}</p>
-      <p v-if="author.institution" class="tour-author__institution">
-        {{ author.institution }}
-      </p>
     </div>
   </div>
 </template>
@@ -38,7 +35,7 @@ defineProps({
 .tour-author__title,
 .tour-author p {
   margin: 0;
-  line-height: 1.2;
+  line-height: 1.4;
 }
 
 .tour-author__name {
