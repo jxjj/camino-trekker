@@ -7,10 +7,11 @@
   >
     <div class="stop-header__content">
       <p class="stop-header__number">
-        {{ stopNumber }}
+        {{ stopNumber === 1 ? "Start" : stopNumber }}
       </p>
       <h2 class="stop-header__title h2">{{ title }}</h2>
       <p v-if="subtitle" class="stop-header__subtitle">{{ subtitle }}</p>
+      <slot />
     </div>
     <div class="stop-header__img-container">
       <img
@@ -71,9 +72,9 @@ defineProps({
 .stop-header--no-img .stop-header__img-container:before {
   background: linear-gradient(
     90deg,
-    hsla(calc(v-bind(stopNumber) * 51), 100%, 50%, 0.4) 0%,
-    hsla(calc(v-bind(stopNumber) * 51 + 30), 100%, 50%, 0.2) 50%,
-    hsla(calc(v-bind(stopNumber) * 51 + 60), 100%, 50%, 0) 100%
+    hsla(calc(v-bind("stopNumber") * 123), 100%, 50%, 0.4) 0%,
+    hsla(calc(v-bind("stopNumber") * 123 + 30), 100%, 50%, 0.2) 50%,
+    hsla(calc(v-bind("stopNumber") * 123 + 60), 100%, 50%, 0) 100%
   );
 }
 
@@ -86,9 +87,9 @@ defineProps({
   left: 0;
   background: linear-gradient(
     90deg,
-    hsla(calc(v-bind(stopNumber) * 51), 25%, 25%, 0.4) 0%,
-    hsla(calc(v-bind(stopNumber) * 51 + 30), 100%, 10%, 0.2) 50%,
-    hsla(calc(v-bind(stopNumber) * 51 + 60), 100%, 20%, 0) 100%
+    hsla(calc(v-bind("stopNumber") * 123), 50%, 20%, 0.4) 0%,
+    hsla(calc(v-bind("stopNumber") * 123 + 30), 50%, 20%, 0.2) 50%,
+    hsla(calc(v-bind("stopNumber") * 123 + 60), 50%, 20%, 0) 100%
   );
 }
 

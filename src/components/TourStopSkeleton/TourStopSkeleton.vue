@@ -1,9 +1,7 @@
 <template>
   <div class="tour-stop">
-    <TourHeader v-if="isFirst" :tour="tour" :stopIndex="stopIndex" />
     <StopHeader
-      v-if="!isFirst"
-      :title="stop.stop_content.title[locale]"
+      :title="isFirstStop ? tour.title : stop.stop_content.title[locale]"
       :subtitle="`${tour.geocoded.city}, ${tour.geocoded.state}`"
       :stopNumber="stopIndex + 1"
       :imageSrc="stop.stop_content?.image?.src"
@@ -19,7 +17,6 @@
 <script setup>
 import { computed } from "vue";
 import StopHeader from "../StopHeader/StopHeader.vue";
-import TourHeader from "../TourHeader/TourHeader.vue";
 import {
   isFirstStop,
   isLastStop,

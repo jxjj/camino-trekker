@@ -1,14 +1,14 @@
 <template>
   <div class="tour-stop">
-    <TourHeader v-if="isFirstStop" :tour="tour" :stopIndex="stopIndex" />
     <StopHeader
-      v-if="!isFirstStop"
-      :title="stop.stop_content.title[locale]"
+      :title="isFirstStop ? tour.title : stop.stop_content.title[locale]"
       :subtitle="`${tour.geocoded.city}, ${tour.geocoded.state}`"
       :stopNumber="stopIndex + 1"
       :imageSrc="stop.stop_content?.image?.src"
       :imageAlt="stop.stop_content?.image?.alt?.[locale]"
-    />
+    >
+      <TourAuthor v-if="isFirstStop" :author="tour.author" />
+    </StopHeader>
     <div class="tour-stop__stages container">
       <h2 v-if="isFirstStop">Start</h2>
       <section v-for="stage in stages" :key="`${stop.id}-${stage.id}`">
@@ -29,7 +29,7 @@
 <script setup>
 import Button from "../Button/Button.vue";
 import StopHeader from "../StopHeader/StopHeader.vue";
-import TourHeader from "../TourHeader/TourHeader.vue";
+import TourAuthor from "../TourAuthor/TourAuthor.vue";
 import Stage from "../Stage/Stage.vue";
 import { computed } from "vue";
 import { useTour, useLocale } from "../../common/hooks";
