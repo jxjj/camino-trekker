@@ -42,6 +42,7 @@ export const Default = Template.bind({});
 Default.args = {
   initialMapStyle: "light",
   type: "tour",
+  stopIndex: 6,
 };
 
 export const StopMap = Template.bind({});

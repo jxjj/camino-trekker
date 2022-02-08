@@ -26,6 +26,8 @@ Default.args = {
 
   Aenean lacinia bibendum nulla sed consectetur. Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Sed posuere consectetur est at lobortis. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.
 
+  [This is a link.](https://www.google.com)
+
   \`\`\`js
   alert('Hello world!');
   \`\`\`
