@@ -8,10 +8,10 @@
         @click="handleThumbnailClick(i)"
       >
         <div class="gallery-stage__figure-image-wrap">
-          <img :src="image.src" :alt="image.text" loading="lazy" />
+          <img :src="image.src" :alt="image.alt" loading="lazy" />
         </div>
-        <figcaption v-if="image.text" class="gallery-stage__figure-figcaption">
-          {{ image.text }}
+        <figcaption v-if="image.title" class="gallery-stage__figure-figcaption">
+          {{ image.title }}
         </figcaption>
       </figure>
 
@@ -50,7 +50,7 @@ const images = computed(() =>
   props.stage.images.map((img) => ({
     src: `${config.imageStorageBase}/${img.src}`,
     alt: img.text[props.locale],
-    text: img.text[props.locale],
+    title: img.text[props.locale],
   }))
 );
 const lightboxVisible = ref(false);
@@ -128,5 +128,14 @@ figure {
 
 .gallery__figure:hover:before {
   opacity: 100%;
+}
+</style>
+<style>
+.vel-modal {
+  background: hsla(0, 0, 0, 0.8);
+  backdrop-filter: blur(0.5rem);
+}
+.vel-btns-wrapper .disable {
+  color: transparent;
 }
 </style>
