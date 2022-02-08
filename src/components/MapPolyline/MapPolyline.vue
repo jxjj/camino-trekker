@@ -64,8 +64,11 @@ watch(mapRef, () => {
 
 // update line color if props change
 watch(colorRef, () => {
-  mapRef.value.on("style.load", () =>
-    mapRef.value.setPaintProperty(props.id, "line-color", colorRef.value)
-  );
+  const updateLineColor = () =>
+    mapRef.value.setPaintProperty(props.id, "line-color", colorRef.value);
+  if (mapRef.value.isStyleLoaded()) {
+    return updateLineColor();
+  }
+  mapRef.value.on("style.load", updateLineColor);
 });
 </script>
