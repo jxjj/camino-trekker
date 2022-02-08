@@ -32,12 +32,8 @@ onMounted(() => {
 </script>
 <style scoped>
 .tour-page {
-  background: var(--blue-light);
+  background: var(--black);
   height: 100%;
-}
-
-.tour-page__main {
-  padding-top: 3.5rem;
 }
 
 .tour-page__stages {

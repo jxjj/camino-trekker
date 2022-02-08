@@ -39,13 +39,10 @@ defineProps({
 .tour-author p {
   margin: 0;
   line-height: 1.2;
-  /* improve legibility when text overlays image */
-  text-shadow: 0 2px 2px hsla(0, 0%, 100%, 1);
 }
 
 .tour-author__name {
   font-weight: 600;
-  color: var(--black);
 }
 
 .tour-author__title,

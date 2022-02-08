@@ -1,8 +1,8 @@
 <template>
   <header class="stop-header">
     <div class="stop-header__content">
-      <p>
-        <span class="stop-header__number">{{ stopNumber }}</span>
+      <p class="stop-header__number">
+        {{ stopNumber }}
       </p>
       <h2 class="stop-header__title h2">{{ title }}</h2>
       <p v-if="subtitle" class="stop-header__subtitle">{{ subtitle }}</p>
@@ -33,154 +33,82 @@ defineProps({
   imageSrc: string(),
   imageAlt: string(),
 });
-
-// const stopIndex = computed(() => store.getters.stopIndex);
-// const stop = computed(() => {
-//   const currentStop = store.getters.currentStop?.stop_content;
-//   return {
-//     title: currentStop?.title?.[locale] || "This Stop",
-//     subtitle: currentStop?.subtitle?.[locale] || "",
-//     image: currentStop?.image || null,
-//   };
-// });
 </script>
 <style scoped>
 .stop-header {
+  padding: 4rem 0;
   position: relative;
-  padding: 4rem 2rem;
-  overflow: hidden;
-  background: var(--blue-light) url("../../assets/wiggle.svg");
-}
-
-.stop-header:after {
-  content: "";
-  width: 66%;
-  height: calc(100% - 2rem);
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  z-index: 1;
-  background: hsla(0, 0%, 100%, 0.75);
-  animation: morph 30s ease infinite alternate-reverse;
-}
-
-.stop-header__content {
-  grid-column: 1 / -1;
-  grid-row: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: 60vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  z-index: 10;
-  position: relative;
-}
-
-.stop-header__number {
-  display: inline-flex;
-  border: 2px solid var(--black);
-  border-radius: 0.25rem;
-  justify-content: center;
-  align-items: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  font-size: 1.25rem;
-  line-height: 1;
-  position: relative;
-  color: var(--black);
+  color: var(--white);
+  z-index: -10;
+  margin-bottom: -2rem;
 }
 
 .stop-header__img-container {
   position: absolute;
-  width: 100%;
-  height: 100%;
   top: 0;
+  right: 0;
+  bottom: 0;
   left: 0;
+  background: var(--white);
+  border-radius: 2rem 2rem 0 0;
+  z-index: -10;
+}
+.stop-header__img-container:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.5) 25%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
 }
 
-.stop-header__title {
-  font-size: 2rem;
-  margin: 0;
-}
-
-.stop-header__subtitle {
-  color: var(--black);
-  margin: 0.5rem 0;
-  /* improve legibility when text overlays image */
-  text-shadow: 0 1px 4px hsla(0, 0%, 100%, 0.5);
-}
-.stop-header__img {
+.stop-header__img-container img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  overflow: hidden;
-  animation: color-rotate 30s linear infinite;
 }
 
-@keyframes morph {
-  0% {
-    border-radius: 23% 77% 29% 71% / 19% 30% 70% 81%;
-  }
-  33% {
-    border-radius: 47% 53% 38% 62% / 68% 30% 70% 32%;
-  }
-  66% {
-    border-radius: 60% 40% 65% 35% / 68% 65% 35% 32%;
-  }
-  100% {
-    border-radius: 86% 14% 87% 13% / 26% 77% 23% 74%;
-  }
+.stop-header__content {
+  padding: 2rem;
 }
 
-@keyframes move {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  25% {
-    transform: translate3d(7vw, 5vw, 0);
-  }
-  50% {
-    transform: translate3d(9vw, 8vw, 0);
-  }
-  75% {
-    transform: translate3d(13vw, 11vw, 0);
-  }
-  100% {
-    transform: translate3d(14vw, 12vw, 0);
-  }
+.stop-header__number {
+  line-height: 1;
+  font-size: 1rem;
+  font-weight: 400;
+  border: 2px solid var(--white);
+  display: inline-flex;
+  padding: 0.5em;
+  border-radius: 0.5rem;
+  margin: 0;
+  margin-bottom: 1rem;
 }
 
-@keyframes move-2 {
-  0% {
-    transform: translate3d(10%, 5%, 0);
-  }
-  25% {
-    transform: translate3d(13%, 12%, 0);
-  }
-  50% {
-    transform: translate3d(12%, 15%, 0);
-  }
-  75% {
-    transform: translate3d(15%, 13%, 0);
-  }
-  100% {
-    transform: translate3d(25%, 18%, 0);
-  }
+.stop-header__title {
+  font-family: "Libre Baskerville", sans-serif;
+  color: var(--white);
+  font-size: 2.5rem;
+  margin: 0;
+  font-weight: 700;
 }
 
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.stop-header__author {
+  color: hsla(0, 0%, 100%, 0.75);
 }
-
-@keyframes color-rotate {
-  from {
-    filter: grayscale(1) sepia(1) hue-rotate(0deg) brightness(1);
-  }
-  to {
-    filter: grayscale(1) sepia(1) hue-rotate(360deg) brightness(1);
-  }
+.stop-header_details {
+  color: hsla(0, 0%, 100%, 0.75);
 }
 </style>

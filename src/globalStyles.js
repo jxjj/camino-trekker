@@ -4,6 +4,10 @@ import "@fontsource/poppins/500.css";
 import "@fontsource/poppins/600.css"; // semi-bold
 import "@fontsource/poppins/700.css"; // bold
 import "@fontsource/poppins/900.css"; // black
+
+import "@fontsource/libre-baskerville"; // 400 (Regular)
+import "@fontsource/libre-baskerville/700.css"; // bold
+
 import "@fontsource/material-icons";
 
 // Global CSS
