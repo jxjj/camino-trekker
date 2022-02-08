@@ -1,7 +1,7 @@
 <template>
   <div class="tour-stop">
     <StopHeader
-      :title="isFirstStop ? tour.title : stop.stop_content.title[locale]"
+      :title="stopIndex === 0 ? tour.title : stop.stop_content.title[locale]"
       :subtitle="`${tour.geocoded.city}, ${tour.geocoded.state}`"
       :stopNumber="stopIndex + 1"
       :imageSrc="stop.stop_content?.image?.src"
@@ -17,11 +17,6 @@
 <script setup>
 import { computed } from "vue";
 import StopHeader from "../StopHeader/StopHeader.vue";
-import {
-  isFirstStop,
-  isLastStop,
-  getStagesFromStop,
-} from "../../utils/index.js";
 import { number, object, string } from "vue-types";
 
 const props = defineProps({
@@ -29,9 +24,7 @@ const props = defineProps({
   locale: string().isRequired,
   stopIndex: number().def(0),
 });
-const isLast = computed(() => isLastStop(props));
-const isFirst = computed(() => isFirstStop(props));
-const stages = computed(() => getStagesFromStop(props));
+
 const stop = computed(() => props.tour.stops[props.stopIndex]);
 </script>
 <style scoped>
