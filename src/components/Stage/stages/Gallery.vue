@@ -138,4 +138,11 @@ figure {
 .vel-btns-wrapper .disable {
   color: transparent;
 }
+.vel-img-title {
+  white-space: normal;
+  font-size: 1rem;
+  overflow: initial;
+  width: 80vw;
+  max-width: 50rem;
+}
 </style>
