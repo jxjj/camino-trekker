@@ -54,16 +54,6 @@ const stages = computed(() => props.stop?.stop_content?.stages) || [];
 .tour-stop__stages {
   background: var(--white);
   border-radius: 2rem 2rem 0 0;
-  padding-bottom: 12rem;
-}
-.tour-stop__prev-button {
-  position: fixed;
-  bottom: 5rem;
-  left: 2rem;
-}
-.tour-stop__next-button {
-  position: fixed;
-  bottom: 5rem;
-  right: 2rem;
+  padding-bottom: 5rem;
 }
 </style>
