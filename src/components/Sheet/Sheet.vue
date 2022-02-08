@@ -48,14 +48,16 @@ defineProps({
 
 .sheet.sheet--is-open {
   z-index: 1000;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 1, 0.5);
 }
 .sheet__inner {
   --scroll-track-color: transparent;
   --scroll-thumb-color: var(--gray-dark);
   --scrollbar-width: 0.5rem;
   border-radius: 1.5rem 1.5rem 0 0;
-  background: var(--black);
+  background: hsla(0, 0%, 100%, 0.5);
+  backdrop-filter: blur(0.5rem);
+
   height: 100%;
   margin-top: 2.5vh;
   overflow-y: auto;
@@ -99,7 +101,7 @@ defineProps({
 .sheet__title {
   grid-column: 1 / -1;
   grid-row: 1;
-  color: var(--gray-light);
+  color: var(--black);
   font-size: 1.5rem;
   line-height: 1;
   font-weight: 600;
@@ -112,7 +114,7 @@ defineProps({
   grid-row: 1;
   z-index: 10;
   background: transparent;
-  color: var(--gray-light);
+  color: var(--);
   border: 0;
   width: 2rem;
   height: 2rem;

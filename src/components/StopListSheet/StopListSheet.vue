@@ -42,12 +42,12 @@ const getStopTitle = (stop) => stop.stop_content.title[locale.value];
 }
 
 .stoplist a {
-  color: var(--gray-dark);
+  color: var(--black);
   text-decoration: none;
 }
 
 .stoplist__item {
-  --text-color: var(--gray-dark);
+  --text-color: var(--black);
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -60,23 +60,19 @@ const getStopTitle = (stop) => stop.stop_content.title[locale.value];
 
 .stoplist__item:hover:not(.stoplist__item--is-active),
 .stoplist__item:focus:not(.stoplist__item--is-active) {
-  color: var(--gray-light);
-}
-
-.stoplist__item:hover:not(.stoplist__item--is-active) .stoplist__number,
-.stoplist__item:focus:not(.stoplist__item--is-active) .stoplist__number {
-  border-color: var(--gray-light);
-}
-
-.stoplist__item:active,
-.stoplist__item--is-active {
   color: var(--black);
   background: var(--white);
 }
 
+.stoplist__item:active,
+.stoplist__item--is-active {
+  color: var(--gray-light);
+  background: var(--black);
+}
+
 .stoplist__item:active .stoplist__number,
 .stoplist__item--is-active .stoplist__number {
-  border-color: var(--black);
+  border-color: var(--gray-light);
 }
 
 .stoplist__number {
@@ -88,7 +84,7 @@ const getStopTitle = (stop) => stop.stop_content.title[locale.value];
   font-weight: 600;
   min-width: 2rem;
   min-height: 2rem;
-  border: 0.125rem solid var(--gray-dark);
+  border: 0.125rem solid var(--black);
   border-radius: 0.5rem;
 }
 </style>
