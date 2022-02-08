@@ -86,11 +86,11 @@ defineProps({
 
 .stop-header__number {
   line-height: 1;
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-weight: 400;
   border: 2px solid var(--white);
   display: inline-flex;
-  padding: 0.5em;
+  padding: 0.33em 0.66rem;
   border-radius: 0.5rem;
   margin: 0;
   margin-bottom: 1rem;
