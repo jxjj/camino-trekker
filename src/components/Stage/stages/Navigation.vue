@@ -4,7 +4,7 @@
     <Button v-if="hasShowMapToggle" icon="map" @click="toggleShowMap">
       Show Map
     </Button>
-    <div v-show="showMap" class="navigation-stage__tour-map-wrapper">
+    <div v-if="showMap" class="navigation-stage__tour-map-wrapper">
       <TourMap initialMapStyle="satellite" type="stop" :stopIndex="stopIndex" />
     </div>
   </div>
