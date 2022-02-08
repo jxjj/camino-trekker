@@ -132,7 +132,7 @@ figure {
 </style>
 <style>
 .vel-modal {
-  background: hsla(0, 0, 0, 0.8);
+  background: hsla(0, 0%, 0%, 0.8);
   backdrop-filter: blur(0.5rem);
 }
 .vel-btns-wrapper .disable {
