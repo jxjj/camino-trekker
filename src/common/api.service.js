@@ -1,37 +1,42 @@
 import pipe from "../utils/pipe";
-import mockTour from "./__mocks__/mockTour.json";
-import mockListOfAllTours from "./__mocks__/mockListOfAllTours.json";
-
-const mockResponse = (payload, middlewares = []) =>
-  new Promise((resolve) =>
-    setTimeout(() => {
-      pipe(...middlewares, resolve)(payload);
-    }, 300)
-  );
+import axios from "axios";
+import config from "../config";
 
 const middlewares = [];
 export const toursService = {
   get(tourId) {
-    return mockResponse(
-      {
-        ...mockTour,
-        id: tourId,
-      },
-      middlewares
-    );
+    return axios(`${config.apiBaseUrl}/api/tour/${tourId}`)
+      .then(pipe(...middlewares))
+      .then((response) => response.data)
+      .catch(console.error);
+  },
+  applyMiddlewares(response) {
+    return pipe(...middlewares)(response);
   },
   list() {
-    return mockResponse(mockListOfAllTours);
+    return axios(`${config.apiBaseUrl}/api/tours`)
+      .then(pipe(...middlewares))
+      .then((res) => res.data)
+      .catch(console.error);
   },
   use(middleware) {
     middlewares.push(middleware);
   },
 };
 
-// change any api locale keys from "English" to "en"
-const localeEnglishToEn = (json) => {
-  const newJSON = JSON.stringify(json).replace('"English":', '"en":');
-  return JSON.parse(newJSON);
-};
+function replaceObjectKeys([oldKeyName, newKeyName], obj) {
+  const ObjAsString = JSON.stringify(obj);
+  console.log(ObjAsString);
+  const newObjAsString = ObjAsString.replace(
+    new RegExp(`"${oldKeyName}":`, "g"),
+    `"${newKeyName}":`
+  );
+  return JSON.parse(newObjAsString);
+}
 
-toursService.use(localeEnglishToEn);
+function convertEnglishToEn(response) {
+  const newData = replaceObjectKeys(["English", "en"], response.data);
+  return { ...response, data: newData };
+}
+
+toursService.use(convertEnglishToEn);
