@@ -7,7 +7,7 @@
       :imageSrc="stop.stop_content?.image?.src"
       :imageAlt="stop.stop_content?.image?.alt?.[locale]"
     >
-      <TourAuthor v-if="isFirstStop" :author="tour.author" />
+      <TourAuthor v-if="isFirstStop && tour.author" :author="tour.author" />
     </StopHeader>
     <div class="tour-stop__stages container">
       <h2 v-if="isFirstStop">Start</h2>

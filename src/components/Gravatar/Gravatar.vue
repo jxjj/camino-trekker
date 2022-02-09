@@ -6,7 +6,9 @@
       'gravatar--large': variant === 'large',
     }"
   >
+    {{ name.charAt(0) }}
     <img
+      v-if="email"
       :src="`https://www.gravatar.com/avatar/${emailHash}?s=${size}`"
       :alt="name"
     />
@@ -19,7 +21,7 @@ import md5 from "md5";
 const props = defineProps({
   email: {
     type: String,
-    required: true,
+    default: null,
   },
   name: {
     type: String,
