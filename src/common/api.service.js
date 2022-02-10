@@ -26,7 +26,6 @@ export const toursService = {
 
 function replaceObjectKeys([oldKeyName, newKeyName], obj) {
   const ObjAsString = JSON.stringify(obj);
-  console.log(ObjAsString);
   const newObjAsString = ObjAsString.replace(
     new RegExp(`"${oldKeyName}":`, "g"),
     `"${newKeyName}":`
