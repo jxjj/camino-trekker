@@ -4,8 +4,8 @@
       :title="stopIndex === 0 ? tour.title : stop.stop_content.title[locale]"
       :subtitle="`${tour.geocoded.city}, ${tour.geocoded.state}`"
       :stopNumber="stopIndex + 1"
-      :imageSrc="stop.stop_content?.image?.src"
-      :imageAlt="stop.stop_content?.image?.alt?.[locale]"
+      :imageSrc="headerImageSrc"
+      :imageAlt="headerImageAlt"
     />
     <div class="tour-stop__stages container">
       <div class="skeleton-block skeleton--small"></div>
@@ -18,6 +18,7 @@
 import { computed } from "vue";
 import StopHeader from "../StopHeader/StopHeader.vue";
 import { number, object, string } from "vue-types";
+import config from "../../config";
 
 const props = defineProps({
   tour: object().isRequired,
@@ -26,6 +27,17 @@ const props = defineProps({
 });
 
 const stop = computed(() => props.tour.stops[props.stopIndex]);
+const headerImageSrc = computed(() => {
+  const image = stop.value?.stop_content?.header_image;
+  if (!image) return null;
+  return `${config.imageStorageBase}/${image.src}`;
+});
+
+const headerImageAlt = computed(() => {
+  const image = stop.value?.stop_content?.header_image;
+  if (!image) return null;
+  return image.alt;
+});
 </script>
 <style scoped>
 .tour-stop {

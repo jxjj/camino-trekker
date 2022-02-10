@@ -4,8 +4,8 @@
       :title="isFirstStop ? tour.title : stop.stop_content.title[locale]"
       :subtitle="`${tour.geocoded.city}, ${tour.geocoded.state}`"
       :stopNumber="stopIndex + 1"
-      :imageSrc="stop.stop_content?.image?.src"
-      :imageAlt="stop.stop_content?.image?.alt?.[locale]"
+      :imageSrc="headerImageSrc"
+      :imageAlt="headerImageAlt"
     >
       <TourAuthor v-if="isFirstStop && tour.author" :author="tour.author" />
     </StopHeader>
@@ -34,6 +34,7 @@ import Stage from "../Stage/Stage.vue";
 import { computed } from "vue";
 import { useTour, useLocale } from "../../common/hooks";
 import { bool, number, object } from "vue-types";
+import config from "../../config";
 
 const props = defineProps({
   stopIndex: number().def(0),
@@ -46,6 +47,17 @@ const { locale } = useLocale();
 
 const isFirstStop = computed(() => props.stopIndex === 0);
 const stages = computed(() => props.stop?.stop_content?.stages) || [];
+const headerImageSrc = computed(() => {
+  const image = props.stop?.stop_content?.header_image;
+  if (!image) return null;
+  return `${config.imageStorageBase}/${image.src}`;
+});
+
+const headerImageAlt = computed(() => {
+  const image = props.stop?.stop_content?.header_image;
+  if (!image) return null;
+  return image.alt;
+});
 </script>
 <style scoped>
 .tour-stop {
