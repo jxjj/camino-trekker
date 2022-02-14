@@ -12,6 +12,7 @@ import Guide from "./stages/Guide.vue";
 import Separator from "./stages/Separator.vue";
 import Navigation from "./stages/Navigation.vue";
 import Gallery from "./stages/Gallery.vue";
+import AR from "./stages/AR.vue";
 
 const componentLookup = {
   language: LanguageSelect,
@@ -19,6 +20,7 @@ const componentLookup = {
   separator: Separator,
   navigation: Navigation,
   gallery: Gallery,
+  ar: AR,
 };
 
 const props = defineProps({
