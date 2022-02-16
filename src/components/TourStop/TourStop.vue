@@ -50,7 +50,7 @@ const stages = computed(() => props.stop?.stop_content?.stages) || [];
 const headerImageSrc = computed(() => {
   const image = props.stop?.stop_content?.header_image;
   if (!image) return null;
-  return `${config.imageStorageBase}/${image.src}`;
+  return `${config.apiBaseUrl}${image.src}`;
 });
 
 const headerImageAlt = computed(() => {
