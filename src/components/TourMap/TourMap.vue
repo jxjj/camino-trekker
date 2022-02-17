@@ -239,4 +239,8 @@ watch(stopIndex, () => {
 .tour-map--dark .button-bar__button--is-active {
   color: var(--gray-light);
 }
+.map-sheet__map-container {
+  border-radius: 0.5rem;
+  border: 1px solid var(--gray-light);
+}
 </style>
