@@ -20,6 +20,7 @@
         scrollDisabled
         escDisabled
         moveDisabled
+        loop
         :visible="lightboxVisible"
         :imgs="images"
         :index="onStageIndex"
