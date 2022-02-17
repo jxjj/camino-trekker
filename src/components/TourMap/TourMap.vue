@@ -108,7 +108,6 @@ function setMapStyle(updatedStyle) {
 }
 
 const { tour } = useTour();
-// const { stopIndex } = useStopIndex();
 const { stopIndex } = toRefs(props);
 const { locale } = useLocale();
 const { accessToken } = useMapBoxAccessToken();

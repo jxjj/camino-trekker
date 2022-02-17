@@ -5,7 +5,7 @@
     :is-open="isOpen"
     @close="$emit('close')"
   >
-    <TourMap initialMapStyle="dark" type="tour" :stopIndex="stopIndex" />
+    <TourMap initialMapStyle="streets" type="tour" :stopIndex="stopIndex" />
   </Sheet>
 </template>
 <script setup>
