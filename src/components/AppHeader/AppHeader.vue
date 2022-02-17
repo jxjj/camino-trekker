@@ -9,12 +9,14 @@
 <script setup>
 import umnLogo from "../../assets/umn-logo.svg";
 </script>
-<style scoped>
+<style scoped postcss>
 .app-header {
   display: flex;
   gap: 0.5rem;
   align-items: center;
   background: hsla(0, 0%, 100%, 0.75);
+  /* TODO: make this happen with autoprefixer */
+  -webkit-backdrop-filter: blur(0.5rem);
   backdrop-filter: blur(0.5rem);
   border-top: 0.25rem solid var(--gold);
   z-index: 100;

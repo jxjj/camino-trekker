@@ -8,7 +8,6 @@
       <Button
         v-for="styleChoice in mapStyleChoices"
         :key="styleChoice"
-        variant="inverse"
         class="button-bar__button"
         :class="{
           'button-bar__button--is-active': styleChoice === mapStyleRef,
@@ -173,8 +172,9 @@ watch(stopIndex, () => {
   border-radius: 0;
   padding: 0.5rem 1rem;
   font-weight: normal;
-  font-size: 0.75rem;
-  color: var(--gray-light);
+  font-size: 0.8rem;
+  color: var(--gray-dark);
+  letter-spacing: 0.02rem;
 }
 
 .button-bar__button:hover {
@@ -183,10 +183,10 @@ watch(stopIndex, () => {
 
 .button-bar__button:hover {
   background: none;
-  color: var(--gray-dark);
+  color: var(--black);
 }
 .button-bar__button--is-active {
-  color: var(--gray-dark);
+  color: var(--black);
 }
 
 .map-popup__link-container {

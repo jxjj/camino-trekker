@@ -67,6 +67,8 @@ const isActiveSheet = (sheetKey) => {
 .bottom-nav__navbar {
   background: hsla(0, 0%, 100%, 0.5);
   border-top: 2px solid hsla(0, 0%, 0%, 0.05);
+  /* TODO: make this happen with autoprefixer */
+  -webkit-backdrop-filter: blur(0.5rem);
   backdrop-filter: blur(0.5rem);
   display: grid;
   grid-template-columns: min-content minmax(0, 1fr) min-content;

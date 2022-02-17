@@ -57,6 +57,8 @@ watch([markerRef, popupRef], () => {
 }
 
 .mapboxgl-popup {
+  /* TODO: make this happen with autoprefixer */
+  -webkit-backdrop-filter: blur(0.5rem);
   backdrop-filter: blur(0.25rem);
 }
 </style>

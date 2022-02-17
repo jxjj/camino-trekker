@@ -55,7 +55,9 @@ defineProps({
   --scroll-thumb-color: var(--gray-dark);
   --scrollbar-width: 0.5rem;
   border-radius: 1.5rem 1.5rem 0 0;
-  background: #fff;
+  background: hsla(0, 0%, 100%, 0.5);
+  /* TODO: make this happen with autoprefixer */
+  -webkit-backdrop-filter: blur(0.5rem);
   backdrop-filter: blur(0.5rem);
 
   height: 100%;

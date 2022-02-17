@@ -136,6 +136,8 @@ figure {
 <style>
 .vel-modal {
   background: hsla(0, 0%, 0%, 0.8);
+  /* TODO: make this happen with autoprefixer */
+  -webkit-backdrop-filter: blur(0.5rem);
   backdrop-filter: blur(0.5rem);
 }
 .vel-btns-wrapper .disable {
