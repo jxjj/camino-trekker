@@ -86,7 +86,6 @@ figure {
   gap: 1rem;
 }
 .gallery-stage__figure-image-wrap {
-  border: 1px solid #ddd;
   flex: 1;
   overflow: hidden;
 }
@@ -94,6 +93,9 @@ figure {
   display: flex;
   flex-direction: column;
   position: relative;
+  border-radius: 0.5rem;
+  border: 1px solid var(--gray-light);
+  overflow: hidden;
 }
 .gallery__figure img {
   transition: all ease 0.5s;
