@@ -14,10 +14,7 @@ import umnLogo from "../../assets/umn-logo.svg";
   display: flex;
   gap: 0.5rem;
   align-items: center;
-  background: hsla(0, 0%, 100%, 0.75);
-  /* TODO: make this happen with autoprefixer */
-  -webkit-backdrop-filter: blur(0.5rem);
-  backdrop-filter: blur(0.5rem);
+  background: #fff;
   border-top: 0.25rem solid var(--gold);
   z-index: 100;
 }
