@@ -17,6 +17,8 @@ import umnLogo from "../../assets/umn-logo.svg";
   background: #fff;
   border-top: 0.25rem solid var(--gold);
   z-index: 100;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 }
 </style>
 <style>
