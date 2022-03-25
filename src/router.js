@@ -3,18 +3,13 @@ import HomePage from "./pages/HomePage.vue";
 import TourPage from "./pages/TourPage.vue";
 import SettingsPage from "./pages/SettingsPage.vue";
 import HelpPage from "./pages/HelpPage.vue";
-
-// const toInt = (str) => Number.parseInt(str, 10);
+import config from "./config";
 
 const routes = [
   { path: "/", component: HomePage },
   {
     path: "/tours/:tourId/stops/:stopIndex",
     component: TourPage,
-    // props: (route) => ({
-    //   tourId: toInt(route.params.tourId),
-    //   stopIndex: toInt(route.params.stopIndex),
-    // }),
   },
   {
     path: "/settings",
@@ -27,7 +22,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(config.baseDir),
   routes,
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
