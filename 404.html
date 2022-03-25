@@ -4,71 +4,47 @@
     <meta charset="utf-8" />
     <title>404</title>
     <script type="text/javascript">
-      /**
-       *  Easy way to enable Single Page Applications for GitHub Pages
-       *
-       *  This project was released under MIT license.
-       *
-       *  @link      https://github.com/rafrex/spa-github-pages
-       *  @author    Rafael Pedicini <code@rafrex.com>
-       *  @link      http://websemantics.ca
-       *  @author    Adnan M.Sagar, PhD. <adnan@websemantics.ca>
-       *
-       *  @param {Object} l, the document current location
-       *  @param {Boolean} projectPages, true by default, https://help.github.com/articles/user-organization-and-project-pages
-       *
-       */
+      // Single Page Apps for GitHub Pages
+      // MIT License
+      // https://github.com/rafgraph/spa-github-pages
+      // This script takes the current url and converts the path and query
+      // string into just a query string, and then redirects the browser
+      // to the new url with only a query string and hash fragment,
+      // e.g. https://www.foo.tld/one/two?a=b&c=d#qwe, becomes
+      // https://www.foo.tld/?/one/two&a=b~and~c=d#qwe
+      // Note: this 404.html file must be at least 512 bytes for it to work
+      // with Internet Explorer (it is currently > 512 bytes)
 
-      (function (l, projectPages) {
-        var repo = projectPages ? "/" + l.pathname.split("/")[1] : "";
+      // If you're creating a Project Pages site and NOT using a custom domain,
+      // then set pathSegmentsToKeep to 1 (enterprise users may need to set it to > 1).
+      // This way the code will only replace the route part of the path, and not
+      // the real directory in which the app resides, for example:
+      // https://username.github.io/repo-name/one/two?a=b&c=d#qwe becomes
+      // https://username.github.io/repo-name/?/one/two&a=b~and~c=d#qwe
+      // Otherwise, leave pathSegmentsToKeep as 0.
+      var pathSegmentsToKeep = 0;
 
-        /* redirect all 404 trafic to index.html */
-        function redirect() {
-          l.replace(
-            l.protocol +
-              "//" +
-              l.hostname +
-              (l.port ? ":" + l.port : "") +
-              repo +
-              "/?" +
-              (l.pathname
-                ? "p=" + l.pathname.replace(/&/g, "~and~").replace(repo, "")
-                : "") +
-              (l.search
-                ? "&q=" + l.search.slice(1).replace(/&/g, "~and~")
-                : "") +
-              l.hash
-          );
-        }
-
-        /* resolve 404 redirects into internal routes */
-        function resolve() {
-          if (l.search) {
-            var q = {};
-            l.search
-              .slice(1)
-              .split("&")
-              .forEach(function (v) {
-                var a = v.split("=");
-                q[a[0]] = a.slice(1).join("=").replace(/~and~/g, "&");
-              });
-            if (q.p !== undefined) {
-              window.history.replaceState(
-                null,
-                null,
-                repo + (q.p || "") + (q.q ? "?" + q.q : "") + l.hash
-              );
-            }
-          }
-        }
-
-        /* if current document is 404 page page, redirect to index.html otherwise resolve */
-        document.title === "404" ? redirect() : resolve();
-      })(window.location, window.projectPages || true);
+      var l = window.location;
+      l.replace(
+        l.protocol +
+          "//" +
+          l.hostname +
+          (l.port ? ":" + l.port : "") +
+          l.pathname
+            .split("/")
+            .slice(0, 1 + pathSegmentsToKeep)
+            .join("/") +
+          "/?/" +
+          l.pathname
+            .slice(1)
+            .split("/")
+            .slice(pathSegmentsToKeep)
+            .join("/")
+            .replace(/&/g, "~and~") +
+          (l.search ? "&" + l.search.slice(1).replace(/&/g, "~and~") : "") +
+          l.hash
+      );
     </script>
   </head>
-
-  <body>
-    Hold on... redirecting
-  </body>
+  <body></body>
 </html>
