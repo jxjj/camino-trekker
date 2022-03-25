@@ -46,7 +46,6 @@ const menuItems = [
 </script>
 <style scoped>
 .menu-sheet a {
-  color: var(--gray-dark);
   text-decoration: none;
 }
 
@@ -63,14 +62,5 @@ const menuItems = [
   font-size: 1.25rem;
   border-radius: 0.5rem;
   transition: all ease 0.2s;
-}
-
-.menu-sheet__list-item:hover,
-.menu-sheet__list-item:focus {
-  color: var(--gray-light);
-}
-.menu-sheet__list-item:active {
-  color: var(--black);
-  background: var(--gray-light);
 }
 </style>
