@@ -48,7 +48,7 @@ defineProps({
 
 .sheet.sheet--is-open {
   z-index: 1000;
-  background: rgba(0, 0, 1, 0.75);
+  /* background: rgba(0, 0, 1, 0.75); */
 }
 .sheet__inner {
   --scroll-track-color: transparent;
@@ -59,6 +59,7 @@ defineProps({
   /* TODO: make this happen with autoprefixer */
   -webkit-backdrop-filter: blur(0.5rem);
   backdrop-filter: blur(0.5rem);
+  box-shadow: 0 -10px 15px -3px rgb(0 0 0/0.1), 0 -4px 6px -4px rgb(0 0 0/0.1);
 
   height: 100%;
   margin-top: 2.5vh;
