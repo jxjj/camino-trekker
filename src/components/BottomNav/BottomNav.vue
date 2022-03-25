@@ -94,7 +94,7 @@ const isActiveSheet = (sheetKey) => {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  transition: all ease 0.1s;
+  transition: all ease-out 0.3s;
 }
 .bottom-nav__button:hover,
 .bottom-nav__progress-button:hover {
@@ -106,6 +106,7 @@ button:active {
   color: var(--black);
 }
 .bottom-nav__progress-button {
+  transition: all ease-out 0.3s;
   display: flex;
   background: transparent;
   flex: 1;
