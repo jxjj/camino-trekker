@@ -7,7 +7,7 @@
   >
     <div class="stop-header__content">
       <p class="stop-header__number">
-        {{ stopNumber === 1 ? "Start" : stopNumber }}
+        {{ stopNumber }}
       </p>
       <h2 class="stop-header__title h2">{{ title }}</h2>
       <p v-if="subtitle" class="stop-header__subtitle">{{ subtitle }}</p>
