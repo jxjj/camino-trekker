@@ -2,7 +2,7 @@
   <div class="tour-stop">
     <StopHeader
       :title="stopIndex === 0 ? tour.title : stop.stop_content.title[locale]"
-      :subtitle="`${tour.geocoded.city}, ${tour.geocoded.state}`"
+      :subtitle="tour.subtitle || ''"
       :stopNumber="stopIndex + 1"
       :imageSrc="headerImageSrc"
       :imageAlt="headerImageAlt"
