@@ -58,8 +58,8 @@ defineProps({
   border: 1px solid hsla(0, 0%, 100%, 0.8);
   background: hsla(0, 0%, 100%, 0.6);
   /* TODO: make this happen with autoprefixer */
-  -webkit-backdrop-filter: blur(0.5rem);
-  backdrop-filter: blur(0.5rem);
+  -webkit-backdrop-filter: blur(1.5rem);
+  backdrop-filter: blur(1.5rem);
   box-shadow: 0 -10px 15px -3px rgb(0 0 0/0.1), 0 -4px 6px -4px rgb(0 0 0/0.1);
 
   height: 100%;
