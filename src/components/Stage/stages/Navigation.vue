@@ -5,7 +5,7 @@
       Show Map
     </Button>
     <div v-if="showMap" class="navigation-stage__tour-map-wrapper">
-      <TourMap initialMapStyle="satellite" type="stop" :stopIndex="stopIndex" />
+      <TourMap initialMapStyle="streets" type="stop" :stopIndex="stopIndex" />
     </div>
   </div>
 </template>
@@ -36,6 +36,9 @@ const showMap = ref(!props.hasShowMapToggle);
 const toggleShowMap = () => (showMap.value = !showMap.value);
 </script>
 <style>
+.navigation-stage {
+  margin: 2rem 0;
+}
 .navigation-stage__tour-map-wrapper {
   height: 50vh;
 }
