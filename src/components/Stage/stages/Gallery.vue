@@ -96,6 +96,8 @@ figure {
   border-radius: 0.5rem;
   border: 1px solid var(--gray-light);
   overflow: hidden;
+  max-height: 20rem;
+  max-width: 20rem;
 }
 .gallery__figure img {
   transition: all ease 0.5s;
