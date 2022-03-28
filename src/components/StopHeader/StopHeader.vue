@@ -101,6 +101,9 @@ defineProps({
 
 .stop-header__content {
   padding: 2rem;
+  width: 50rem;
+  max-width: 100%;
+  margin: 0 auto;
 }
 
 .stop-header__number {

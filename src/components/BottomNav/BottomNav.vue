@@ -64,25 +64,29 @@ const isActiveSheet = (sheetKey) => {
 };
 </script>
 <style scoped>
-.bottom-nav__navbar {
+.bottom-nav {
   border: 1px solid hsla(0, 0%, 100%, 0.8);
   background: hsla(0, 0%, 100%, 0.6);
   /* TODO: make this happen with autoprefixer */
   -webkit-backdrop-filter: blur(1.5rem);
   backdrop-filter: blur(1.5rem);
-  box-shadow: 0 -1px 2px 0 rgb(0 0 0 / 0.1);
-
-  display: grid;
-  grid-template-columns: min-content minmax(0, 1fr) min-content;
-  gap: 1rem;
-  justify-content: space-between;
-  align-items: center;
+  box-shadow: 0 -1px 3px 0 rgb(0 0 0 / 0.1), 0 -1px 2px -1px rgb(0 0 0 / 0.1);
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   padding: 0.5rem 1.25rem;
   z-index: 100;
+}
+
+.bottom-nav__navbar {
+  display: grid;
+  grid-template-columns: min-content minmax(0, 1fr) min-content;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 52rem;
+  margin: 0 auto;
 }
 .bottom-nav__button {
   background: transparent;

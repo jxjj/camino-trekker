@@ -10,19 +10,21 @@
       <TourAuthor v-if="isFirstStop && tour.author" :author="tour.author" />
     </StopHeader>
     <div class="tour-stop__stages container">
-      <h2 v-if="isFirstStop">Start</h2>
-      <section v-for="stage in stages" :key="`${stop.id}-${stage.id}`">
-        <Stage :stage="stage" :locale="locale" />
-      </section>
-      <Button
-        v-if="!isLastStop"
-        icon="arrow_forward"
-        iconPosition="end"
-        variant="primary"
-        @click="$router.push(`/tours/${tour.id}/stops/${stopIndex + 1}`)"
-      >
-        Continue
-      </Button>
+      <div class="tour-stop__contents">
+        <h2 v-if="isFirstStop">Start</h2>
+        <section v-for="stage in stages" :key="`${stop.id}-${stage.id}`">
+          <Stage :stage="stage" :locale="locale" />
+        </section>
+        <Button
+          v-if="!isLastStop"
+          icon="arrow_forward"
+          iconPosition="end"
+          variant="primary"
+          @click="$router.push(`/tours/${tour.id}/stops/${stopIndex + 1}`)"
+        >
+          Continue
+        </Button>
+      </div>
     </div>
   </div>
 </template>
@@ -65,7 +67,13 @@ const headerImageAlt = computed(() => {
 }
 .tour-stop__stages {
   background: var(--white);
-  border-radius: 2rem 2rem 0 0;
+  border-radius: 1rem 1rem 0 0;
   padding-bottom: 5rem;
+  box-shadow: 0 -1px 3px 0 rgb(0 0 0 / 0.1), 0 -1px 2px -1px rgb(0 0 0 / 0.1);
+}
+.tour-stop__contents {
+  width: 50rem;
+  max-width: 100%;
+  margin: 0 auto;
 }
 </style>
