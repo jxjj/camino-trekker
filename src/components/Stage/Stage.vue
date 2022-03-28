@@ -13,6 +13,7 @@ import Separator from "./stages/Separator.vue";
 import Navigation from "./stages/Navigation.vue";
 import Gallery from "./stages/Gallery.vue";
 import AR from "./stages/AR.vue";
+import EmbedFrame from "./stages/EmbedFrame.vue";
 
 const componentLookup = {
   language: LanguageSelect,
@@ -21,6 +22,7 @@ const componentLookup = {
   navigation: Navigation,
   gallery: Gallery,
   ar: AR,
+  "embed-frame": EmbedFrame,
 };
 
 const props = defineProps({
