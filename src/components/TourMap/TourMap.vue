@@ -115,7 +115,9 @@ const centerRef = ref(null);
 const zoomRef = ref(10);
 const mapStyleChoices = ["dark", "satellite", "streets", "light"].sort();
 const mapStyleRef = ref(props.initialMapStyle);
-const fullTourRouteRef = computed(() => getFullTourRoute(tour.value));
+const fullTourRouteRef = computed(() =>
+  getFullTourRoute(tour.value).filter(Boolean)
+);
 const allStopRoutesRef = computed(() => getAllRoutes(tour.value));
 const allStopPointsRef = computed(() => getAllStopPoints(tour.value));
 const startPointRef = computed(() => tour.value.start_location);

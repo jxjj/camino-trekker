@@ -37,7 +37,7 @@ function addDataLayer({ id, positions, color }) {
   mapRef.value
     .addSource(id, {
       type: "geojson",
-      data: toGeoJsonLineString(positions),
+      data: toGeoJsonLineString(positions.filter(Boolean)),
     })
     .addLayer({
       id,
