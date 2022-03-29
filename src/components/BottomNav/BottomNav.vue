@@ -18,18 +18,20 @@
       </button>
     </nav>
     <div>
-      <MenuSheet
-        :is-open="isActiveSheet(SHEETS.MENU)"
-        @close="handleSheetClose()"
-      />
-      <StopListSheet
-        :is-open="isActiveSheet(SHEETS.STOPLIST)"
-        @close="handleSheetClose()"
-      />
-      <MapSheet
-        :is-open="isActiveSheet(SHEETS.MAP)"
-        @close="handleSheetClose()"
-      />
+      <Teleport to="#modals">
+        <MenuSheet
+          :is-open="isActiveSheet(SHEETS.MENU)"
+          @close="handleSheetClose()"
+        />
+        <StopListSheet
+          :is-open="isActiveSheet(SHEETS.STOPLIST)"
+          @close="handleSheetClose()"
+        />
+        <MapSheet
+          :is-open="isActiveSheet(SHEETS.MAP)"
+          @close="handleSheetClose()"
+        />
+      </Teleport>
     </div>
   </div>
 </template>

@@ -1,24 +1,21 @@
 <template>
   <div class="tour-page">
-    <TuckOnScroll>
-      <AppHeader class="tour-page__app-header" />
-    </TuckOnScroll>
-    <div v-if="isLoading" class="loading">Loading...</div>
-    <div v-if="!isLoading">
-      <TourStopSwiper :tour="tour" :stopIndex="stopIndex" :locale="locale" />
-      <BottomNav />
-    </div>
+    <DefaultLayout>
+      <div v-if="isLoading" class="loading">Loading...</div>
+      <div v-if="!isLoading">
+        <TourStopSwiper :tour="tour" :stopIndex="stopIndex" :locale="locale" />
+      </div>
+      <BottomNav v-if="!isLoading" />
+    </DefaultLayout>
   </div>
 </template>
 <script setup>
 import { onMounted, computed } from "vue";
 import { useStore } from "vuex";
 import { useStopIndex, useTour, useLocale } from "../common/hooks";
-
-import AppHeader from "../components/AppHeader/AppHeader.vue";
 import BottomNav from "../components/BottomNav/BottomNav.vue";
 import TourStopSwiper from "../components/TourStopSwiper/TourStopSwiper.vue";
-import TuckOnScroll from "../components/TuckOnScroll/TuckOnScroll.vue";
+import DefaultLayout from "../layouts/DefaultLayout.vue";
 
 const store = useStore();
 const { stopIndex } = useStopIndex();
