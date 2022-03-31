@@ -41,13 +41,15 @@ import config from "../../config";
 const props = defineProps({
   stopIndex: number().def(0),
   stop: object().isRequired,
-  isLastStop: bool().def(false),
 });
 
 const { tour } = useTour();
 const { locale } = useLocale();
 
 const isFirstStop = computed(() => props.stopIndex === 0);
+const isLastStop = computed(
+  () => props.stopIndex === tour.value.stops.length - 1
+);
 const stages = computed(() => props.stop?.stop_content?.stages) || [];
 const headerImageSrc = computed(() => {
   const image = props.stop?.stop_content?.header_image;
@@ -68,7 +70,7 @@ const headerImageAlt = computed(() => {
 .tour-stop__stages {
   background: var(--white);
   border-radius: 1rem 1rem 0 0;
-  padding-bottom: 5rem;
+  padding-bottom: 10rem;
   box-shadow: 0 -1px 3px 0 rgb(0 0 0 / 0.1), 0 -1px 2px -1px rgb(0 0 0 / 0.1);
 }
 .tour-stop__contents {

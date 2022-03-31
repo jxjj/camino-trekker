@@ -8,6 +8,7 @@ export const initialState = {
   isLoading: true,
   locale: "en",
   errors: [],
+  deepDives: [],
 };
 
 export const getters = {
@@ -60,6 +61,14 @@ export const mutations = {
   setLocale(state, locale) {
     state.locale = locale;
   },
+  addDeepDive(state, deepdive) {
+    const hasDeepDive = state.deepDives.indexOf(deepdive) > -1;
+    if (hasDeepDive) return;
+    state.deepDives.push(deepdive);
+  },
+  removeDeepDive(state, deepdive) {
+    state.deepDives = state.deepDives.filter((d) => d !== deepdive);
+  },
 };
 
 export const actions = {
@@ -77,6 +86,12 @@ export const actions = {
   },
   setLocale({ commit }, locale) {
     commit("setLocale", locale);
+  },
+  addDeepDive({ commit }, deepdive) {
+    commit("addDeepDive", deepdive);
+  },
+  removeDeepDive({ commit }, deepdive) {
+    commit("removeDeepDive", deepdive);
   },
 };
 

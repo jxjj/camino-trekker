@@ -1,0 +1,99 @@
+<template>
+  <div
+    class="deepdivesummary-item"
+    :class="{
+      'deepdivesummary-item--checked': checked,
+      'deepdivesummary-item--expanded': showDetails,
+    }"
+  >
+    <header class="deepdivesummary-item__header">
+      <input
+        :id="id"
+        class="deepdivesummary-item__checkbox"
+        type="checkbox"
+        :name="id"
+        :checked="checked"
+        @change="$emit('toggleChecked', !checked)"
+      />
+      <label :for="id">
+        {{ title }}
+      </label>
+      <button
+        class="deepdivesummary-item__show-more-toggle"
+        @click="toggleShowDetails"
+      >
+        <span class="sr-only">Show More</span>
+        <i class="material-icons">chevron_right</i>
+      </button>
+    </header>
+    <div v-show="showDetails" class="deepdivesummary-item__contents">
+      <Markdown :content="content" />
+    </div>
+  </div>
+</template>
+<script setup>
+import Markdown from "../../Markdown/Markdown.vue";
+import { ref } from "vue";
+
+defineProps({
+  id: {
+    type: String,
+    required: true,
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+  content: {
+    type: String,
+    required: true,
+  },
+  checked: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+defineEmits(["toggleChecked"]);
+
+const showDetails = ref(false);
+
+function toggleShowDetails() {
+  showDetails.value = !showDetails.value;
+}
+</script>
+<style scoped>
+.deepdivesummary-item__header {
+  display: grid;
+  gap: 1rem;
+  align-items: center;
+  grid-template-columns: max-content 1fr max-content;
+  font-weight: 600;
+}
+
+.deepdivesummary-item__show-more-toggle {
+  background: none;
+  border: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  color: #ccc;
+}
+
+.deepdivesummary-item--expanded .deepdivesummary-item__show-more-toggle i {
+  transform: rotate(90deg);
+  transition: transform ease-out 0.1s;
+}
+
+.deepdivesummary-item__contents {
+  padding-left: 1.75rem;
+}
+
+input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+</style>

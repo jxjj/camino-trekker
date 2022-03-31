@@ -37,7 +37,7 @@ const classMap = computed(() => ({
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 0.25rem;
+  gap: 0.5rem;
   padding: 0.75rem 1.25rem;
   border: 0.125rem solid var(--black);
   border-radius: 0.25rem;

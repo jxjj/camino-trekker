@@ -14,6 +14,8 @@ import Navigation from "./stages/Navigation.vue";
 import Gallery from "./stages/Gallery.vue";
 import AR from "./stages/AR.vue";
 import EmbedFrame from "./stages/EmbedFrame.vue";
+import DeepDives from "./stages/DeepDives.vue";
+import DeepDivesSummary from "./stages/DeepDivesSummary.vue";
 
 const componentLookup = {
   language: LanguageSelect,
@@ -23,6 +25,8 @@ const componentLookup = {
   gallery: Gallery,
   ar: AR,
   "embed-frame": EmbedFrame,
+  deepdives: DeepDives,
+  "deepdives-summary": DeepDivesSummary,
 };
 
 const props = defineProps({
