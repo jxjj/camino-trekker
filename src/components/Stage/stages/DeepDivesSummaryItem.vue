@@ -63,12 +63,14 @@ function toggleShowDetails() {
 }
 </script>
 <style scoped>
+.deepdivesummary-item {
+  padding: 0.5rem;
+}
 .deepdivesummary-item__header {
   display: grid;
   gap: 1rem;
   align-items: center;
   grid-template-columns: max-content 1fr max-content;
-  font-weight: 600;
 }
 
 .deepdivesummary-item__show-more-toggle {

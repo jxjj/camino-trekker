@@ -15,7 +15,7 @@ const props = defineProps({
   variant: {
     type: String,
     validator(str) {
-      return ["primary", "secondary", "inverse"].includes(str);
+      return ["primary", "secondary", "inverse", "link"].includes(str);
     },
     default: "secondary",
   },
@@ -29,6 +29,7 @@ const classMap = computed(() => ({
   "button--primary": props.variant === "primary",
   "button--icon-position-end": props.iconPosition === "end",
   "button--inverse": props.variant === "inverse",
+  "button--link": props.variant === "link",
 }));
 </script>
 <style scoped>
@@ -82,5 +83,9 @@ const classMap = computed(() => ({
   background: var(--white);
   color: var(--black);
   outline: 0.25rem solid var(--white);
+}
+
+.button--link {
+  border-color: transparent;
 }
 </style>
