@@ -19,4 +19,9 @@ const toCleanHtml = pipe(marked.parse, DOMPurify.sanitize);
 const cleanHtml = computed(() => toCleanHtml(props.content));
 </script>
 
-<style scoped></style>
+<style scoped>
+.markdown :deep(img) {
+  display: block;
+  max-width: 100%;
+}
+</style>
