@@ -37,6 +37,7 @@
         type="email"
         placeholder="you@email.com"
         label="email"
+        labelHidden
         required
       />
       <Button
@@ -182,13 +183,12 @@ function sendEmail() {
 .deepdivesummary-form__input :deep(input) {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-  border: none;
-  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--gray);
+  background: #fff;
   z-index: 1;
 }
 .deepdivesummary-form__button {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
 }
 </style>
