@@ -38,13 +38,8 @@
       />
       <Error v-if="error"> {{ error }} </Error>
       <div class="form-actions">
-        <Button
-          class="deepdivesummary-form__button"
-          type="submit"
-          icon="send"
-          iconPosition="end"
-        >
-          Send
+        <Button class="deepdivesummary-form__button" type="submit">
+          Send Me a Copy
         </Button>
       </div>
     </form>
