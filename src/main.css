@@ -15,12 +15,24 @@ html {
   --yellow-light: #f6ffa2;
   --yellow-lighter: #fbffd9;
   --white: #fff;
-  --black: #141414;
-  --gray-lighter: #f3f3f3;
-  --gray-light: #dfdfdf;
-  --gray: #d4d4d4;
-  --gray-medium: #bababa;
-  --gray-dark: #5e5e60;
+  --gray-50: #fafafa;
+  --gray-100: #f5f5f5;
+  --gray-200: #e5e5e5;
+  --gray-300: #d4d4d4;
+  --gray-400: #a3a3a3;
+  --gray-500: #737373;
+  --gray-600: #525252;
+  --gray-700: #404040;
+  --gray-800: #262626;
+  --gray-900: #171717;
+
+  --black: var(--gray-900);
+  --gray-dark: var(--gray-600);
+  --gray-medium: var(--gray-400);
+  --gray: var(--gray-300);
+  --gray-light: var(--gray-200);
+  --gray-lighter: var(--gray-100);
+
   --blue-light: #dff8fd;
   --blue-medium: #abeffa;
   --blue: var(--blue-medium);
