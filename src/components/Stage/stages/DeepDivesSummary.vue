@@ -37,6 +37,7 @@
         type="email"
         placeholder="you@email.com"
         label="email"
+        required
       />
       <Button
         class="deepdivesummary-form__button"
@@ -48,18 +49,22 @@
         Send
       </Button>
     </form>
+    <Error v-if="error"> {{ error }} </Error>
   </div>
 </template>
 
 <script setup>
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
+import axios from "axios";
 import { useTour, useLocale } from "../../../common/hooks.js";
 import Markdown from "../../Markdown/Markdown.vue";
+import Error from "../../Error/Error.vue";
 import getStagesFromTourWhere from "../../../utils/getStagesFromTourWhere.js";
 import DeepDivesSummaryItem from "./DeepDivesSummaryItem.vue";
 import Button from "../../Button/Button.vue";
 import Input from "../../Input/Input.vue";
+import config from "../../../config.js";
 
 const props = defineProps({
   stage: {
@@ -72,6 +77,9 @@ const store = useStore();
 const { tour } = useTour();
 const { locale } = useLocale();
 const email = ref("");
+const isSendingEmail = ref(false);
+const isSent = ref(false);
+const error = ref("");
 // const success = ref(false);
 const deepDiveSummaryText = computed(() => props.stage.text[locale.value]);
 const checkedDeepDives = computed(() => store.state.deepDives);
@@ -106,6 +114,26 @@ function toggleSelectAll(selectAll) {
       ? store.dispatch("addDeepDive", d)
       : store.dispatch("removeDeepDive", d)
   );
+}
+
+function sendEmail() {
+  isSendingEmail.value = true;
+  axios
+    .post(`${config.apiBaseUrl}/emailDeepDives`, {
+      email,
+      deepDives: checkedDeepDives.value,
+    })
+    .then((response) => {
+      console.log({ response });
+      isSendingEmail.value = false;
+      isSent.value = true;
+      email.value = "";
+    })
+    .catch((err) => {
+      isSendingEmail.value = false;
+      isSent.value = false;
+      error.value = err.message;
+    });
 }
 </script>
 
