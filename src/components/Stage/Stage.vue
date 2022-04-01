@@ -15,18 +15,20 @@ import Gallery from "./stages/Gallery.vue";
 import AR from "./stages/AR.vue";
 import EmbedFrame from "./stages/EmbedFrame.vue";
 import DeepDives from "./stages/DeepDives.vue";
+import Feedback from "./stages/Feedback.vue";
 import DeepDivesSummary from "./stages/DeepDivesSummary.vue";
 
 const componentLookup = {
-  language: LanguageSelect,
-  guide: Guide,
-  separator: Separator,
-  navigation: Navigation,
-  gallery: Gallery,
   ar: AR,
   "embed-frame": EmbedFrame,
   deepdives: DeepDives,
   "deepdives-summary": DeepDivesSummary,
+  feedback: Feedback,
+  gallery: Gallery,
+  guide: Guide,
+  language: LanguageSelect,
+  navigation: Navigation,
+  separator: Separator,
 };
 
 const props = defineProps({
