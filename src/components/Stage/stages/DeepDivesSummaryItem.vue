@@ -8,6 +8,7 @@
   >
     <header class="deepdivesummary-item__header">
       <input
+        v-show="!checkboxHidden"
         :id="id"
         class="deepdivesummary-item__checkbox"
         type="checkbox"
@@ -15,7 +16,7 @@
         :checked="checked"
         @change="$emit('toggleChecked', !checked)"
       />
-      <label :for="id">
+      <label :for="id" class="deepdivesummary-item__title">
         {{ title }}
       </label>
       <button
@@ -52,6 +53,10 @@ defineProps({
     type: Boolean,
     default: false,
   },
+  checkboxHidden: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 defineEmits(["toggleChecked"]);
@@ -67,10 +72,15 @@ function toggleShowDetails() {
   padding: 0.5rem;
 }
 .deepdivesummary-item__header {
-  display: grid;
+  display: flex;
   gap: 1rem;
   align-items: center;
   grid-template-columns: max-content 1fr max-content;
+  justify-content: space-between;
+}
+
+.deepdivesummary-item__title {
+  flex: 1;
 }
 
 .deepdivesummary-item__show-more-toggle {

@@ -3,7 +3,7 @@
     <h3>Deep Dives</h3>
 
     <Markdown :content="deepDiveSummaryText" />
-    <div class="deepdive-select">
+    <div v-if="stage.request_email" class="deepdive-select">
       <input
         id="select-all"
         type="checkbox"
@@ -23,11 +23,16 @@
           :title="deepdive.title[locale]"
           :content="deepdive.text[locale]"
           :checked="isDeepDiveChecked(deepdive)"
+          :checkboxHidden="!stage.request_email"
           @toggleChecked="(isChecked) => setChecked(deepdive, isChecked)"
         />
       </li>
     </ul>
-    <form class="deepdivesummary-form" @submit.prevent="sendEmail">
+    <form
+      v-if="stage.request_email"
+      class="deepdivesummary-form"
+      @submit.prevent="sendEmail"
+    >
       <Input
         v-model="email"
         class="deepdivesummary-form__input"
