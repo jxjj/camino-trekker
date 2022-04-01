@@ -4,11 +4,11 @@
     <Input v-model="name" label="Name" type="text" required />
     <Input v-model="email" label="Email" type="email" required />
     <TextArea v-model="feedback" label="Comment" required />
+    <Error v-if="error"> {{ error }} </Error>
     <div class="feedback-stage__actions">
       <Button variant="link" type="reset">Cancel</Button>
-      <Button type="submit" icon="send" iconPosition="end">Send</Button>
+      <Button type="submit" iconPosition="end">Submit</Button>
     </div>
-    <Error v-if="error"> {{ error }} </Error>
   </form>
 </template>
 <script setup>
