@@ -3,15 +3,9 @@ module.exports = {
     browser: true,
     node: true,
     "vue/setup-compiler-macros": true,
-    jest: true,
+    jest: true
   },
-  extends: [
-    // add more generic rulesets here, such as:
-    "eslint:recommended",
-    "plugin:vue/vue3-recommended",
-    // 'plugin:vue/recommended' // Use this if you are using Vue.js 2.x.
-    "prettier",
-  ],
+  extends: ["eslint:recommended", "plugin:vue/vue3-recommended", "prettier", "plugin:storybook/recommended"],
   rules: {
     // override/add rules settings here, such as:
     "vue/no-unused-vars": "error",
@@ -19,6 +13,6 @@ module.exports = {
     "vue/require-default-prop": "off",
     "vue/attribute-hyphenation": "off",
     "vue/v-on-event-hyphenation": "off",
-    "vue/multi-word-component-names": "off",
-  },
+    "vue/multi-word-component-names": "off"
+  }
 };
