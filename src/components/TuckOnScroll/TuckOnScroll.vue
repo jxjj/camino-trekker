@@ -11,15 +11,20 @@
 <script setup>
 import { ref } from "vue";
 import { useScroll } from "@vueuse/core";
-const { directions } = useScroll(window, {
+const { directions, arrivedState } = useScroll(window, {
   onScroll: handleScroll,
   throttle: 300,
 });
+
 const isTucked = ref(false);
 
 function handleScroll() {
-  if (directions.bottom) isTucked.value = true;
-  if (directions.top) isTucked.value = false;
+  if (directions.bottom) {
+    isTucked.value = true;
+  }
+  if (directions.top || arrivedState.top) {
+    isTucked.value = false;
+  }
 }
 </script>
 <style scoped>
