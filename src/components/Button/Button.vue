@@ -1,13 +1,13 @@
 <template>
-  <button class="button" :class="classMap">
+  <button class="button" :class="`button--${variant}`">
     <span v-if="!!icon" class="material-icons">{{ icon }}</span>
-    <slot>Button Text</slot>
+    <span class="button__text" :class="{ 'sr-only': variant === 'icon-only' }">
+      <slot>Button Text</slot>
+    </span>
   </button>
 </template>
 <script setup>
-import { computed } from "vue";
-
-const props = defineProps({
+defineProps({
   icon: {
     type: String,
     default: null,
@@ -15,7 +15,9 @@ const props = defineProps({
   variant: {
     type: String,
     validator(str) {
-      return ["primary", "secondary", "inverse", "link"].includes(str);
+      return ["primary", "secondary", "inverse", "link", "icon-only"].includes(
+        str
+      );
     },
     default: "secondary",
   },
@@ -24,13 +26,6 @@ const props = defineProps({
     default: "before",
   },
 });
-
-const classMap = computed(() => ({
-  "button--primary": props.variant === "primary",
-  "button--icon-position-end": props.iconPosition === "end",
-  "button--inverse": props.variant === "inverse",
-  "button--link": props.variant === "link",
-}));
 </script>
 <style scoped>
 .button {
@@ -47,6 +42,17 @@ const classMap = computed(() => ({
   color: var(--black);
   background-color: transparent;
   transition: all ease 0.1s;
+}
+.button--icon-only {
+  padding: 0.5rem;
+  background: var(--black);
+  color: var(--white);
+  border-color: var(--black);
+}
+.button:hover.button--icon-only {
+  background: var(--white);
+  color: var(--black);
+  border-color: var(--white);
 }
 
 .button--icon-position-end {
