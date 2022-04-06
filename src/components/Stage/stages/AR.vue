@@ -3,23 +3,25 @@
     <Button icon="travel_explore" @click="toggleShowAr">Look Around</Button>
 
     <Teleport to="#modals">
-      <Sheet
-        title="Look Around"
-        :isOpen="isShowingAR"
-        @close="isShowingAR = false"
-      >
+      <div v-if="isShowingAR" class="ar-stage__modal">
         <iframe
-          v-if="isShowingAR"
           class="ar-iframe"
           :src="src"
           frameborder="0"
           width="100%"
           height="100%"
-          :allow="`camera ${config.apiBaseUrl}; geolocation; gyroscope; accelerometer; magnetometer; fullscreen`"
+          :allow="`camera; geolocation; gyroscope; accelerometer; magnetometer; fullscreen`"
         >
           Loading AR...
         </iframe>
-      </Sheet>
+        <Button
+          class="close-modal-button"
+          icon="close"
+          variant="icon-only"
+          @click="isShowingAR = false"
+          >Close</Button
+        >
+      </div>
     </Teleport>
   </div>
 </template>
@@ -30,7 +32,6 @@ import { bool, object, string } from "vue-types";
 import Button from "../../Button/Button.vue";
 import { useStopIndex, useTour } from "../../../common/hooks.js";
 import config from "../../../config.js";
-import Sheet from "../../Sheet/Sheet.vue";
 
 const props = defineProps({
   stage: object().isRequired,
@@ -51,10 +52,25 @@ const src = computed(() => {
   return `${config.apiBaseUrl}/ar/${tour.value.id}/${stopIndex.value}/English/${props.simulateLocation}`;
 });
 </script>
-<style scope>
+<style scoped>
 .ar-iframe {
-  border: 1px solid #ddd;
-  height: 70vh;
-  margin: auto;
+  height: 100vh;
+  margin: 0;
+  background: var(--gray-lighter);
+}
+
+.ar-stage__modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  /* above navbar */
+  z-index: 200;
+}
+.close-modal-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
 }
 </style>
