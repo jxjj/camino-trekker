@@ -118,5 +118,8 @@ const isMobile = computed(
   position: absolute;
   top: 1rem;
   left: 1rem;
+  width: 75vw;
+  max-width: 40rem;
+  margin: 0;
 }
 </style>
