@@ -15,6 +15,7 @@
           frameborder="0"
           width="100%"
           height="100%"
+          :allow="`camera ${config.apiBaseUrl}`"
         >
           Loading AR...
         </iframe>
