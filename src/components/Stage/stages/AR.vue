@@ -1,6 +1,10 @@
 <template>
   <div class="ar-stage">
     <Button icon="travel_explore" @click="toggleShowAr">Look Around</Button>
+    <Alert v-if="!isMobile" icon="info" variant="warning" :dismissable="false">
+      Your device does <b>not</b> fully support Augmented Reality. Things could
+      get weird. 🙃
+    </Alert>
 
     <Teleport to="#modals">
       <div v-if="isShowingAR" class="ar-stage__modal">
@@ -30,6 +34,17 @@
             Simulate Location
           </Toggle>
         </div>
+
+        <Alert
+          v-if="!isMobile"
+          class="ar-stage__modal-alert"
+          icon="info"
+          variant="warning"
+          :dismissable="true"
+        >
+          Your device does <b>not</b> fully support Augmented Reality. Things
+          could get weird. 🙃
+        </Alert>
       </div>
     </Teleport>
   </div>
@@ -42,6 +57,7 @@ import Button from "../../Button/Button.vue";
 import { useStopIndex, useTour } from "../../../common/hooks.js";
 import config from "../../../config.js";
 import Toggle from "../../Toggle/Toggle.vue";
+import Alert from "../../Alert/Alert.vue";
 
 defineProps({
   stage: object().isRequired,
@@ -61,6 +77,12 @@ const src = computed(() => {
   // TODO: change this to use 2 letter locales
   return `${config.apiBaseUrl}/ar/${tour.value.id}/${stopIndex.value}/English/${isSimulatingLocation.value}`;
 });
+
+const isMobile = computed(
+  () =>
+    "ontouchstart" in document.documentElement &&
+    navigator.userAgent.match(/Mobi/)
+);
 </script>
 <style scoped>
 .ar-iframe {
@@ -91,5 +113,10 @@ const src = computed(() => {
   -webkit-backdrop-filter: blur(1rem);
   backdrop-filter: blur(1rem);
   border-radius: 0.25rem;
+}
+.ar-stage__modal-alert {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
 }
 </style>
