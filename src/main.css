@@ -41,6 +41,7 @@ html {
   --orange: var(--orange-medium);
   --system-blue: #0a84ff;
   --system-red: #ff453a;
+  --system-green: #00c853;
   --translucent-color: hsla(0, 0%, 100%, 0.75);
   --translucent-filter: blur(0.25rem);
 
