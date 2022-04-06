@@ -15,7 +15,7 @@
           frameborder="0"
           width="100%"
           height="100%"
-          :allow="`camera ${config.apiBaseUrl}`"
+          :allow="`camera ${config.apiBaseUrl}; geolocation; gyroscope; accelerometer; magnetometer; fullscreen`"
         >
           Loading AR...
         </iframe>
@@ -34,7 +34,7 @@ import Sheet from "../../Sheet/Sheet.vue";
 
 const props = defineProps({
   stage: object().isRequired,
-  simulateLocation: bool().def(false),
+  simulateLocation: bool().def(true),
   locale: string().def("en"),
 });
 
