@@ -2,16 +2,24 @@
   <div class="ar-stage">
     <Button icon="travel_explore" @click="toggleShowAr">Look Around</Button>
 
-    <iframe
-      v-if="isShowingAR"
-      class="ar-iframe"
-      :src="src"
-      frameborder="0"
-      width="100%"
-      height="100%"
-    >
-      Loading AR...
-    </iframe>
+    <Teleport to="#modals">
+      <Sheet
+        title="Look Around"
+        :isOpen="isShowingAR"
+        @close="isShowingAR = false"
+      >
+        <iframe
+          v-if="isShowingAR"
+          class="ar-iframe"
+          :src="src"
+          frameborder="0"
+          width="100%"
+          height="100%"
+        >
+          Loading AR...
+        </iframe>
+      </Sheet>
+    </Teleport>
   </div>
 </template>
 
@@ -21,6 +29,7 @@ import { bool, object, string } from "vue-types";
 import Button from "../../Button/Button.vue";
 import { useStopIndex, useTour } from "../../../common/hooks.js";
 import config from "../../../config.js";
+import Sheet from "../../Sheet/Sheet.vue";
 
 const props = defineProps({
   stage: object().isRequired,
@@ -33,7 +42,6 @@ const { stopIndex } = useStopIndex();
 
 const isShowingAR = ref(false);
 function toggleShowAr() {
-  console.log("toggleShowAr");
   isShowingAR.value = !isShowingAR.value;
 }
 
@@ -45,7 +53,7 @@ const src = computed(() => {
 <style scope>
 .ar-iframe {
   border: 1px solid #ddd;
-  min-height: 70vh;
-  margin: 1rem 0;
+  height: 70vh;
+  margin: auto;
 }
 </style>
