@@ -9,7 +9,7 @@
         class="bottom-nav__progress-button"
         @click="setActiveSheet(SHEETS.STOPLIST)"
       >
-        <ProgressIndicator :total="totalStopsRef" :active="stopIndexRef" />
+        <ProgressIndicator :total="totalStops" :active="stopIndex" />
         <span class="sr-only">Open Tour Stops</span>
       </button>
       <button class="bottom-nav__button" @click="setActiveSheet(SHEETS.MAP)">
@@ -42,6 +42,7 @@ import ProgressIndicator from "../ProgressIndicator/ProgressIndicator.vue";
 import MapSheet from "../MapSheet/MapSheet.vue";
 import MenuSheet from "../MenuSheet/MenuSheet.vue";
 import StopListSheet from "../StopListSheet/StopListSheet.vue";
+import { useStopIndex, useTour } from "../../common/hooks";
 
 const SHEETS = {
   MENU: "MENU",
@@ -50,10 +51,10 @@ const SHEETS = {
 };
 
 const activeSheet = ref(null);
-const store = useStore();
 
-const stopIndexRef = computed(() => store.getters.stopIndex);
-const totalStopsRef = computed(() => store.getters.totalStops);
+const { stopIndex } = useStopIndex();
+const { tour } = useTour();
+const totalStops = computed(() => tour.value?.stops.length || 0);
 
 const setActiveSheet = (sheetKey) => {
   activeSheet.value = SHEETS[sheetKey];
