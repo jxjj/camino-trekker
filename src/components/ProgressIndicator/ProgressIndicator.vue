@@ -9,7 +9,7 @@
       }"
     >
       <span class="item__dot material-icons">circle</span>
-      <span class="item__index">{{ index === 0 ? "Start" : index + 1 }}</span>
+      <span class="item__index">{{ index + 1 }}</span>
     </li>
   </ol>
 </template>
@@ -50,16 +50,23 @@ const isActive = (index) => index === props.active;
 
 .item__dot {
   font-size: 0.5rem;
-  color: hsla(0, 0%, 0%, 0.25);
+  color: var(--gray-400);
 }
 .item__index {
   display: none;
 }
 
 .item--is-active .item__index {
-  color: hsla(0, 0%, 0%, 1);
+  color: var(--black);
   font-size: 0.75rem;
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--black);
+  border-radius: 0.25rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  font-weight: 600;
 }
 .item--is-active .item__dot {
   display: none;
