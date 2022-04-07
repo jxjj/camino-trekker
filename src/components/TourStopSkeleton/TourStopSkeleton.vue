@@ -1,15 +1,10 @@
 <template>
   <div class="stop-skeleton">
-    <!-- <StopHeader
-      :title="stopIndex === 0 ? tour.title : stop.stop_content.title[locale]"
-      :subtitle="tour.subtitle || ''"
-      :stopNumber="stopIndex + 1"
-      :imageSrc="headerImageSrc"
-      :imageAlt="headerImageAlt"
-    /> -->
-    <header class="stop-skeleton__header container">Header</header>
+    <header class="stop-skeleton__header container"></header>
     <div class="stop-skeleton__stages container">
       <div class="skeleton-block skeleton--small"></div>
+      <div class="skeleton-block skeleton-block--medium"></div>
+      <div class="skeleton-block skeleton-block--large"></div>
       <div class="skeleton-block skeleton-block--medium"></div>
       <div class="skeleton-block skeleton-block--large"></div>
     </div>
@@ -17,8 +12,13 @@
 </template>
 <script setup></script>
 <style scoped>
-.tour-stop {
-  position: relative;
+.stop-skeleton {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  overflow: none;
 }
 .tour-stop__stages {
   background: var(--white);
@@ -61,6 +61,21 @@
 
 .skeleton-block--large {
   height: 8rem;
+}
+
+.stop-skeleton__header {
+  min-height: 60vh;
+  background: var(--gray-lighter)
+    linear-gradient(
+      90deg,
+      var(--gray-lighter) 0,
+      #fafafa 2rem,
+      var(--gray-lighter) 4rem
+    );
+  background-size: 10rem;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  animation: shine-lines 1.6s infinite linear;
 }
 
 @keyframes shine-lines {
