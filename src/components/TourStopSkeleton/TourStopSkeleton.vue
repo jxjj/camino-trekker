@@ -1,44 +1,21 @@
 <template>
-  <div class="tour-stop">
-    <StopHeader
+  <div class="stop-skeleton">
+    <!-- <StopHeader
       :title="stopIndex === 0 ? tour.title : stop.stop_content.title[locale]"
       :subtitle="tour.subtitle || ''"
       :stopNumber="stopIndex + 1"
       :imageSrc="headerImageSrc"
       :imageAlt="headerImageAlt"
-    />
-    <div class="tour-stop__stages container">
+    /> -->
+    <header class="stop-skeleton__header container">Header</header>
+    <div class="stop-skeleton__stages container">
       <div class="skeleton-block skeleton--small"></div>
       <div class="skeleton-block skeleton-block--medium"></div>
       <div class="skeleton-block skeleton-block--large"></div>
     </div>
   </div>
 </template>
-<script setup>
-import { computed } from "vue";
-import StopHeader from "../StopHeader/StopHeader.vue";
-import { number, object, string } from "vue-types";
-import config from "../../config";
-
-const props = defineProps({
-  tour: object().isRequired,
-  locale: string().isRequired,
-  stopIndex: number().def(0),
-});
-
-const stop = computed(() => props.tour.stops[props.stopIndex]);
-const headerImageSrc = computed(() => {
-  const image = stop.value?.stop_content?.header_image;
-  if (!image) return null;
-  return `${config.apiBaseUrl}${image.src}`;
-});
-
-const headerImageAlt = computed(() => {
-  const image = stop.value?.stop_content?.header_image;
-  if (!image) return null;
-  return image.alt;
-});
-</script>
+<script setup></script>
 <style scoped>
 .tour-stop {
   position: relative;

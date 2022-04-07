@@ -1,6 +1,7 @@
 <template>
   <div class="tour-stop">
     <StopHeader
+      class="tour-stop__header"
       :title="isFirstStop ? tour.title : stop.stop_content.title[locale]"
       :subtitle="tour.subtitle || ''"
       :stopNumber="stopIndex + 1"
@@ -35,30 +36,29 @@ import TourAuthor from "../TourAuthor/TourAuthor.vue";
 import Stage from "../Stage/Stage.vue";
 import { computed } from "vue";
 import { useTour, useLocale } from "../../common/hooks";
-import { bool, number, object } from "vue-types";
+import { number } from "vue-types";
 import config from "../../config";
 
 const props = defineProps({
   stopIndex: number().def(0),
-  stop: object().isRequired,
 });
 
 const { tour } = useTour();
 const { locale } = useLocale();
-
+const stop = computed(() => tour.value?.stops[props.stopIndex]);
 const isFirstStop = computed(() => props.stopIndex === 0);
 const isLastStop = computed(
   () => props.stopIndex === tour.value.stops.length - 1
 );
-const stages = computed(() => props.stop?.stop_content?.stages) || [];
+const stages = computed(() => stop.value?.stop_content?.stages) || [];
 const headerImageSrc = computed(() => {
-  const image = props.stop?.stop_content?.header_image;
+  const image = stop.value?.stop_content?.header_image;
   if (!image) return null;
   return `${config.apiBaseUrl}${image.src}`;
 });
 
 const headerImageAlt = computed(() => {
-  const image = props.stop?.stop_content?.header_image;
+  const image = stop.value?.stop_content?.header_image;
   if (!image) return null;
   return image.alt;
 });
@@ -73,9 +73,12 @@ const headerImageAlt = computed(() => {
   padding-bottom: 10rem;
   box-shadow: 0 -1px 3px 0 rgb(0 0 0 / 0.1), 0 -1px 2px -1px rgb(0 0 0 / 0.1);
 }
+.tour-stop__header {
+  z-index: -1;
+}
 .tour-stop__contents {
-  width: 50rem;
-  max-width: 100%;
+  position: relative;
+  max-width: 50rem;
   margin: 0 auto;
 }
 </style>
