@@ -29,7 +29,6 @@ import Sheet from "../Sheet/Sheet.vue";
 defineEmits(["close"]);
 
 const store = useStore();
-// const stopIndex = computed(() => store.getters.stopIndex);
 const { stopIndex } = useStopIndex();
 const { locale } = useLocale();
 const stops = computed(() => store.getters.allStops);
