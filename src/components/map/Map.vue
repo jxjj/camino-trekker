@@ -5,7 +5,8 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted, onUnmounted, toRefs, provide } from "vue";
+import { ref, watch, onMounted, toRefs, provide } from "vue";
+import { useResizeObserver } from "@vueuse/core";
 import "mapbox-gl/dist/mapbox-gl.css";
 import {
   Map,
@@ -40,7 +41,6 @@ const MAP_STYLES = {
   outdoors: "mapbox://styles/mapbox/outdoors-v11",
   light: "mapbox://styles/mapbox/light-v10",
   dark: "mapbox://styles/mapbox/dark-v10",
-  // satellite: "mapbox://styles/mapbox/satellite-v9",
   satellite: "mapbox://styles/mapbox/satellite-streets-v11",
   "navigation-day": "mapbox://styles/mapbox/navigation-day-v1",
   "navigation-night": "mapbox://styles/mapbox/navigation-night-v1",
@@ -67,6 +67,10 @@ function setupMap() {
   if (props.bounds) {
     mapRef.value.fitBounds(boundsRef.value, { padding: 64 });
   }
+
+  useResizeObserver(mapContainerRef, () => {
+    mapRef.value.resize();
+  });
 }
 
 // watch style changes
@@ -83,10 +87,6 @@ watch(boundsRef, () => {
 
 onMounted(() => {
   setupMap();
-});
-
-onUnmounted(() => {
-  // probably need to do some cleanup here?
 });
 
 provide("map", mapRef);
