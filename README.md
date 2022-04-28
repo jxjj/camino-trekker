@@ -1,3 +1,1 @@
-# Camino Trekker
-
-> self-paced, AR-enhanced educational tours
+⚠️ This project has been integrated with [UMN-LATIS/camino](https://github.com/UMN-LATIS/Camino).
